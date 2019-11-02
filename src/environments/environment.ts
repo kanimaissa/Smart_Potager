@@ -3,7 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+   firebaseConfig : {
+  apiKey: "AIzaSyBEGd0aIhO6E7QjE1mUsP4gejjmqBnzSpw",
+  authDomain: "smartpotager-92ed0.firebaseapp.com",
+  databaseURL: "https://smartpotager-92ed0.firebaseio.com",
+  projectId: "smartpotager-92ed0",
+  storageBucket: "smartpotager-92ed0.appspot.com",
+  messagingSenderId: "704041556062",
+  appId: "1:704041556062:web:d9694213a0ef09cbc7bccf",
+  measurementId: "G-1HJR1F0KEY"
+  }
+
 };
 
 /*

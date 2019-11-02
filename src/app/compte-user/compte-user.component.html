@@ -1,0 +1,172 @@
+<div class="main-panel">
+<div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+  <!--
+    Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+    Tip 2: you can also add an image using data-image tag
+-->
+  <div class="logo">
+    <a routerLink = "/dashboard"class="simple-text logo-normal">
+      Smart Potager
+     </a>
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="nav-item  ">
+        <a class="nav-link"  routerLink = "/dashboard">
+          <i class="material-icons">dashboard</i>
+          <p>Dashboard</p>
+        </a>
+      </li>
+      <li class="nav-item active ">
+        <a class="nav-link"   routerLink = "/compte">
+          <i class="material-icons">person</i>
+          <p>User Profile</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link"  routerLink = "/list">
+          <i class="material-icons">content_paste</i>
+          <p>Table List</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./typography.html">
+          <i class="material-icons">library_books</i>
+          <p>Typography</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./icons.html">
+          <i class="material-icons">bubble_chart</i>
+          <p>Icons</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./map.html">
+          <i class="material-icons">location_ons</i>
+          <p>Maps</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./notifications.html">
+          <i class="material-icons">notifications</i>
+          <p>Notifications</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./rtl.html">
+          <i class="material-icons">language</i>
+          <p>RTL Support</p>
+        </a>
+      </li>
+      <li class="nav-item active-pro ">
+        <a class="nav-link" href="./upgrade.html">
+          <i class="material-icons">unarchive</i>
+          <p>Upgrade to PRO</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+ <div class="content">
+    <div class="container-fluid">
+      <div class="row" style="margin-left: 100px;">
+     
+        <div class="col-md-10">
+          <div class="card">
+            <div class="card-header card-header-success">
+              <h4 class="card-title">Ajouter Utilisateur</h4>
+            </div>
+            <div class="card-body">
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+ 
+    <h1 style="margin-top: 25px;">
+      {{title}}
+    </h1>
+   
+    <div class="row" style="margin-right: 25px;">
+      
+        <div class="col-md-5">
+            <div class="form-group">
+              <label class="bmd-label-floating">Nom</label>
+              <input type="text" class="form-control" [(ngModel)]="studentName">
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+              <label class="bmd-label-floating">Prenom</label>
+              <input type="text" class="form-control" [(ngModel)]="Prenom" >
+            </div>  
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+              <label class="bmd-label-floating">Telephone</label>
+              <input type="text" class="form-control" [(ngModel)]="Telephone" >
+            </div>
+          </div>
+
+        <div class="col-md-7">
+            <div class="form-group">
+              <label class="bmd-label-floating">Adresse Mail</label>
+              <input type="email" class="form-control" [(ngModel)]="Email" >
+             </div> 
+        </div> 
+
+        <div class="col-md-3">
+            <div class="form-group">
+             <label class="bmd-label-floating">Age</label>
+             <input type="text" class="form-control" [(ngModel)]="studentAge" >
+            </div> 
+        </div>
+
+        <div class="col-md-5">
+            <div class="form-group">
+              <label class="bmd-label-floating">Gouvernerat</label>
+              <input type="text" class="form-control" [(ngModel)]="Gouvernerat" >
+             </div> 
+        </div> 
+
+        <div class="col-md-5">
+            <div class="form-group">
+              <label class="bmd-label-floating">Delegation</label>
+              <input type="text" class="form-control" [(ngModel)]="Delegation" >
+             </div> 
+        </div>
+
+          <div class="col-md-9">
+              <div class="form-group">
+                <label class="bmd-label-floating">Adresse</label>
+                <input type="text" class="form-control" [(ngModel)]="studentAddress" >
+              </div>  
+          </div>
+
+          <div class="col-md-3">
+              <div class="form-group">
+                <label class="bmd-label-floating">Code Postal</label>
+                <input type="text" class="form-control" [(ngModel)]="CodePostal" >
+               </div> 
+          </div>
+
+        <div class="col-md-3">
+          <button type="button" (click)="CreateRecord()" [disabled]="!studentName || !studentAge || !studentAddress" class="btn btn-success">
+           Ajouter </button>
+        </div>
+    </div>
+    
+  </div>
+
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
