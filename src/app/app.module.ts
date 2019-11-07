@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule , RoutingComponent} from './app-routing.module'; 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -13,12 +12,14 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import {UserService} from '../app/user.service';
 import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule} from '@angular/forms';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import {NgxPaginationModule} from 'ngx-pagination';
-import {MatStepperModule} from '@angular/material/stepper';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule,MatIconModule} from '@angular/material'; 
+import {MaterialModule} from './material/material.module';
+import { from } from 'rxjs';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,26 +28,30 @@ import {MatButtonModule, MatCheckboxModule,MatIconModule} from '@angular/materia
     DashboardComponent,
     CompteUserComponent,
     ListUserComponent,
-    RoutingComponent
+    RoutingComponent,
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    FormsModule,
     AngularFireDatabaseModule,
-    MatStepperModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    MatButtonModule, 
-    MatCheckboxModule,
-    MatIconModule
+    FormsModule,
+    MaterialModule,
+    ReactiveFormsModule
+  
+   
    
   ],
+ 
   providers: [UserService],
-  bootstrap: [AppComponent]
-
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
   
 })
 export class AppModule { }

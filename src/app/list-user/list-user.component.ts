@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService} from '../user.service';
+
 @Component({
   selector: 'app-list-user',
   templateUrl: './list-user.component.html',
@@ -7,10 +8,18 @@ import { UserService} from '../user.service';
 })
 export class ListUserComponent implements OnInit {
 
+  
+  ageValue: number = 0;
+  searchRecord: string = "";
+
   students: any;
   studentName: string;
   studentAge: number;
   studentAddress: string;
+
+  items: Array<any>;
+  Age_filtered_items: Array<any>;
+  Name_filtered_items: Array<any>;
 
   constructor(private crudService: UserService) { }
   
@@ -53,6 +62,55 @@ export class ListUserComponent implements OnInit {
     recordRow.isEdit = false;
   }
 
+
+
+
+
+
+
+  getData(){
+    this.crudService.read_Students()
+    .subscribe(result => {
+      this.items = result;
+      this.Age_filtered_items = result;
+      this.Name_filtered_items = result;
+    })
+  }
   
+  capitalizeFirstLetter(record){
+    return record.charAt(0).toUpperCase() + record.slice(1);
+  }
+  searchByName(){
+    let record = this.searchRecord.toLowerCase();
+    this.crudService.searchUsers(record)
+    .subscribe(result => {
+      this.Name_filtered_items = result;
+      this.items = this.combineLists(result, this.Age_filtered_items);
+    })
+  }
+
+  rangeChange(event){
+    this.crudService.searchUsersByAge(event.value)
+    .subscribe(result =>{
+      this.Age_filtered_items = result;
+      this.items = this.combineLists(result, this.Name_filtered_items);
+    })
+  }
+
+  combineLists(a, b){
+    let result = [];
+
+    a.filter(x => {
+      return b.filter(x2 =>{
+        if(x2.payload.doc.id == x.payload.doc.id){
+          result.push(x2);
+        }
+      });
+    });
+    return result;
+  }
+
+
+ 
 
 }

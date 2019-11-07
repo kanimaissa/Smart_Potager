@@ -82,6 +82,7 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table">
+                  
                   <thead class=" text-success">
                    
                     <th>
@@ -120,7 +121,8 @@
                       </td>
                     </tr>
                   </tbody>
-
+                  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+                    </mat-paginator>
                   
 
                   <ng-template #elseBlock>
@@ -150,12 +152,58 @@
       </div>
       </div>
       </div>
-
-
-
-
-
       
+
+
+
+      <div class="row">
+          <div class="col-md-4 offset-md-1">
+            <div class="input-group">
+              <input type="text" class="form-control" [(ngModel)]="searchRecord" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
+              <div class="input-group-append">
+                <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 filter-by-age">
+            <div class="row">
+              <div class="col-md-auto title">
+                <span>Filter by age (older than):</span>
+              </div>
+              <div class="col">
+                <span>0 </span>
+                <mat-slider
+                  class="age-slider"
+                  max="100"
+                  min="0"
+                  step="1"
+                  thumbLabel="true"
+                  (ngModel)="AgeValue"
+                  (change)="rangeChange($event)">
+                </mat-slider>
+                <span> 100</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="list-group users-list">
+          <div *ngFor="let item of  students" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="row">
+             
+              <div class="col col-md-8 text-col">
+                <h5 class="mb-1"> {{item.Name}} {{item.Address}}</h5>
+                <small>Age: {{item.Age}}</small>
+              </div>
+              <div class="col col-md-2 actions-col">
+                <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
+                  <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </div>
 
 
