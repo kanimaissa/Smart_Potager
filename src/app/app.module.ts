@@ -18,7 +18,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import { from } from 'rxjs';
-
+import { NewUserComponent } from './new-user/new-user.component';
+import { AvatarDialogComponent } from './avatar-dialog/avatar-dialog.component';
+import {FirebaseService} from '../app/firebase.service';
+import { HomeComponent } from './home/home.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditUserResolver } from './edit-user/edit-user.resolver';
 
 @NgModule({
   declarations: [
@@ -29,8 +34,14 @@ import { from } from 'rxjs';
     CompteUserComponent,
     ListUserComponent,
     RoutingComponent,
+    NewUserComponent,
+    AvatarDialogComponent,
+    HomeComponent,
+    EditUserComponent
+   
    
   ],
+  entryComponents: [AvatarDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -42,12 +53,9 @@ import { from } from 'rxjs';
     FormsModule,
     MaterialModule,
     ReactiveFormsModule
-  
-   
-   
   ],
  
-  providers: [UserService],
+  providers: [UserService,FirebaseService,EditUserResolver],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
