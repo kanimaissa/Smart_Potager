@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../firebase.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FirebaseService } from '../../services/firebase.service';
 import { Router, Params } from '@angular/router';
-
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+ 
   ageValue: number = 0;
   searchValue: string = "";
   items: Array<any>;
-  age_filtered_items: Array<any>;
+  ville_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
 
   constructor(
@@ -22,13 +23,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    
   }
 
   getData(){
     this.firebaseService.getUsers()
     .subscribe(result => {
       this.items = result;
-      this.age_filtered_items = result;
+      this.ville_filtered_items = result;
       this.name_filtered_items = result;
     })
   }
@@ -46,14 +48,14 @@ export class HomeComponent implements OnInit {
     this.firebaseService.searchUsers(value)
     .subscribe(result => {
       this.name_filtered_items = result;
-      this.items = this.combineLists(result, this.age_filtered_items);
+      this.items = this.combineLists(result, this.ville_filtered_items);
     })
   }
 
   rangeChange(event){
-    this.firebaseService.searchUsersByAge(event.value)
+    this.firebaseService.searchUsersByVille(event.value)
     .subscribe(result =>{
-      this.age_filtered_items = result;
+      this.ville_filtered_items = result;
       this.items = this.combineLists(result, this.name_filtered_items);
     })
   }
@@ -71,4 +73,11 @@ export class HomeComponent implements OnInit {
     return result;
   }
 
+
+
 }
+
+
+  
+
+

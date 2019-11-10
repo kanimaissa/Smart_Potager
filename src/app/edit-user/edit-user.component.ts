@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { AvatarDialogComponent } from "../avatar-dialog/avatar-dialog.component";
-import { FirebaseService } from '../firebase.service';
+
+import { FirebaseService } from '../../services/firebase.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,9 +23,15 @@ export class EditUserComponent implements OnInit {
    'surname': [
      { type: 'required', message: 'Surname is required.' }
    ],
-   'age': [
-     { type: 'required', message: 'Age is required.' },
-   ]
+   'ville': [
+     { type: 'required', message: 'Ville is required.' },
+   ],
+   'telephone': [
+    { type: 'required', message: 'Telephone is required.' }
+  ],
+  'mdp': [
+    { type: 'required', message: 'mdp is required.' }
+  ]
  };
 
   constructor(
@@ -51,26 +57,18 @@ export class EditUserComponent implements OnInit {
     this.exampleForm = this.fb.group({
       name: [this.item.name, Validators.required],
       surname: [this.item.surname, Validators.required],
-      age: [this.item.age, Validators.required]
+      ville: [this.item.ville, Validators.required],
+      telephone: [this.item.telephone, Validators.required],
+      mdp: [this.item.mdp, Validators.required]
     });
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(AvatarDialogComponent, {
-      height: '400px',
-      width: '400px'
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.item.avatar = result.link;
-      }
-    });
-  }
 
   onSubmit(value){
-    value.avatar = this.item.avatar;
-    value.age = Number(value.age);
+    value.ville = this.item.ville;
+    value.telephone = Number(value.telephone);
+    value.mdp = Number(value.mdp);
     this.firebaseService.updateUser(this.item.id, value)
     .then(
       res => {

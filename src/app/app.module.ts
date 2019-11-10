@@ -5,12 +5,10 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CompteUserComponent } from './compte-user/compte-user.component';
-import { ListUserComponent } from './list-user/list-user.component';
+
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
-import {UserService} from '../app/user.service';
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule} from '@angular/forms';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -19,8 +17,8 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import { from } from 'rxjs';
 import { NewUserComponent } from './new-user/new-user.component';
-import { AvatarDialogComponent } from './avatar-dialog/avatar-dialog.component';
-import {FirebaseService} from '../app/firebase.service';
+
+import {FirebaseService} from '../services/firebase.service';
 import { HomeComponent } from './home/home.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditUserResolver } from './edit-user/edit-user.resolver';
@@ -31,17 +29,16 @@ import { EditUserResolver } from './edit-user/edit-user.resolver';
     FooterComponent,
     HeaderComponent,
     DashboardComponent,
-    CompteUserComponent,
-    ListUserComponent,
+  
     RoutingComponent,
     NewUserComponent,
-    AvatarDialogComponent,
+   
     HomeComponent,
     EditUserComponent
    
    
   ],
-  entryComponents: [AvatarDialogComponent],
+ 
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -55,7 +52,7 @@ import { EditUserResolver } from './edit-user/edit-user.resolver';
     ReactiveFormsModule
   ],
  
-  providers: [UserService,FirebaseService,EditUserResolver],
+  providers: [FirebaseService,EditUserResolver],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

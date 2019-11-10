@@ -8,9 +8,7 @@ export class FirebaseService {
 
   constructor(public db: AngularFirestore) {}
 
-  getAvatars(){
-      return this.db.collection('/avatar').valueChanges()
-  }
+ 
 
   getUser(userKey){
     return this.db.collection('users').doc(userKey).snapshotChanges();
@@ -35,18 +33,21 @@ export class FirebaseService {
       .snapshotChanges()
   }
 
-  searchUsersByAge(value){
-    return this.db.collection('users',ref => ref.orderBy('age').startAt(value)).snapshotChanges();
+  searchUsersByVille(value){
+    return this.db.collection('users',ref => ref.orderBy('ville').startAt(value)).snapshotChanges();
   }
 
 
-  createUser(value, avatar){
+  createUser(value){
     return this.db.collection('users').add({
       name: value.name,
       nameToSearch: value.name.toLowerCase(),
       surname: value.surname,
-      age: parseInt(value.age),
-      avatar: avatar
+      ville: parseInt(value.ville),
+      telephone:value.telephone,
+      mdp:value.mdp
+
+      
     });
   }
 }
