@@ -43,9 +43,9 @@ export class FirebaseService {
       name: value.name,
       nameToSearch: value.name.toLowerCase(),
       surname: value.surname,
-      ville: parseInt(value.ville),
-      telephone:value.telephone,
-      mdp:value.mdp
+      telephone: parseInt(value.telephone),
+      ville:value.ville,
+      mdp: parseInt(value.mdp),
 
       
     });

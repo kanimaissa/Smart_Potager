@@ -68,7 +68,7 @@ export class EditUserComponent implements OnInit {
   onSubmit(value){
     value.ville = this.item.ville;
     value.telephone = Number(value.telephone);
-    value.mdp = Number(value.mdp);
+    value.mdp = this.item.mdp;
     this.firebaseService.updateUser(this.item.id, value)
     .then(
       res => {
