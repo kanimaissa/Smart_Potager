@@ -10,10 +10,10 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class HomeComponent implements OnInit {
  
-  ageValue: number = 0;
+  nbr_potager_Value: number = 0;
   searchValue: string = "";
   items: Array<any>;
-  ville_filtered_items: Array<any>;
+  nbr_potager_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
 
   constructor(
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     this.firebaseService.getUsers()
     .subscribe(result => {
       this.items = result;
-      this.ville_filtered_items = result;
+      this.nbr_potager_filtered_items = result;
       this.name_filtered_items = result;
     })
   }
@@ -48,14 +48,14 @@ export class HomeComponent implements OnInit {
     this.firebaseService.searchUsers(value)
     .subscribe(result => {
       this.name_filtered_items = result;
-      this.items = this.combineLists(result, this.ville_filtered_items);
+      this.items = this.combineLists(result, this.nbr_potager_filtered_items);
     })
   }
 
   rangeChange(event){
-    this.firebaseService.searchUsersByVille(event.value)
+    this.firebaseService.searchUsersByNbr_Potager(event.value)
     .subscribe(result =>{
-      this.ville_filtered_items = result;
+      this.nbr_potager_filtered_items = result;
       this.items = this.combineLists(result, this.name_filtered_items);
     })
   }

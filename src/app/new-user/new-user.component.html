@@ -1,235 +1,177 @@
 <div class="main-panel">
-  <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-    <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-  
-      Tip 2: you can also add an image using data-image tag
-  -->
-    <div class="logo">
-      <a routerLink = "/dashboard"class="simple-text logo-normal">
-        Smart Potager
-       </a>
-    </div>
-    <div class="sidebar-wrapper">
-      <ul class="nav">
-        <li class="nav-item  ">
-          <a class="nav-link"  routerLink = "/dashboard">
-            <i class="material-icons">dashboard</i>
-            <p>Dashboard</p>
-          </a>
-        </li>
-        <li class="nav-item active ">
-          <a class="nav-link"   routerLink = "/new-user">
-            <i class="material-icons">person</i>
-            <p>User Profile</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link"  routerLink = "/home">
-            <i class="material-icons">content_paste</i>
-            <p>Table List</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./typography.html">
-            <i class="material-icons">library_books</i>
-            <p>Typography</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./icons.html">
-            <i class="material-icons">bubble_chart</i>
-            <p>Icons</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./map.html">
-            <i class="material-icons">location_ons</i>
-            <p>Maps</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./notifications.html">
-            <i class="material-icons">notifications</i>
-            <p>Notifications</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./rtl.html">
-            <i class="material-icons">language</i>
-            <p>RTL Support</p>
-          </a>
-        </li>
-        <li class="nav-item active-pro ">
-          <a class="nav-link" href="./upgrade.html">
-            <i class="material-icons">unarchive</i>
-            <p>Upgrade to PRO</p>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-
-
- <div class="content">
-    <div class="container-fluid"> 
-    <div class="create-page">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb ">
-          <li class="breadcrumb-item active " aria-current="page">Create User</li>
-        </ol>
-      </nav>
-  <div class="page-content">
-    <div class="row">
-        <div class="col col-md-12">
-        <mat-vertical-stepper [linear]="isLinear" #stepper>
-            <mat-step [stepControl]="firstFormGroup">
-             
-                <ng-template matStepLabel>Step 1(information personnel)</ng-template>
-                <form class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
-
-                    <div class="form-group">
-                      <mat-form-field class="input-style">
-                        <input matInput placeholder="Name" class="form-control" formControlName="name">
-                      </mat-form-field>
-                      <ng-container *ngFor="let validation of validation_messages.name">
-                        <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
-                      </ng-container>
-                    </div>
+    <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+    
+        Tip 2: you can also add an image using data-image tag
+    -->
+      <div class="logo">
+        <a routerLink = "/dashboard"class="simple-text logo-normal">
+          Smart Potager
+         </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item  ">
+            <a class="nav-link"  routerLink = "/dashboard">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item active ">
+            <a class="nav-link"   routerLink = "/new-user">
+              <i class="material-icons">person</i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link"  routerLink = "/home">
+              <i class="material-icons">content_paste</i>
+              <p>Table List</p>
+            </a>
+          </li>
           
-                    <div class="form-group">
-                      <mat-form-field class="input-style">
-                        <input matInput placeholder="Surname" class="form-control" formControlName="surname">
-                      </mat-form-field>
-                      <ng-container *ngFor="let validation of validation_messages.surname">
-                        <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
-                      </ng-container>
-                    </div>
-                    <div class="form-group">
+        </ul>
+      </div>
+    </div>
+  
+  
+  
+   <div class="content">
+      <div class="container-fluid"> 
+      <div class="create-page">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb ">
+            <li class="breadcrumb-item active " aria-current="page">Create User</li>
+          </ol>
+        </nav>
+    <div class="page-content">
+      <div class="row">
+          <div class="col col-md-12">
+          <mat-vertical-stepper [linear]="isLinear" #stepper>
+              <mat-step [stepControl]="firstFormGroup">
+               
+                  <ng-template matStepLabel>Step 1(information personnel)</ng-template>
+                  <form class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
+  
+                      <div class="form-group">
                         <mat-form-field class="input-style">
-                          <input matInput placeholder="Ville" class="form-control" formControlName="ville">
+                          <input matInput placeholder="Name" class="form-control" formControlName="name">
                         </mat-form-field>
-                        <ng-container *ngFor="let validation of validation_messages.ville">
-                          <mat-error *ngIf="exampleForm.get('ville').hasError(validation.type) && (exampleForm.get('ville').dirty || exampleForm.get('ville').touched)">{{validation.message}}</mat-error>
+                        <ng-container *ngFor="let validation of validation_messages.name">
+                          <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
                         </ng-container>
                       </div>
+            
                       <div class="form-group">
-                          <mat-form-field class="input-style">
-                            <input matInput placeholder="Telephone" class="form-control" formControlName="telephone">
-                          </mat-form-field>
-                          <ng-container *ngFor="let validation of validation_messages.telephone">
-                            <mat-error *ngIf="exampleForm.get('telephone').hasError(validation.type) && (exampleForm.get('telephone').dirty || exampleForm.get('telephone').touched)">{{validation.message}}</mat-error>
-                          </ng-container>
-                        </div>
-                        <div class="form-group">
-                            <mat-form-field class="input-style">
-                              <input matInput placeholder="Mot de passe" class="form-control" formControlName="mdp">
-                            </mat-form-field>
-                            <ng-container *ngFor="let validation of validation_messages.mdp">
-                              <mat-error *ngIf="exampleForm.get('mdp').hasError(validation.type) && (exampleForm.get('mdp').dirty || exampleForm.get('mdp').touched)">{{validation.message}}</mat-error>
-                            </ng-container>
-                          </div>
-          
-                 
-                    <div class="row submit-button-container">
-                        <div class="col-md-4">
-                          <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="!exampleForm.valid">Create</button>
-                        </div>
-                      </div>
-            
-                    </form>
-                    
-                <div>
-                  <button mat-button matStepperNext>Next</button>
-                </div>
-             
-            </mat-step>
-            <mat-step [stepControl]="secondFormGroup">
-              
-                <ng-template matStepLabel>Step 2( infromation potager)</ng-template>
-                <form id="form-potager" class="create-form" [formGroup]="exampleForm2" novalidate (ngSubmit)="createPotager(exampleForm2.value)">
-                  <div class="form-group">
-                    <mat-form-field class="input-style">
-                      <input id="nbPotager" matInput type="number" min="0" max="100" placeholder="Nombre de Potager" class="form-control" >
-                    </mat-form-field>
-                   </div>
-                  
-                    <div id="form-potager-add" class="form-group">
-                      <span id="showNbPotager"style="color: green">Potager: 1</span>
-                     
                         <mat-form-field class="input-style">
-                          <input matInput placeholder="Nom Potager" class="form-control" formControlName="namePotager" id="namePotager">
+                          <input matInput placeholder="Surname" class="form-control" formControlName="surname">
                         </mat-form-field>
-                        <!-- <ng-container *ngFor="let validation of validation_messages.namePotager">
-                          <mat-error *ngIf="exampleForm2.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
-                        </ng-container> -->
-                      
-                        <mat-form-field class="input-style">
-                          <input matInput placeholder="Libellé" class="form-control" formControlName="lib">
-                        </mat-form-field>
-                        <!-- <ng-container *ngFor="let validation of validation_messages.surname">
+                        <ng-container *ngFor="let validation of validation_messages.surname">
                           <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
-                        </ng-container> -->
-                     
-                        <mat-form-field class="input-style">
-                          <input matInput type="text" min="0" max="100" placeholder="Orientation" class="form-control" formControlName="orientation">
-                        </mat-form-field>
-                        <!-- <ng-container *ngFor="let validation of validation_messages.age">
-                          <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
-                        </ng-container> -->
-
-                        <mat-form-field class="input-style">
-                          <input matInput type="text" min="0" max="100" placeholder="Surface" class="form-control" formControlName="surface">
-                        </mat-form-field>
-                        <!-- <ng-container *ngFor="let validation of validation_messages.age">
-                          <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
-                        </ng-container> -->
-
-                        <mat-form-field class="input-style">
-                          <input matInput type="text" min="0" max="100" placeholder="Localisation" class="form-control" formControlName="localisation">
-                        </mat-form-field>
-                        <!-- <ng-container *ngFor="let validation of validation_messages.age">
-                          <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
-                        </ng-container> -->
+                        </ng-container>
                       </div>
-                     
-
-                      
-                    
-                    
-                    <!-- <div id="createPotager" class="row submit-button-container" >
-                        <div class="col-md-4">
-                          <button mat-raised-button class="submit-button" color="primary" type="submit" >Create Potager</button>
-                        </div>
-                      </div> -->
-                  
             
-                    </form>
-                    
+                      <div class="form-group">
+                        <mat-form-field class="input-style">
+                          <input matInput type="number" min="0" max="100" placeholder="Age" class="form-control" formControlName="age">
+                        </mat-form-field>
+                        <ng-container *ngFor="let validation of validation_messages.age">
+                          <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
+                        </ng-container>
+                      </div>
+                      <div class="row submit-button-container">
+                          <div class="col-md-4">
+                            <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="!exampleForm.valid">Create</button>
+                          </div>
+                        </div>
+              
+                      </form>
+                      
+                  <div>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+               
+              </mat-step>
+              <mat-step [stepControl]="secondFormGroup">
+                
+                  <ng-template matStepLabel>Step 2( infromation potager)</ng-template>
+                  <form id="form-potager" class="create-form" [formGroup]="exampleForm2" novalidate (ngSubmit)="createPotager(exampleForm2.value)">
+                      
+                        <div id="form-potager-add" class="form-group">
+                          <span id="showNbPotager"style="color: green">Potager: 1</span>
+                         
+                            <mat-form-field class="input-style">
+                              <input matInput placeholder="Nom Potager" class="form-control" formControlName="namePotager" id="namePotager">
+                            </mat-form-field>
+                            <!-- <ng-container *ngFor="let validation of validation_messages.namePotager">
+                              <mat-error *ngIf="exampleForm2.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                            </ng-container> -->
+                          
+                            <mat-form-field class="input-style">
+                              <input matInput placeholder="Libellé" class="form-control" formControlName="lib">
+                            </mat-form-field>
+                            <!-- <ng-container *ngFor="let validation of validation_messages.surname">
+                              <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
+                            </ng-container> -->
+                         
+                            <mat-form-field class="input-style">
+                              <input matInput type="text" min="0" max="100" placeholder="Orientation" class="form-control" formControlName="orientation">
+                            </mat-form-field>
+                            <!-- <ng-container *ngFor="let validation of validation_messages.age">
+                              <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
+                            </ng-container> -->
+  
+                            <mat-form-field class="input-style">
+                              <input matInput type="text" min="0" max="100" placeholder="Surface" class="form-control" formControlName="surface">
+                            </mat-form-field>
+                            <!-- <ng-container *ngFor="let validation of validation_messages.age">
+                              <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
+                            </ng-container> -->
+  
+                            <mat-form-field class="input-style">
+                              <input matInput type="text" min="0" max="100" placeholder="Localisation" class="form-control" formControlName="localisation">
+                            </mat-form-field>
+                            <!-- <ng-container *ngFor="let validation of validation_messages.age">
+                              <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
+                            </ng-container> -->
+                          </div>
+                          
+                          
+                        
+                        
+                        <div id="createPotager" class="row submit-button-container" >
+                            <div class="col-md-4">
+                              <button mat-raised-button class="submit-button" color="primary" type="submit" >Create Potager</button>
+                            </div>
+                          </div>
+                       
+                
+                        </form>
+                      
+                  <div>
+                    <button mat-button matStepperPrevious >Back</button>
+                    <button mat-button matStepperNext >Next</button>
+                  </div>
+              
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+             
+                You are now done.
                 <div>
                   <button mat-button matStepperPrevious>Back</button>
-                  <button mat-button matStepperNext>Next</button>
+                  <button mat-button (click)="stepper.reset()">Reset</button>
                 </div>
-            
-            </mat-step>
-            <mat-step>
-              <ng-template matStepLabel>Done</ng-template>
-           
-              You are now done.
-              <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
-              </div>
-            </mat-step>
-          </mat-vertical-stepper>
-     
-
+              </mat-step>
+            </mat-vertical-stepper>
+       
+  
+          
+        </div>
         
       </div>
-      
     </div>
   </div>
-</div>
-</div>
-</div>
+  </div>
+  </div>

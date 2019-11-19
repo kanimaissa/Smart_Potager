@@ -30,42 +30,7 @@
               <p>Table List</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./typography.html">
-              <i class="material-icons">library_books</i>
-              <p>Typography</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./icons.html">
-              <i class="material-icons">bubble_chart</i>
-              <p>Icons</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./map.html">
-              <i class="material-icons">location_ons</i>
-              <p>Maps</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./notifications.html">
-              <i class="material-icons">notifications</i>
-              <p>Notifications</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./rtl.html">
-              <i class="material-icons">language</i>
-              <p>RTL Support</p>
-            </a>
-          </li>
-          <li class="nav-item active-pro ">
-            <a class="nav-link" href="./upgrade.html">
-              <i class="material-icons">unarchive</i>
-              <p>Upgrade to PRO</p>
-            </a>
-          </li>
+     
         </ul>
       </div>
     </div>
@@ -79,43 +44,76 @@
       
     <div class="col-md-12">
         <div class="card">
-            <a class="nav-link"  routerLink = "/new-user" >
-              <i class="material-icons">person</i>
-             <p>Ajout Utilisateur</p>
-            </a>
+         
           <div class="card-header card-header-success">
             <h4 class="card-title ">List Utilisateurs</h4>
           </div>
           <div class="card-body">
-              <div class="col-md-4 ">
-             
-              <div class="input-group">
-                <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
-                <div class="input-group-append">
-                  <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>
+            <div class="row">
+                <div class="col col-md-3 text-col">
+                    <button color="primary" class="btn btn-outline-success action" (click)="new-user" type="button" >
+                        <i class="material-icons">person</i>  ajout
+                    </button>     
                 </div>
+
+                  <div class="col col-md-3 text-col">
+                  <div class="input-group">
+                    <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>
+                    </div>
+                  </div>
+                </div>
+           
+            <div  class="col col-md-3 text-col">
+              
+                
+               
               </div>
             </div>
- 
-</div>
+            </div>
+          
 
 <div class="list-group users-list">
+    <div  class="list-group-item list-group-item-action flex-column align-items-start" >
+        <div class="row">
+    <div class="col col-md-2 text-col">
+     <h6>NOM PRENOM</h6>
+    </div>
+    <div class="col col-md-2 text-col">
+        <h6>VILLE</h6>
+      </div>
+    <div class="col col-md-2 text-col">
+        <h6> TELEPHONE</h6>
+    </div>
+    <div class="col col-md-2 text-col">
+        <h6> NBR_POTAGER</h6>
+    </div>
+    </div>
+    </div>
   <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="row">
      
-      <div class="col col-md-3 text-col">
+      <div class="col col-md-2 text-col">
         <h5 class="mb-1">{{item.payload.doc.data().name}} {{item.payload.doc.data().surname}}</h5>
       </div>
-      <div class="col col-md-3 text-col">
+      <div class="col col-md-2 text-col">
           <h5 class="mb-1"> {{item.payload.doc.data().ville}}</h5>
         </div>
-        <div class="col col-md-3 text-col">
+        <div class="col col-md-2 text-col">
             <h5 class="mb-1"> {{item.payload.doc.data().telephone}}</h5>
           </div>
-         
-      <div class="col col-md-2 actions-col">
-        <button class="btn btn-outline-primary action" (click)="viewDetails(item)" type="button">
-          <ion-icon class="icon" name="arrow-round-forward"></ion-icon>
+          <div class="col col-md-2 text-col">
+              <h5 class="mb-1"> {{item.payload.doc.data().nbr_potager}}</h5>
+            </div>
+      <div class="col col-md-2 text-col">
+        <button color="primary" class="btn btn-outline-success action" (click)="viewDetails(item)" type="button" >
+          Details
+        </button>
+      </div>
+        <div class="col col-md-2 text-col ">
+        <button color="primary" class="btn btn-outline-success action" (click)="viewPotagers(item)" type="button" >
+        Potagers
         </button>
       </div>
      

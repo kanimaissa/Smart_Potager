@@ -56,7 +56,8 @@ export class NewUserComponent implements OnInit {
 
   exampleForm: FormGroup;
   exampleForm2: FormGroup ;
-
+  idPotager: string ;
+  idUser: string ; 
   validation_messages = {
     'name': [
       { type: 'required', message: 'Name is required.' }
@@ -72,7 +73,10 @@ export class NewUserComponent implements OnInit {
    ],
    'mdp': [
      { type: 'required', message: 'mdp is required.' }
-   ]
+   ],
+   'nbr_potager': [
+    { type: 'required', message: 'mdp is required.' }
+  ]
   };
 
   validation_messages2 = {
@@ -113,7 +117,8 @@ export class NewUserComponent implements OnInit {
       surname: ['', Validators.required ],
       ville: ['', Validators.required ],
       telephone: ['', Validators.required ],
-      mdp: ['', Validators.required ]
+      mdp: ['', Validators.required ],
+      nbr_potager: ['', Validators.required ]
     });
   }
 
@@ -134,7 +139,15 @@ export class NewUserComponent implements OnInit {
       surname: new FormControl('', Validators.required),
       ville: new FormControl('', Validators.required),
       telephone: new FormControl('', Validators.required),
-      mdp: new FormControl('', Validators.required)
+      mdp: new FormControl('', Validators.required),
+      nbr_potager: new FormControl('', Validators.required)
+    });
+    this.exampleForm2 = this.fb2.group({
+      namePotager: new FormControl('', Validators.required),
+      lib: new FormControl('', Validators.required),
+      orientation: new FormControl('', Validators.required),
+      surface: new FormControl('', Validators.required),
+      localisation: new FormControl('', Validators.required),
     });
   }
 
@@ -146,6 +159,31 @@ export class NewUserComponent implements OnInit {
         this.router.navigate(['/home']);
       }
     )
+  }
+
+  createPotager(valuePotager){
+    this.firebaseService.createPotager(valuePotager).then(
+      res => {
+        this.resetFields();
+        res.onSnapshot(doc => {
+          this.idPotager = doc.id ;
+         // console.log(doc.id, '=>', doc.data());
+        // console.log(`${doc.id} => ${doc.data()}`);
+         console.log(this.idUser);
+         this.firebaseService.potagerUser(this.idPotager, this.idUser);
+       
+        // this.router.navigate(['/home']);
+      }
+    );
+      });
+    
+    // this.firebaseService.getIdPotager().subscribe((snapshot) =>{
+    //   snapshot.forEach(doc => {
+    //     console.log(doc.id, '=>', doc.data());
+    //   });
+     
+  
+     //console.log(this.idPotager);
   }
 
 }

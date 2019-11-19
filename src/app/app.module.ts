@@ -22,6 +22,7 @@ import {FirebaseService} from '../services/firebase.service';
 import { HomeComponent } from './home/home.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditUserResolver } from './edit-user/edit-user.resolver';
+import { PotagerComponent } from './potager/potager.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { EditUserResolver } from './edit-user/edit-user.resolver';
     NewUserComponent,
    
     HomeComponent,
-    EditUserComponent
+    EditUserComponent,
+    PotagerComponent
    
    
   ],

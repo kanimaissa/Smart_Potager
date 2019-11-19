@@ -31,6 +31,9 @@ export class EditUserComponent implements OnInit {
   ],
   'mdp': [
     { type: 'required', message: 'mdp is required.' }
+  ],
+  'nbr_potager': [
+    { type: 'required', message: 'nombre  potager is required.' }
   ]
  };
 
@@ -59,7 +62,8 @@ export class EditUserComponent implements OnInit {
       surname: [this.item.surname, Validators.required],
       ville: [this.item.ville, Validators.required],
       telephone: [this.item.telephone, Validators.required],
-      mdp: [this.item.mdp, Validators.required]
+      mdp: [this.item.mdp, Validators.required],
+      nbr_potager: [this.item.nbr_potager, Validators.required]
     });
   }
 
@@ -69,6 +73,7 @@ export class EditUserComponent implements OnInit {
     value.ville = this.item.ville;
     value.telephone = Number(value.telephone);
     value.mdp = this.item.mdp;
+    value.nbr_potager = Number(value.nbr_potager);
     this.firebaseService.updateUser(this.item.id, value)
     .then(
       res => {

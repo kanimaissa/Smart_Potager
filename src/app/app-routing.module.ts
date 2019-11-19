@@ -6,12 +6,14 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { HomeComponent } from './home/home.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditUserResolver } from './edit-user/edit-user.resolver';
+import { PotagerComponent} from './potager/potager.component';
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {path:"dashboard", component:DashboardComponent}, 
   { path: 'new-user', component: NewUserComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'details/:id', component: EditUserComponent, resolve:{data : EditUserResolver} }
+  { path: 'details/:id', component: EditUserComponent, resolve:{data : EditUserResolver}},
+  { path: 'potagers/:id', component: PotagerComponent  }
 
 ];
 
@@ -23,5 +25,5 @@ export class AppRoutingModule {
 
 }
 export const 
-RoutingComponent = [DashboardComponent,HomeComponent,NewUserComponent];
+RoutingComponent = [DashboardComponent,HomeComponent,NewUserComponent, EditUserComponent,PotagerComponent];
 
