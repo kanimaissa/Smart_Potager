@@ -1,8 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,Inject } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { Router, Params } from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { NewUserComponent } from '../new-user/new-user.component';
+import { EditUserComponent } from '../edit-user/edit-user.component';
+
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,9 +22,14 @@ export class HomeComponent implements OnInit {
   nbr_potager_filtered_items: Array<any>;
   name_filtered_items: Array<any>;
 
+ 
   constructor(
     public firebaseService: FirebaseService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
+ 
+    
+   
   ) { }
 
   ngOnInit() {
@@ -26,6 +37,28 @@ export class HomeComponent implements OnInit {
     
   }
 
+  openDialogAddUser(): void {
+    const dialogRef = this.dialog.open(NewUserComponent, {
+      width: '800px',
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      
+    });
+  }
+
+  openDialogShowUser(): void {
+    const dialogRef = this.dialog.open(EditUserComponent, {
+      width: '800px',
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      
+    });
+  }
+  
   getData(){
     this.firebaseService.getUsers()
     .subscribe(result => {
@@ -73,11 +106,15 @@ export class HomeComponent implements OnInit {
     return result;
   }
 
-
+  viewPotagers(item){
+    this.router.navigate(['/potagers/'+ item.payload.doc.id]);
+    
+  }
 
 }
 
 
-  
+
+
 
 

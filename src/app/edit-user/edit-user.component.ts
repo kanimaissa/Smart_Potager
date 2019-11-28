@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material';
 
+import {ToastrService} from 'ngx-toastr';
 import { FirebaseService } from '../../services/firebase.service';
+import {DialogService} from '../../services/dialog.service';
 import { Router } from '@angular/router';
-
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatConfirmDialogComponent } from '../mat-confirm-dialog/mat-confirm-dialog.component';
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -23,6 +25,9 @@ export class EditUserComponent implements OnInit {
    'surname': [
      { type: 'required', message: 'Surname is required.' }
    ],
+   'email': [
+    { type: 'required', message: 'Email is required.' }
+  ],
    'ville': [
      { type: 'required', message: 'Ville is required.' },
    ],
@@ -42,7 +47,10 @@ export class EditUserComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private toastr:ToastrService,
+    private dialogservice:DialogService,
+  
   ) { }
 
   ngOnInit() {
@@ -55,11 +63,12 @@ export class EditUserComponent implements OnInit {
       }
     })
   }
-
+ 
   createForm() {
     this.exampleForm = this.fb.group({
       name: [this.item.name, Validators.required],
       surname: [this.item.surname, Validators.required],
+      email: [this.item.email, Validators.required],
       ville: [this.item.ville, Validators.required],
       telephone: [this.item.telephone, Validators.required],
       mdp: [this.item.mdp, Validators.required],
@@ -67,9 +76,10 @@ export class EditUserComponent implements OnInit {
     });
   }
 
-
-
+ 
+ 
   onSubmit(value){
+    value.email = this.item.email;
     value.ville = this.item.ville;
     value.telephone = Number(value.telephone);
     value.mdp = this.item.mdp;
@@ -77,22 +87,41 @@ export class EditUserComponent implements OnInit {
     this.firebaseService.updateUser(this.item.id, value)
     .then(
       res => {
+       
         this.router.navigate(['/home']);
+        this.showWarn();
       }
     )
   }
 
+  showWarn(){
+    this.toastr.warning('la modification a effectué avec succées','utilisateur modifié');
+  }
+
+  showError(){
+    this.toastr.error('la suppression a effectué avec succées','utilisateur supprimé');
+  }
   delete(){
-    this.firebaseService.deleteUser(this.item.id)
+    /*this.firebaseService.deleteUser(this.item.id)
     .then(
       res => {
+      
         this.router.navigate(['/home']);
       },
       err => {
         console.log(err);
       }
-    )
-  }
+    )*/
+    this.dialogservice.openConfirmDialog()
+    .afterClosed().subscribe(res =>{
+     if(res) {
+      this.firebaseService.deleteUser(this.item.id);
+      this.showError();
+      this.router.navigate(['/home']);
+     }
+    });
+  } 
+
 
   cancel(){
     this.router.navigate(['/home']);

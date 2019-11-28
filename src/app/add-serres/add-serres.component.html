@@ -1,0 +1,100 @@
+<h1 mat-dialog-title>Ajouter utilisateur</h1>
+<div mat-dialog-content>
+
+
+
+ <div class="content">
+   
+    <div class="container-fluid"> 
+    <div class="create-page">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb ">
+          <li class="breadcrumb-item active " aria-current="page">Ajouter Serres</li>
+        </ol>
+      </nav>
+  <div class="page-content">
+    <div class="row">
+        <div class="col col-md-12">
+        <mat-vertical-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+             
+                <ng-template matStepLabel>Step 1(information personnel)</ng-template>
+                <form class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="addSerres(exampleForm.value)">
+
+                    <div class="form-group">
+                      <mat-form-field class="input-style">
+                        <input matInput placeholder="Libelle" class="form-control" formControlName="lib">
+                      </mat-form-field>
+                      <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                        <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                      </ng-container> -->
+                    </div>
+          
+                    <div class="form-group">
+                      <mat-form-field class="input-style">
+                        <input matInput placeholder="Position" class="form-control" formControlName="position">
+                      </mat-form-field>
+                      <!-- <ng-container *ngFor="let validation of validation_messages.surname">
+                        <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
+                      </ng-container> -->
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field class="input-style">
+                            <input matInput placeholder="Largeur" class="form-control" formControlName="largeur">
+                          </mat-form-field>
+                          <!-- <ng-container *ngFor="let validation of validation_messages.ville">
+                            <mat-error *ngIf="exampleForm.get('ville').hasError(validation.type) && (exampleForm.get('ville').dirty || exampleForm.get('ville').touched)">{{validation.message}}</mat-error>
+                          </ng-container> -->
+                        </div>
+                        <div class="form-group">
+                            <mat-form-field class="input-style">
+                                <input matInput placeholder="Longueur" class="form-control" formControlName="longueur">
+                              </mat-form-field>
+                              <!-- <ng-container *ngFor="let validation of validation_messages.ville">
+                                <mat-error *ngIf="exampleForm.get('ville').hasError(validation.type) && (exampleForm.get('ville').dirty || exampleForm.get('ville').touched)">{{validation.message}}</mat-error>
+                              </ng-container> -->
+                            </div>
+
+                      
+                    <div class="row submit-button-container">
+                        <div class="col-md-4">
+                          <button mat-raised-button class="submit-button" color="primary" type="submit" >Create</button>
+                        </div>
+                      </div>
+            
+                    </form>
+                    
+                <div>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+             
+            </mat-step>
+      
+            <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              <button mat-button matStepperNext (click)="redirectTableSerre()">Liste des Serres</button>
+           
+              You are now done.
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+              </div>
+            </mat-step>
+          </mat-vertical-stepper>
+     
+         
+        
+      </div>
+      
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>

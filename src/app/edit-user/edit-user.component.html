@@ -1,49 +1,51 @@
 <div class="main-panel">
-    <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-    
-        Tip 2: you can also add an image using data-image tag
-    -->
-      <div class="logo">
-        <a routerLink = "/dashboard"class="simple-text logo-normal">
-          Smart Potager
-         </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="nav-item  ">
-            <a class="nav-link"  routerLink = "/dashboard">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link"  routerLink = "/new-user" >
-              <i class="material-icons">person</i>
-              <p>User Profile</p>
-            </a>
-          </li>
-          <li class="nav-item active " >
-            <a class="nav-link"   routerLink = "/home">
-              <i class="material-icons">content_paste</i>
-              <p>Table List</p>
-            </a>
-      
-     
-      
-        </ul>
-      </div>
+  <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+  
+      Tip 2: you can also add an image using data-image tag
+  -->
+    <div class="logo">
+      <a routerLink = "/dashboard"class="simple-text logo-normal">
+        Smart Potager
+       </a>
     </div>
-
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <li class="nav-item  ">
+          <a class="nav-link"  routerLink = "/dashboard">
+            <i class="material-icons">dashboard</i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link"  routerLink = "/new-user" >
+            <i class="material-icons">person</i>
+            <p>User Profile</p>
+          </a>
+        </li>
+        <li class="nav-item active " >
+          <a class="nav-link"   routerLink = "/home">
+            <i class="material-icons">content_paste</i>
+            <p>Table List</p>
+          </a>
+        </li>
+   
+      </ul>
+    </div>
+  </div>
 
     <div class="content">
         <div class="container-fluid">
 
+         
 <div class="edit-page">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Edit User</li>
+        <li class="breadcrumb-item active" aria-current="page" >
+        Modifer Utilisateur 
+          
+        </li>
       </ol>
     </nav>
     <div class="page-content">
@@ -70,6 +72,16 @@
                 <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
               </ng-container>
             </div>
+
+            <div class="form-group">
+              <mat-form-field class="input-style">
+                <input matInput placeholder="Email" class="form-control" formControlName="email">
+              </mat-form-field>
+              <ng-container *ngFor="let validation of validation_messages.email">
+                <mat-error *ngIf="exampleForm.get('email').hasError(validation.type) && (exampleForm.get('email').dirty || exampleForm.get('email').touched)">{{validation.message}}</mat-error>
+              </ng-container>
+            </div>
+
             <div class="form-group">
                 <mat-form-field class="input-style">
                   <input matInput placeholder="Ville" class="form-control" formControlName="ville">
@@ -122,4 +134,7 @@
   </div>
   </div>
   </div>
+ 
+
+
  

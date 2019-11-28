@@ -1,0 +1,111 @@
+<div class="main-panel">
+  <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+  
+      Tip 2: you can also add an image using data-image tag
+  -->
+    <div class="logo">
+      <a routerLink = "/dashboard"class="simple-text logo-normal">
+        Smart Potager
+       </a>
+    </div>
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <li class="nav-item  ">
+          <a class="nav-link"  routerLink = "/dashboard">
+            <i class="material-icons">dashboard</i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+      
+        <li class="nav-item active " >
+          <a class="nav-link"   routerLink = "/home">
+            <i class="material-icons">content_paste</i>
+            <p>Liste Utilisateurs</p>
+          </a>
+        </li>
+    
+        <li class="nav-item  " >
+          <a class="nav-link"   routerLink = "/">
+            <i class="material-icons">post_add</i>
+            <p>Intervention</p>
+          </a>
+        </li>
+    
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="content">
+      <div class="container-fluid">
+
+<div class="edit-page">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Edit Serre</li>
+    </ol>
+  </nav>
+  <div class="page-content">
+    <div class="row">
+      
+      <div  class="col col-md-8">
+
+          <form id="form-potager"  class="create-form" [formGroup]="exampleForm2" novalidate (ngSubmit)="editSerre(exampleForm2.value)">
+                    
+              
+             
+              <div class="form-group">
+                  <mat-form-field class="input-style">
+                    <input matInput placeholder="" class="form-control" formControlName="libSerre" id="namePotager">
+                  </mat-form-field>
+                  <!-- <ng-container *ngFor="let validation of validation_messages.namePotager">
+                    <mat-error *ngIf="exampleForm2.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                  </ng-container> -->
+                  </div>
+                
+                  <div class="form-group">
+                  <mat-form-field class="input-style">
+                    <input matInput placeholder="" class="form-control" formControlName="position">
+                  </mat-form-field>
+                  <!-- <ng-container *ngFor="let validation of validation_messages.surname">
+                    <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
+                  </ng-container> -->
+                  </div>
+               
+                  <div class="form-group">
+                  <mat-form-field class="input-style">
+                    <input matInput type="text" min="0" max="100" placeholder="" class="form-control" formControlName="largeur">
+                  </mat-form-field>
+                  <!-- <ng-container *ngFor="let validation of validation_messages.age">
+                    <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
+                  </ng-container> -->
+                  </div>
+
+                  <div class="form-group">
+                  <mat-form-field class="input-style">
+                    <input matInput type="text" min="0" max="100" placeholder="" class="form-control" formControlName="longueur">
+                  </mat-form-field>
+                  <!-- <ng-container *ngFor="let validation of validation_messages.age">
+                    <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
+                  </ng-container> -->
+                  </div>
+
+                  
+              
+              
+              <div id="createPotager" class="row submit-button-container" >
+                  <div class="col-md-4">
+                    <button mat-raised-button class="submit-button" color="primary" type="submit" >Editer Serre</button>
+                  </div>
+                </div>
+             
+      
+              </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>

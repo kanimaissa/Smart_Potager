@@ -1,51 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+
 import { Router } from '@angular/router';
 import { FirebaseService } from '../../services/firebase.service';
+import {ToastrService} from 'ngx-toastr';
 import * as $ from 'jquery' ;
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-function createFormPotager() {
-  $(document).ready(function(){ 
-    
-        var div=$("div #form-potager #form-potager-add"); 
-        var btn = $("div #form-potager #createPotager");
-        btn.hide();
-        div.hide(); 
-         $("#nbPotager").change(function(){
-          var nb= $("#nbPotager").val() ;
-          if(nb == 1){
-            div.show();
-          }
-          for(var i=1; i<nb; i++){
-            
-              
-            
-            var span = $("div #form-potager #form-potager-add #showNbPotager");
-           
-            var div2=$("div #form-potager");
-           // div2.append($("div #form-potager-add"));
-            div.show();
-          
-           div.clone().appendTo("div #form-potager");  
-          
-            btn.insertAfter(div);
-            //btn.show();
-          
-           
-          // span.text("Potager: " + (i-1));
-          
-          
 
-          }
-          
-         
-        });
-       
-        
-   
-}); 
-}
 
 @Component({
   selector: 'app-new-user',
@@ -55,15 +17,20 @@ function createFormPotager() {
 export class NewUserComponent implements OnInit {
 
   exampleForm: FormGroup;
-  exampleForm2: FormGroup ;
+  exampleForm2: FormGroup;
   idPotager: string ;
   idUser: string ; 
+  
+
   validation_messages = {
     'name': [
       { type: 'required', message: 'Name is required.' }
     ],
     'surname': [
       { type: 'required', message: 'Surname is required.' }
+    ],
+    'email': [
+      { type: 'required', message: 'Email is required.' }
     ],
     'ville': [
       { type: 'required', message: 'Ville is required.' },
@@ -79,47 +46,43 @@ export class NewUserComponent implements OnInit {
   ]
   };
 
-  validation_messages2 = {
-    'namePotager': [
-      { type: 'required', message: 'Name is required.' }
-    ],
-    'libPotager': [
-      { type: 'required', message: 'Surname is required.' }
-    ],
-    'surface': [
-      { type: 'required', message: 'Surface is required.' },
-    ],
-    'orientation': [
-      { type: 'required', message: 'Orientation is required.' },
-    ],
-    'localisation': [
-      { type: 'required', message: 'Localisation is required.' },
-    ],
-  };
+
 
   constructor(
     private fb: FormBuilder,
     private fb2: FormBuilder,
-    public dialog: MatDialog,
     private router: Router,
-    public firebaseService: FirebaseService
+    public firebaseService: FirebaseService,
+    public dialogRef: MatDialogRef<NewUserComponent>,
+    private toastr:ToastrService
+    
+  
   ) { }
 
   ngOnInit() {
     this.createForm();
-    this.createForm2();
-    createFormPotager();
+   
+  }
+ 
+
+
+  onNoClick(): void {
+  
+    this.dialogRef.close();
+   
   }
 
   createForm() {
     this.exampleForm = this.fb.group({
       name: ['', Validators.required ],
       surname: ['', Validators.required ],
+      email: ['', Validators.required ],
       ville: ['', Validators.required ],
       telephone: ['', Validators.required ],
       mdp: ['', Validators.required ],
       nbr_potager: ['', Validators.required ]
     });
+
   }
 
   createForm2() {
@@ -132,16 +95,20 @@ export class NewUserComponent implements OnInit {
     });
   }
 
+ 
+
   resetFields(){
    
     this.exampleForm = this.fb.group({
       name: new FormControl('', Validators.required),
       surname: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
       ville: new FormControl('', Validators.required),
       telephone: new FormControl('', Validators.required),
       mdp: new FormControl('', Validators.required),
       nbr_potager: new FormControl('', Validators.required)
     });
+
     this.exampleForm2 = this.fb2.group({
       namePotager: new FormControl('', Validators.required),
       lib: new FormControl('', Validators.required),
@@ -149,14 +116,19 @@ export class NewUserComponent implements OnInit {
       surface: new FormControl('', Validators.required),
       localisation: new FormControl('', Validators.required),
     });
+ 
   }
 
+  showSuccess(){
+    this.toastr.success('lajout a effectué avec succées','utilisateur ajouté');
+  }
   onSubmit(value){
     this.firebaseService.createUser(value)
     .then(
       res => {
         this.resetFields();
-        this.router.navigate(['/home']);
+        this.onNoClick()
+        this.showSuccess();
       }
     )
   }
@@ -188,3 +160,10 @@ export class NewUserComponent implements OnInit {
 
 }
   
+
+
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}

@@ -1,83 +1,146 @@
 <div class="main-panel">
-    <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-      <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-    
-        Tip 2: you can also add an image using data-image tag
-    -->
-      <div class="logo">
-        <a routerLink = "/dashboard"class="simple-text logo-normal">
-          Smart Potager
-         </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="nav-item  ">
-            <a class="nav-link"  routerLink = "/dashboard">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link"  routerLink = "/compte" >
-              <i class="material-icons">person</i>
-              <p>User Profile</p>
-            </a>
-          </li>
-          <li class="nav-item active " >
+  <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+  
+      Tip 2: you can also add an image using data-image tag
+  -->
+    <div class="logo">
+      <a routerLink = "/dashboard"class="simple-text logo-normal">
+        Smart Potager
+       </a>
+    </div>
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <li class="nav-item  ">
+          <a class="nav-link"  routerLink = "/dashboard">
+            <i class="material-icons">dashboard</i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+        <li class="nav-item  " >
             <a class="nav-link"   routerLink = "/home">
               <i class="material-icons">content_paste</i>
-              <p>Table List</p>
+              <p>Liste Utilisateurs</p>
             </a>
           </li>
-         
-        </ul>
-      </div>
-    </div>
-  
-  
-  
-    <div class="content">
-        <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-success">
-            <h4 class="card-title ">List Utilisateurs</h4>
-          </div>
-          <div class="card-body">
-  <div class="col-md-4 offset-md-1">
-    <div class="input-group">
-      <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
-      <div class="input-group-append">
-        <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>
-      </div>
-    </div>
-  </div>
-  
-  </div>
-  
-  <div class="list-group users-list">
-    
-  <div  class="list-group-item list-group-item-action flex-column align-items-start">
-    
-    <div class="row">
-     
-      <div class="col col-md-3 text-col">
-        <h5 class="mb-1">{{items}} </h5>
-        
-      </div>
-      <div class="col col-md-3 text-col">
-          <h5 class="mb-1"> </h5>
-        </div>
+      
+          <li class="nav-item  " >
+            <a class="nav-link"   routerLink = "/">
+              <i class="material-icons">post_add</i>
+              <p>Intervention</p>
+            </a>
+          </li>
        
+      </ul>
+    </div>
+  </div>
+
+
+
+  <div class="content">
+      <div class="container-fluid">
+<div class="row">
+  <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-success">
+          <h4 class="card-title ">Liste de Potagers</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col col-md-3 text-col">
+                    <button  class="btn btn-success " (click)="addPotager()" type="button" >
+                        <i class="material-icons"></i>  Ajouter Potager
+                    </button>     
+                </div>
+              
+                  <div class="col col-md-3 text-col">
+                  <div class="input-group">
+                    <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
+                    <div class="input-group-append">
+                      <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>
+                    </div>
+                  </div>
+                </div>
+           
+            <div  class="col col-md-3 text-col">
+              
+                
+               
+              </div>
+            </div>
+            </div>
+
+<div class="list-group users-list">
+  <div  class="list-group-item list-group-item-action flex-column align-items-start" >
+      <div class="row">
+  <div class="col col-md-2 text-col">
+   <h6>Nom Potager Libelle</h6>
+  </div>
+  <div class="col col-md-1 text-col">
+      <h6>Localisation</h6>
+    </div>
+  <div class="col col-md-2 text-col">
+      <h6> Orientation</h6>
+  </div>
+  <div class="col col-md-1 text-col">
+      <h6> Surface</h6>
+  </div>
+  <div class="col col-md-2 text-col">
+      <h6> Voir</h6>
+  </div>
+  </div>
+  </div>
+<div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
+  <div class="row">
+   
+    <div class="col col-md-2 text-col">
+      <h5 class="mb-1">{{item.data().name}} {{item.data().libelle}}</h5>
+    </div>
+    <div class="col col-md-1 text-col">
+        <h5 class="mb-1"> {{item.data().orientation}}</h5>
+      </div>
+      <div class="col col-md-2 text-col">
+          <h5 class="mb-1"> {{item.data().localisation}}</h5>
+        </div>
+        <div class="col col-md-1 text-col">
+            <h5 class="mb-1"> {{item.data().surface}}</h5>
+          </div>
+    <div class="col-md-2">
+      
+      <button  color="primary" class="btn btn-outline-success action" (click)="viewSerres(item)" type="button" >
+        Serres
+      </button>
+    </div>
+   <div class="col-md-2">
+      <button color="primary" class="btn btn-outline-success action" (click)="addSerres(item)" type="button" >
+       Ajouter Serre
+      </button>
+    </div>
+    <div class="col-md-1">
+      <button color="primary" class="btn btn-outline-danger" (click)="deletePotager(item)" type="button" >
+        <i class="material-icons">delete</i>  
+      </button>
       
     </div>
+    <div class="col-md-1">
+    <button color="primary" class="btn btn-outline-info" (click)="editPotager(item)" type="button" >
+      <i class="material-icons">edit</i>  
+    </button>
+    </div>
+
+    
+    
+     
+   
   </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,146 @@
+<div class="main-panel">
+  <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+    <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+  
+      Tip 2: you can also add an image using data-image tag
+  -->
+    <div class="logo">
+      <a routerLink = "/dashboard"class="simple-text logo-normal">
+        Smart Potager
+       </a>
+    </div>
+    <div class="sidebar-wrapper">
+      <ul class="nav">
+        <li class="nav-item  ">
+          <a class="nav-link"  routerLink = "/dashboard">
+            <i class="material-icons">dashboard</i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+        <li class="nav-item active " >
+            <a class="nav-link"   routerLink = "/home">
+              <i class="material-icons">content_paste</i>
+              <p>Liste Utilisateurs</p>
+            </a>
+          </li>
+      
+          <li class="nav-item  " >
+            <a class="nav-link"   routerLink = "/">
+              <i class="material-icons">post_add</i>
+              <p>Intervention</p>
+            </a>
+          </li>
+       
+      </ul>
+    </div>
+  </div>
+
+
+
+  <div class="content">
+      <div class="container-fluid">
+<div class="row">
+  <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-success">
+          <h4 class="card-title ">Liste de Serres</h4>
+        </div>
+        <div class="card-body">
+<div class="col-md-4 offset-md-1">
+  <div class="input-group">
+    <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
+    <div class="input-group-append">
+      <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="list-group users-list">
+  <div  class="list-group-item list-group-item-action flex-column align-items-start" >
+      <div class="row">
+  <div class="col col-md-2 text-col">
+   <h6>Libelle Serre</h6>
+  </div>
+  <div class="col col-md-2 text-col">
+      <h6>Position</h6>
+    </div>
+    <div class="col col-md-2 text-col">
+      <h6>Largeur</h6>
+    </div>
+    <div class="col col-md-2 text-col">
+      <h6>Longueur</h6>
+    </div>
+  <!-- <div class="col col-md-2 text-col">
+      <h6> Cultures</h6>
+  </div> -->
+ 
+  </div>
+  </div>
+<div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
+  <div class="row">
+   
+    <div class="col col-md-2 text-col">
+      <h5 class="mb-1">{{item.payload.doc.data().libelle_serre}}</h5>
+    </div>
+    <div class="col col-md-2 text-col">
+        <h5 class="mb-1"> {{item.payload.doc.data().position}}</h5>
+      </div>
+      <div class="col col-md-2 text-col">
+        <h5 class="mb-1"> {{item.payload.doc.data().largeur}}</h5>
+      </div>
+      <div class="col col-md-2 text-col">
+        <h5 class="mb-1"> {{item.payload.doc.data().longueur}}</h5>
+      </div>
+      
+    <!-- <div class="col col-md-2 text-col">
+      <button color="primary" class="btn btn-outline-success action" (click)="viewCultures(item)" type="button" >
+        Cultures
+      </button>
+      
+    </div> -->
+    <div class="col-md-1">
+        <button color="primary" class="btn btn-outline-danger" (click)="deleteSerre(item)" type="button" >
+          <i class="material-icons">delete</i>  
+        </button>
+      </div>
+      <div class="col-md-1">
+        <button color="primary" class="btn btn-outline-info" (click)="editSerre(item)" type="button" >
+          <i class="material-icons">edit</i>  
+        </button>
+        </div>
+   
+  </div>
+ 
+  
+  <!-- <div   class="row">
+   
+    <div class="col col-md-2 text-col">
+      <h5>bbbb</h5>
+      <h5 class="mb-1">{{item.payload.doc.data().libelle}}</h5>
+    </div>
+    <div class="col col-md-2 text-col">
+        <h5 class="mb-1"> {{item.payload.doc.data().created_at}}</h5>
+      </div>
+      <div class="col col-md-2 text-col">
+        <h5 class="mb-1"> {{item.payload.doc.data().end_date}}</h5>
+      </div>
+     </div> -->
+   
+  
+  
+
+</div>
+
+
+  
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
