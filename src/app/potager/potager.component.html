@@ -40,6 +40,16 @@
 
   <div class="content">
       <div class="container-fluid">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item " aria-current="page" >
+                    
+                    <a class="nav-link" routerLink = "/Potagers" >
+                      <p>/ List Utilisateurs / Potagers</p>
+                    </a>
+                </li>
+              </ol>
+            </nav>
 <div class="row">
   <div class="col-md-12">
       <div class="card">
@@ -54,14 +64,7 @@
                     </button>     
                 </div>
               
-                  <div class="col col-md-3 text-col">
-                  <div class="input-group">
-                    <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
-                    <div class="input-group-append">
-                      <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>
-                    </div>
-                  </div>
-                </div>
+                 
            
             <div  class="col col-md-3 text-col">
               
@@ -95,7 +98,7 @@
   <div class="row">
    
     <div class="col col-md-2 text-col">
-      <h5 class="mb-1">{{item.data().name}} {{item.data().libelle}}</h5>
+      <h5 class="mb-1">{{item.data().name}} {{item.data().description}}</h5>
     </div>
     <div class="col col-md-1 text-col">
         <h5 class="mb-1"> {{item.data().orientation}}</h5>

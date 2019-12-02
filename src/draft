@@ -1,0 +1,169 @@
+import { Component, OnInit, Input } from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {ComposantComponent} from '../../app/composant/composant.component';
+import{SharedDataComposantService} from '../../services/shared-data-composant.service';
+import { element } from 'protractor';
+import { FirebaseService } from '../../services/firebase.service';
+import {ServiceComposantService} from '../../services/service-composant.service';
+import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { NewPotagerComponent } from '../new-potager/new-potager.component';
+
+@Component({
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
+})
+export class DashboardComponent implements OnInit {
+ 
+ 
+  //cmp: ComposantComponent ; 
+  
+  msg : string = "bonjour chaima";
+  composant :  Array<any> = [];
+  diffTime : any ;
+  etatUrgent: Array<any> = [] ;
+  etatNormal: Array<any> =[] ;
+  etatAvertissement: Array <any> = [] ;
+
+  dateNow: any =  new Date().getTime() ;
+  //dateNowISO = this.dateNow.toISOString();
+  deadline: any ;
+  dateNumber: number;
+  days : number ;
+  time: number;
+  seconds: number;
+  minutes: number ;
+  hours: number;
+  hoursDiff: number;
+  minuteDiff: number ;
+
+ 
+  constructor(public serviceCmp : ComposantComponent,
+    public firebaseService: FirebaseService,
+    public composantService: ServiceComposantService,
+    public route: ActivatedRoute,  
+    private router: Router,
+    public dialog: MatDialog ) { }
+
+    ngOnInit() {
+
+      //this.dateNumber = Date.parse(this.dateNowISO);
+     
+      this.days= Math.floor(this.dateNumber / (1000 * 60 * 60 * 24));
+      
+      this.hours = Math.floor((this.dateNumber / (1000 * 60 * 60)) % 24); 
+      this.minutes = Math.floor((this.dateNumber / 1000 / 60) % 60);
+      this.seconds = Math.floor((this.dateNumber / 1000) % 60);
+  
+    // console.log('date:' + this.dateNow + '/'+ this.dateNow + '/' );
+      this.controlerComposant();
+    //console.log(this.dateNow.getMonth()+1 +" "+'/'+ (this.dateNow.getDate()) + '/' + this.dateNow.getFullYear())
+      
+  
+    }
+  
+    controlerComposant(){
+  
+       this.composantService.getCapteur().subscribe(data =>{
+       //console.log('data:' + data);
+         data.forEach(element =>{
+       //console.log('element:' + element.payload.doc.data().libelle);
+       
+          this.composantService.getValCapteur(element.id).subscribe(val =>{
+            val.forEach(dataVal =>{
+              //console.log('time: ' ) ;
+             // console.log('time composant:' +dataVal.payload.doc.data().time); 
+           // console.log('time: ' +((this.dateNow.getHours()+1) - dataVal.payload.doc.data().time))
+            this.deadline = new Date( dataVal.payload.doc.data().date + " "+  dataVal.payload.doc.data().time).getTime();
+            this.diffTime = this.dateNow - this.deadline
+            this.hoursDiff = Math.floor((this.diffTime / (1000 * 60 * 60)) % 24);
+            this.minuteDiff = Math.floor((this.diffTime / 1000 / 60) % 60);
+           console.log('time:'+ dataVal.payload.doc.data().time +" "+ this.hoursDiff +":" + this.minuteDiff +" "+ dataVal.payload.doc.data().date + " "+  dataVal.payload.doc.data().time);
+           // data = [element.payload.doc.data().localisation]
+            
+           
+            if((this.hoursDiff +":" + this.minuteDiff) >=  element.data().timeMin){
+  
+              this.composantService.getComposantPotager(element.id).subscribe(res =>{
+                res.forEach(resComposant => {
+                  //resComposant.payload.doc.data().potager
+                  this.firebaseService.getPotagerwithID(resComposant.payload.doc.data().potager).subscribe(resPotager =>{
+                   console.log('avertissement:'+resPotager.data().name + " "+ dataVal.payload.doc.data().time + this.hoursDiff +":" + this.minuteDiff+ " "+element.data().timeMin);
+                   this.firebaseService.getUser(resPotager.data().user).subscribe(resUser =>{
+                  return  this.composant = [{
+                      lib : element.data().libelle,
+                      namePotager: resPotager.data().name,
+                      nameUser: resUser.payload.data().name,
+                      etat: 'avertissement',
+                      diff: this.hoursDiff +":" + this.minuteDiff,
+                    }];
+                   })
+                  })
+                })
+              })
+  
+            // return this.etatAvertissement.push(this.composant)
+  
+            }
+            if((this.hoursDiff +":" + this.minuteDiff) >= element.data().timeMax){
+              this.composantService.getComposantPotager(element.id).subscribe(res =>{
+                res.forEach(resComposant => {
+                  //resComposant.payload.doc.data().potager
+                  this.firebaseService.getPotagerwithID(resComposant.payload.doc.data().potager).subscribe(resPotager =>{
+                   console.log('urgent:'+resPotager.data().name + " "+ dataVal.payload.doc.data().time + this.hoursDiff +":" + this.minuteDiff);
+                   this.firebaseService.getUser(resPotager.data().user).subscribe(resUser =>{
+                   return  this.composant = [{
+                       lib : element.data().libelle,
+                       namePotager: resPotager.data().name,
+                       nameUser: resUser.payload.data().name,
+                       etat : 'urgent',
+                       diff: this.hoursDiff +":" + this.minuteDiff,
+                     }];
+                     this.etatUrgent.push(this.composant);
+                   })
+                  })
+                })
+              })
+             
+              // console.log("resArray: "+this.composant);
+              //  return this.etatUrgent.push(this.composant);
+  
+  
+             // console.log('diffTime: '+ this.hoursDiff+ ': '+ this.minuteDiff + ' '+ this.dateNow +" "+ this.deadline + element.payload.doc.data().timeMax);
+            }
+  
+            if((this.hoursDiff +":" + this.minuteDiff) <  element.data().timeMin){
+  
+              this.composantService.getComposantPotager(element.id).subscribe(res =>{
+                res.forEach(resComposant => {
+                  //resComposant.payload.doc.data().potager
+                  this.firebaseService.getPotagerwithID(resComposant.payload.doc.data().potager).subscribe(resPotager =>{
+                   console.log('normal:'+resPotager.data().name + " "+ dataVal.payload.doc.data().time + this.hoursDiff +":" + this.minuteDiff);
+                   this.firebaseService.getUser(resPotager.data().user).subscribe(resUser =>{
+                    console.log(this.deadline + element.data().timeMax);
+                   return this.composant = [{
+                      lib : element.data().libelle,
+                      namePotager: resPotager.data().name,
+                      nameUser: resUser.payload.data().name,
+                      etat: 'normal',
+                      diff: this.hoursDiff +":" + this.minuteDiff,
+                    }];
+                    
+                   })
+                  })
+                })
+              })
+  
+              //return this.etatNormal.push(this.composant);
+  
+            }
+  
+            })
+          })
+        })
+      })
+    }
+  
+  }
+  

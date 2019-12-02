@@ -27,6 +27,10 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule}from 'ngx-toastr';
 
 import {FirebaseService} from '../services/firebase.service';
+
+import {ServiceComposantService} from '../services/service-composant.service';
+import {SharedDataComposantService} from '../services/shared-data-composant.service';
+
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 import { DialogService } from '../services/dialog.service';
 import { AddSerresComponent } from './add-serres/add-serres.component';
@@ -37,6 +41,7 @@ import { EditSerreResolver } from './edit-serre/edit-serre.resolver';
 import { SerreComponent } from './serre/serre.component';
 import { NewPotagerComponent } from './new-potager/new-potager.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { ComposantComponent } from './composant/composant.component';
 
 
 @NgModule({
@@ -58,7 +63,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     EditPotagerComponent,
     SerreComponent,
     NewPotagerComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    ComposantComponent
    
    
   ],
@@ -81,7 +87,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     ReactiveFormsModule
   ],
  
-  providers: [FirebaseService,EditUserResolver,DialogService,EditPotagerResolver,EditSerreResolver],
+  providers: [FirebaseService,EditUserResolver,DialogService,EditPotagerResolver,EditSerreResolver, ServiceComposantService, SharedDataComposantService,ComposantComponent],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

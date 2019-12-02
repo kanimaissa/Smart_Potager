@@ -20,8 +20,8 @@ export class NewPotagerComponent implements OnInit {
     'namePotager': [
       { type: 'required', message: 'Name is required.' }
     ],
-    'libPotager': [
-      { type: 'required', message: 'Surname is required.' }
+    'description': [
+      { type: 'required', message: 'description is required.' }
     ],
     'surface': [
       { type: 'required', message: 'Surface is required.' },
@@ -51,12 +51,12 @@ export class NewPotagerComponent implements OnInit {
     this.createForm2();
   }
 
-  
+ 
  
   createForm2() {
     this.exampleForm2 = this.fb2.group({
       namePotager: ['', Validators.required ],
-      lib: ['', Validators.required ],
+      description: ['', Validators.required ],
       surface: ['', Validators.required ],
       orientation: ['', Validators.required ],
       localisation: ['', Validators.required ]
@@ -66,7 +66,7 @@ export class NewPotagerComponent implements OnInit {
   resetFields(){
     this.exampleForm2 = this.fb2.group({
       namePotager: new FormControl('', Validators.required),
-      lib: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
       orientation: new FormControl('', Validators.required),
       surface: new FormControl('', Validators.required),
       localisation: new FormControl('', Validators.required),
@@ -74,7 +74,7 @@ export class NewPotagerComponent implements OnInit {
   }
 
   addPotager(valuePotager){
-    this.firebaseService.createPotager(valuePotager).then(
+    this.firebaseService.createPotager(valuePotager, this.userId).then(
       res => {
         this.resetFields();
         res.onSnapshot(doc => {
@@ -89,6 +89,8 @@ export class NewPotagerComponent implements OnInit {
     );
       });
   }
+
+
 
 
 

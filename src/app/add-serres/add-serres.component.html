@@ -1,6 +1,42 @@
-<h1 mat-dialog-title>Ajouter utilisateur</h1>
-<div mat-dialog-content>
 
+<div class="main-panel">
+    <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+    
+        Tip 2: you can also add an image using data-image tag
+    -->
+      <div class="logo">
+        <a routerLink = "/dashboard"class="simple-text logo-normal">
+          Smart Potager
+         </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item   ">
+                <a class="nav-link" routerLink = "/dashboard">
+                  <i class="material-icons">dashboard</i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-item active " >
+                <a class="nav-link"   routerLink = "/home">
+                  <i class="material-icons">content_paste</i>
+                  <p>Liste Utilisateurs</p>
+                </a>
+              </li>
+            
+              <li class="nav-item  " >
+                <a class="nav-link"   routerLink = "/">
+                  <i class="material-icons">post_add</i>
+                  <p>Intervention</p>
+                </a>
+              </li>
+     
+        </ul>
+      </div>
+    </div>
+  
 
 
  <div class="content">
@@ -14,11 +50,9 @@
       </nav>
   <div class="page-content">
     <div class="row">
+       
         <div class="col col-md-12">
-        <mat-vertical-stepper [linear]="isLinear" #stepper>
-            <mat-step [stepControl]="firstFormGroup">
-             
-                <ng-template matStepLabel>Step 1(information personnel)</ng-template>
+        
                 <form class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="addSerres(exampleForm.value)">
 
                     <div class="form-group">
@@ -65,23 +99,9 @@
             
                     </form>
                     
-                <div>
-                  <button mat-button matStepperNext>Next</button>
-                </div>
+               
              
-            </mat-step>
-      
-            <mat-step>
-              <ng-template matStepLabel>Done</ng-template>
-              <button mat-button matStepperNext (click)="redirectTableSerre()">Liste des Serres</button>
            
-              You are now done.
-              <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
-              </div>
-            </mat-step>
-          </mat-vertical-stepper>
      
          
         
@@ -94,7 +114,3 @@
 </div>
 
 
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</div>
