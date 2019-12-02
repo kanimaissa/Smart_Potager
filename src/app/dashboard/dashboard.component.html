@@ -1,5 +1,6 @@
 
 <div class="main-panel">
+ 
 <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
   <!--
     Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
@@ -41,9 +42,19 @@
 <!-- scrall card -->
 
 <div class="main-panel">
+  
     <div class="content">
         <div class="container-fluid">
-           
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item " aria-current="page" >
+                      
+                      <a class="nav-link" routerLink = "/dashboard" >
+                        <p>/ Dashboard</p>
+                      </a>
+                  </li>
+                </ol>
+              </nav>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
               <div class="carousel-inner row w-100 mx-auto">
                 <div class="carousel-item col-md-4 active">

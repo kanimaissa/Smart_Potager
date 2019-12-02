@@ -21,7 +21,7 @@ export class NewUserComponent implements OnInit {
   idPotager: string ;
   idUser: string ; 
   
-
+  hide = true;
   validation_messages = {
     'name': [
       { type: 'required', message: 'Name is required.' }
@@ -30,7 +30,7 @@ export class NewUserComponent implements OnInit {
       { type: 'required', message: 'Surname is required.' }
     ],
     'email': [
-      { type: 'required', message: 'Email is required.' }
+      { type: 'required', message: 'Not a valid email.' }
     ],
     'ville': [
       { type: 'required', message: 'Ville is required.' },
@@ -76,7 +76,7 @@ export class NewUserComponent implements OnInit {
     this.exampleForm = this.fb.group({
       name: ['', Validators.required ],
       surname: ['', Validators.required ],
-      email: ['', Validators.required ],
+      email: ['', Validators.required  ],
       ville: ['', Validators.required ],
       telephone: ['', Validators.required ],
       mdp: ['', Validators.required ],

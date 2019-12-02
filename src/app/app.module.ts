@@ -36,7 +36,8 @@ import { EditPotagerResolver } from './edit-potager/edit-potager.resolver';
 import { EditSerreResolver } from './edit-serre/edit-serre.resolver';
 import { SerreComponent } from './serre/serre.component';
 import { NewPotagerComponent } from './new-potager/new-potager.component';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { BreadcrumbComponent} from './breadcrumb/breadcrumb.component'
+
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     SerreComponent,
     NewPotagerComponent,
     BreadcrumbComponent
+    
    
    
   ],
@@ -78,7 +80,9 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     NoopAnimationsModule,
     FormsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+   
+  
   ],
  
   providers: [FirebaseService,EditUserResolver,DialogService,EditPotagerResolver,EditSerreResolver],
