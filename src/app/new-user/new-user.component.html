@@ -36,12 +36,21 @@
 
                       <div class="form-group">
                           <mat-form-field class="input-style">
-                              <input matInput placeholder="Ville" class="form-control" formControlName="ville">
+                              <input matInput placeholder="Adresse" class="form-control" formControlName="adresse">
                             </mat-form-field>
-                            <ng-container *ngFor="let validation of validation_messages.ville">
-                              <mat-error *ngIf="exampleForm.get('ville').hasError(validation.type) && (exampleForm.get('ville').dirty || exampleForm.get('ville').touched)">{{validation.message}}</mat-error>
+                            <ng-container *ngFor="let validation of validation_messages.adresse">
+                              <mat-error *ngIf="exampleForm.get('adresse').hasError(validation.type) && (exampleForm.get('adresse').dirty || exampleForm.get('adresse').touched)">{{validation.message}}</mat-error>
                             </ng-container>
                           </div>
+
+                          <div class="form-group">
+                            <mat-form-field class="input-style">
+                                <input matInput placeholder="Ville" class="form-control" formControlName="ville">
+                              </mat-form-field>
+                              <ng-container *ngFor="let validation of validation_messages.ville">
+                                <mat-error *ngIf="exampleForm.get('ville').hasError(validation.type) && (exampleForm.get('ville').dirty || exampleForm.get('ville').touched)">{{validation.message}}</mat-error>
+                              </ng-container>
+                            </div> 
 
                           <div class="form-group">
                               <mat-form-field class="input-style">

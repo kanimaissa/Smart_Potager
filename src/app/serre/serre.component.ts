@@ -85,6 +85,9 @@ deleteSerre(item){
   })
 
 }
+addSerre(){
+  this.router.navigate(['/add-serres/'+ this.potagerId]);
+}
 
 editSerre(item){
  

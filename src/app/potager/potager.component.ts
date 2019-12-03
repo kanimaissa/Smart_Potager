@@ -11,6 +11,8 @@ import { NewPotagerComponent } from '../new-potager/new-potager.component';
 export class PotagerComponent implements OnInit {
   items :Array<any> = [];
   userId: any ;
+  itemIdPtg : Array<any> = [] ;
+  itemIdUser: Array <any> = [] ;
   constructor(public firebaseService: FirebaseService,
               public route: ActivatedRoute,  
               private router: Router,
@@ -20,6 +22,7 @@ export class PotagerComponent implements OnInit {
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id');
    this.viewPotagers();
+  // getdeletePotager(idpotager)
   }
 
   viewPotagers(){
@@ -68,17 +71,25 @@ export class PotagerComponent implements OnInit {
                     //console.log('res: '+ result);
                     result.forEach(itempotager =>{
                       console.log('item: '+ itempotager.payload.doc.id);
-                     return this.firebaseService.delete(element.payload.doc.id,  itempotager.payload.doc.id);
-                      
+                      this.itemIdPtg.push(itempotager.payload.doc.id);
+                      this.itemIdUser.push(element.payload.doc.id)
+                    // return this.firebaseService.delete(element.payload.doc.id,  itempotager.payload.doc.id)  
                       
                     })
+                    return this.firebaseService.delete(this.itemIdUser, this.itemIdPtg);
+                    
                     
                   });
                  })
                 })
                })
              })
+            
             }
+
+            // deletePotager(){
+            //   this.firebaseService.delete(this.itemIdUser,  this.itemIdPtg)
+            // }
 
 editPotager(item){
   this.router.navigate(['/edit-potager/'+ item.id]);

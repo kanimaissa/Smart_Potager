@@ -4,6 +4,7 @@ import { from } from 'rxjs';
 import { DashboardComponent} from './dashboard/dashboard.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { HomeComponent } from './home/home.component';
+import {ComposantComponent} from './composant/composant.component' ;
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { EditUserResolver } from './edit-user/edit-user.resolver';
 import { PotagerComponent} from './potager/potager.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:"dashboard", component:DashboardComponent}, 
   { path: 'new-user', component: NewUserComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'composant/:id', component: ComposantComponent },
   { path: 'details/:id', component: EditUserComponent, resolve:{data : EditUserResolver}},
   { path: 'potagers/:id', component: PotagerComponent  },
   { path: 'serres/:id', component: SerreComponent  },

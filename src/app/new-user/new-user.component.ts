@@ -35,6 +35,9 @@ export class NewUserComponent implements OnInit {
     'ville': [
       { type: 'required', message: 'Ville is required.' },
     ],
+    'adresse': [
+      { type: 'required', message: 'Ville is required.' },
+    ],
     'telephone': [
      { type: 'required', message: 'Telephone is required.' }
    ],
@@ -78,6 +81,7 @@ export class NewUserComponent implements OnInit {
       surname: ['', Validators.required ],
       email: ['', Validators.required  ],
       ville: ['', Validators.required ],
+      adresse: ['', Validators.required ],
       telephone: ['', Validators.required ],
       mdp: ['', Validators.required ],
       nbr_potager: ['', Validators.required ]
@@ -88,7 +92,7 @@ export class NewUserComponent implements OnInit {
   createForm2() {
     this.exampleForm2 = this.fb2.group({
       namePotager: ['', Validators.required ],
-      lib: ['', Validators.required ],
+      description: ['', Validators.required ],
       surface: ['', Validators.required ],
       orientation: ['', Validators.required ],
       localisation: ['', Validators.required ]
@@ -104,6 +108,7 @@ export class NewUserComponent implements OnInit {
       surname: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       ville: new FormControl('', Validators.required),
+      adresse: new FormControl('', Validators.required),
       telephone: new FormControl('', Validators.required),
       mdp: new FormControl('', Validators.required),
       nbr_potager: new FormControl('', Validators.required)
@@ -111,7 +116,7 @@ export class NewUserComponent implements OnInit {
 
     this.exampleForm2 = this.fb2.group({
       namePotager: new FormControl('', Validators.required),
-      lib: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
       orientation: new FormControl('', Validators.required),
       surface: new FormControl('', Validators.required),
       localisation: new FormControl('', Validators.required),
@@ -134,7 +139,7 @@ export class NewUserComponent implements OnInit {
   }
 
   createPotager(valuePotager){
-    this.firebaseService.createPotager(valuePotager).then(
+    this.firebaseService.createPotager(valuePotager, this.idUser).then(
       res => {
         this.resetFields();
         res.onSnapshot(doc => {

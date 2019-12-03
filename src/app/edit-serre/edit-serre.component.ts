@@ -17,6 +17,7 @@ export class EditSerreComponent implements OnInit {
  
   idUser: any ;
   serreId ;
+  potagerId ;
   item :any  ;
   dataPotager: Array<any>= [] ;
   previousRoute: string;
@@ -48,8 +49,10 @@ export class EditSerreComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    
 
     this.serreId = this.route.snapshot.paramMap.get('id');
+    this.potagerId = this.route.snapshot.paramMap.get('idPotager');
     console.log('this.serreid: '+ this.serreId)
     //this.createForm2();
     this.route.data.subscribe(routeData => {
@@ -110,7 +113,7 @@ export class EditSerreComponent implements OnInit {
         this.resetFields();
      //  console.log(this._location.getState()) ;
      
-     //  this.router.navigate(['/serres/'+ this.serreId]);
+     //this.router.navigate(['/serres/'+ this.idPotager]);
       }
     );
     

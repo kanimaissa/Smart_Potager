@@ -48,6 +48,7 @@ export class FirebaseService {
       email:value.email,
       telephone: parseInt(value.telephone),
       ville:value.ville,
+      adresse:value.adresse,
       mdp: value.mdp,
       nbr_potager:parseInt(value.nbr_potager)
 
@@ -99,7 +100,7 @@ export class FirebaseService {
 
   updatePotager(value, keyPotager){
     value.name = value.namePotager,
-      value.libelle= value.lib,
+      value.description= value.lib,
       value.surface= value.surface,
      value.orientation= value.orientation,
       value.localisation= value.localisation
@@ -117,9 +118,9 @@ export class FirebaseService {
   }
 
    getPotagerUser(user){
-    //this.db.collection('potager').where('users.potager', '==', idPotager)
- //   return this.db.collection('potager')
- //   .get()
+  //   this.db.collection('potager').where('users.potager', '==', idPotager)
+  //  return this.db.collection('potager')
+  //  .get()
    return this.db.collection('users').doc(user).collection('potagerUser').snapshotChanges();
  //   .subscribe((snapshot) =>{
        
@@ -177,13 +178,14 @@ getCulturerwithID(serre){
     
   }
 
-  createPotager(value){
+  createPotager(value, idUser){
     return this.db.collection('potager').add({
       name: value.namePotager,
-      libelle: value.lib,
+     description: value.description,
       surface: value.surface,
       orientation: value.orientation,
       localisation: value.localisation,
+      user: idUser,
     });
     
   }

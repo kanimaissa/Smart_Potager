@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
    firebaseConfig : {
-  apiKey: "AIzaSyBEGd0aIhO6E7QjE1mUsP4gejjmqBnzSpw",
-  authDomain: "smartpotager-92ed0.firebaseapp.com",
-  databaseURL: "https://smartpotager-92ed0.firebaseio.com",
-  projectId: "smartpotager-92ed0",
-  storageBucket: "smartpotager-92ed0.appspot.com",
-  messagingSenderId: "704041556062",
-  appId: "1:704041556062:web:d9694213a0ef09cbc7bccf",
-  measurementId: "G-1HJR1F0KEY"
+    apiKey: "AIzaSyBPgMxeVDx6hFw5fZEZTO6rAdXz93smFCo",
+    authDomain: "projectsmartpotager.firebaseapp.com",
+    databaseURL: "https://projectsmartpotager.firebaseio.com",
+    projectId: "projectsmartpotager",
+    storageBucket: "projectsmartpotager.appspot.com",
+    messagingSenderId: "850898843832",
+    appId: "1:850898843832:web:71a27b99fe03a08ba49c4d",
+    measurementId: "G-T3EWFVMBPH"
   }
 
 };

@@ -41,13 +41,22 @@
   <div class="content">
       <div class="container-fluid">
 <div class="row">
+    
   <div class="col-md-12">
+      
       <div class="card">
+          
         <div class="card-header card-header-success">
           <h4 class="card-title ">Liste de Serres</h4>
         </div>
         <div class="card-body">
+            
 <div class="col-md-4 offset-md-1">
+    <div class="col col-md-3 text-col">
+        <button  class="btn btn-success " (click)="addSerre()" type="button" >
+            <i class="material-icons"></i>  Ajouter Serre
+        </button>     
+    </div>
   <div class="input-group">
     <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
     <div class="input-group-append">
