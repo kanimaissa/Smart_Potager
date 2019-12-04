@@ -21,7 +21,7 @@ export class ComposantComponent implements OnInit {
 
   itemCmp :Array<any> = [];
   itemCmpVal: Array<any> ;
-  itemSerre: Array<any> ;
+  itemSerre: Array<any> = [] ;
   itemPotager: Array <any> = [];
   itemUser: Array <any> =[];
 
@@ -75,6 +75,17 @@ export class ComposantComponent implements OnInit {
           this.itemCmpVal = dataValCmp;
          // console.log(dataValCmp)
       })
+      // if(dataCmp.data().localisation == "serre"){
+      //   this.composantService.getComposantPotager(this.cmpId).subscribe(dataCmpPtg =>{
+      //     dataCmpPtg.forEach(elementCmpPtg=>{
+      //       console.log("ComposantPotager: "+ elementCmpPtg.data().potager)
+      //       this.firebaseService.getPotagerwithID(elementCmpPtg.data().potager).subscribe(dataPtg =>{
+
+      //       })
+      //     })
+      //   })
+        
+      // }
       
       })
       
@@ -84,13 +95,27 @@ export class ComposantComponent implements OnInit {
             this.firebaseService.getPotagerwithID(elementCmpPtg.data().potager).subscribe(dataPtg =>{
               console.log(dataPtg.data().libelle);
               this.itemPotager.push(dataPtg);
-              this.firebaseService.getSerrePotager(dataPtg.id).subscribe(dataCmpSerre =>{
-                this.itemSerre = dataCmpSerre
+              this.composantService.getCapteurwithID(this.cmpId).subscribe(dataCmp =>{
+                if(dataCmp.data().localisation == "serre"){
+                  this.composantService.getComposantSerrePotager(elementCmpPtg.id, this.cmpId).subscribe(dataCmpPtgSer=>{
+                   
+                    dataCmpPtgSer.forEach(elementCmpPtgSer =>{
+                      console.log("looog: ")
+                      this.firebaseService.getSerrerwithID(dataPtg.id, elementCmpPtgSer.data().serre).subscribe(dataCmpSerre =>{
+                        this.itemSerre.push(dataCmpSerre)
+                       
+                        })
+                      })
+                    })
+                }
+              
+              })
                 this.firebaseService.getUser(dataPtg.data().user).subscribe(dataUser=>{
                   this.itemUser.push(dataUser) ;
-                })
               })
+              
             })
+           
           })
          
         })

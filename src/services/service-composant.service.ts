@@ -16,7 +16,7 @@ export class ServiceComposantService {
   }
 
   getCapteurwithID(idCapteur){
-    return this.db.collection('capteur').doc(idCapteur).snapshotChanges();
+    return this.db.collection('capteur').doc(idCapteur).get();
   }
 
   getAcionneur(){
@@ -42,8 +42,8 @@ export class ServiceComposantService {
   getComposantPotager(idComposant){
       return this.db.collection('potager_composant', ref => ref.where("capteur", "==", idComposant) || ref.where("actionneur", "==", idComposant)).get();
   }
-  getComposantSerrePotager(idPotager, idComposant){
-    return this.db.collection('potager_composant').doc(idPotager).collection('serre_composant', ref => ref.where("capteur", "==", idComposant) || ref.where("actionneur", "==", idComposant)).get();
+  getComposantSerrePotager(idCmpPotager, idComposant){
+    return this.db.collection('potager_composant').doc(idCmpPotager).collection('serre_composant', ref => ref.where("capteur", "==", idComposant) || ref.where("actionneur", "==", idComposant)).get();
   }
 
 
