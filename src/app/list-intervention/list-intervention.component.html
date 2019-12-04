@@ -19,14 +19,14 @@
             </a>
           </li>
         
-          <li class="nav-item active " >
+          <li class="nav-item  " >
             <a class="nav-link"   routerLink = "/home">
               <i class="material-icons">content_paste</i>
               <p>Liste Utilisateurs</p>
             </a>
           </li>
       
-          <li class="nav-item  " >
+          <li class="nav-item active " >
             <a class="nav-link"   routerLink = "/intervention">
               <i class="material-icons">post_add</i>
               <p>Intervention</p>
@@ -44,79 +44,54 @@
 <div class="row">
 	    
       
-    <div class="col-md-12"style="margin-top: -3.5%;">
+    <div class="col-md-12" style="margin-top: -3.5%;">
         <div class="card">
          
           <div class="card-header card-header-success">
-            <h4 class="card-title ">List Utilisateurs</h4>
+            <h4 class="card-title ">List Interventions</h4>
           </div>
-          <div class="card-body">
-            <div class="row" style="margin-top: -0.5%;">
-                <div class="col col-md-3 text-col">
-                    <button type="button" class="btn btn-success" (click)="openDialogAddUser()"  >
-                        <i class="material-icons">person</i>  ajouter
-                    </button>     
-                </div>
-
-                  <div class="col col-md-3 text-col">
-                  <div class="input-group">
-                    <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
-                    <div class="input-group-append">
-                      <span class="input-group-text"><ion-icon class="icon" name="search"></ion-icon></span>
-                    </div>
-                  </div>
-                </div>
-           
-    
-            </div>
-            </div>
+      
           
 
-<div class="list-group users-list" style="margin-top: -4.5%;">
+<div class="list-group users-list">
     <div  class="list-group-item list-group-item-action flex-column align-items-start" >
         <div class="row">
     <div class="col col-md-2 text-col">
-     <h6>NOM PRENOM</h6>
+     <h6>Libellé</h6>
     </div>
     <div class="col col-md-2 text-col">
-        <h6>VILLE</h6>
+        <h6>Date Intervention</h6>
       </div>
     <div class="col col-md-2 text-col">
-        <h6> TELEPHONE</h6>
+        <h6> Heure</h6>
     </div>
     <div class="col col-md-2 text-col">
-        <h6> NBR_POTAGER</h6>
+        <h6> Composant</h6>
     </div>
     <div class="col col-md-2 text-col">
       <h6> VOIR</h6>
     </div>
     </div>
     </div>
-  <div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
+  <div *ngFor="" class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="row">
      
       <div class="col col-md-2 text-col">
-        <h5 class="mb-1">{{item.payload.doc.data().name}} {{item.payload.doc.data().surname}}</h5>
+        <h5 class="mb-1"></h5>
       </div>
       <div class="col col-md-2 text-col">
-          <h5 class="mb-1"> {{item.payload.doc.data().ville}}</h5>
+          <h5 class="mb-1"> </h5>
         </div>
         <div class="col col-md-2 text-col">
-            <h5 class="mb-1"> {{item.payload.doc.data().telephone}}</h5>
+            <h5 class="mb-1"></h5>
           </div>
           <div class="col col-md-2 text-col">
-              <h5 class="mb-1"> {{item.payload.doc.data().nbr_potager}}</h5>
+              <h5 class="mb-1"></h5>
             </div>
       <div class="col col-md-2 text-col">
-        <button color="primary" class="btn btn-outline-success action" (click)="viewDetails(item)" type="button" >
-          Details
-        </button>
+          <mat-slide-toggle></mat-slide-toggle>
       </div>
-        <div class="col col-md-2 text-col ">
-        <button color="primary" class="btn btn-outline-success action" (click)="viewPotagers(item)" type="button" >
-        Potagers
-        </button>
-      </div>
+       
      
     </div>
   

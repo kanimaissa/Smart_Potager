@@ -2,9 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import {ServiceComposantService} from '../../services/service-composant.service';
 import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import { NewPotagerComponent } from '../new-potager/new-potager.component';
 import { element } from 'protractor';
+import { InterventionComponent } from '../intervention/intervention.component';
 
 @Component({
   selector: 'app-composant',
@@ -39,11 +40,14 @@ export class ComposantComponent implements OnInit {
   cmpId: any;
 
 
+
+
   constructor(public firebaseService: FirebaseService,
     public composantService: ServiceComposantService,
     public route: ActivatedRoute,  
     private router: Router,
-    public dialog: MatDialog ) 
+    public dialog: MatDialog 
+    ) 
     { }
 
   ngOnInit() {
@@ -98,4 +102,30 @@ export class ComposantComponent implements OnInit {
       
   }
 
+
+  openDialogAddIntervention(): void{
+    const dialogRef = this.dialog.open(InterventionComponent, {
+      width: '700px',
+     
+      panelClass:'intervention-dialog-container',
+      data: {}
+     
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+}
+
+
+
+
+
+
+
+
+export interface DialogData {
+ 
+  name: string;
 }

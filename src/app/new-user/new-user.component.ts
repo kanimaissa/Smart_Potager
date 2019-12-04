@@ -169,6 +169,6 @@ export class NewUserComponent implements OnInit {
 
 
 export interface DialogData {
-  animal: string;
+ 
   name: string;
 }

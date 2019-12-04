@@ -42,6 +42,8 @@ import { SerreComponent } from './serre/serre.component';
 import { NewPotagerComponent } from './new-potager/new-potager.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ComposantComponent } from './composant/composant.component';
+import { InterventionComponent } from './intervention/intervention.component';
+import { ListInterventionComponent } from './list-intervention/list-intervention.component';
 
 
 
@@ -65,7 +67,9 @@ import { ComposantComponent } from './composant/composant.component';
     SerreComponent,
     NewPotagerComponent,
     BreadcrumbComponent,
-    ComposantComponent
+    ComposantComponent,
+    InterventionComponent,
+    ListInterventionComponent
 
    
    
@@ -97,6 +101,6 @@ import { ComposantComponent } from './composant/composant.component';
     CUSTOM_ELEMENTS_SCHEMA
   ],
   
-  entryComponents:[NewUserComponent,MatConfirmDialogComponent,EditUserComponent]
+  entryComponents:[NewUserComponent,MatConfirmDialogComponent,EditUserComponent,InterventionComponent]
 })
 export class AppModule { }
