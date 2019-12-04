@@ -28,9 +28,22 @@ export class DashboardComponent implements OnInit {
 
   itemCmp : Array<any> =[]  ;
   itemCmpVal : Array<any> = [] ;
-  itemPtg : Array<any> ;
+  alertCmp : Array<any> =[]  ;
+  alertCmpVal : Array<any> = [] ;
+  successCmp : Array<any> =[]  ;
+  successCmpVal : Array<any> = [] ;
+  itemPtg : Array<any> = [];
+  itemPtgAlert : Array<any>  ;
+  itemPtgSuccess : Array<any> = [] ;
+
+  itemSerre : Array<any> = [];
+  itemSerreAlert : Array<any>  ;
+  itemSerreSuccess : Array<any> = [] ;
+
   itemUser : Array<any> = [] ;
-  itemDiff : Array<any> = [] ;
+  itemDiff : Array<any> = [];
+  itemDiffAlert : Array<any> = [];
+  itemDiffSuccess : Array<any> = [];
 
   dateNow: any =  new Date().getTime() ;
   //dateNowISO = this.dateNow.toISOString();
@@ -82,31 +95,80 @@ export class DashboardComponent implements OnInit {
              // console.log('time composant:' +dataVal.payload.doc.data().time); 
            // console.log('time: ' +((this.dateNow.getHours()+1) - dataVal.payload.doc.data().time))
             this.deadline = new Date( dataVal.payload.doc.data().date + " "+  dataVal.payload.doc.data().time).getTime();
-            this.diffTime = this.dateNow - this.deadline
+
+            this.diffTime = this.dateNow - this.deadline ;
             this.hoursDiff = Math.floor((this.diffTime / (1000 * 60 * 60)) % 24);
            
             this.minuteDiff = Math.floor((this.diffTime / 1000 / 60) % 60);
-            this.diffTime = (this.hoursDiff +":" + this.minuteDiff)
-           console.log('time:'+ dataVal.payload.doc.data().time +" "+ this.hoursDiff +":" + this.minuteDiff +" "+ dataVal.payload.doc.data().date + " "+  dataVal.payload.doc.data().time);
+               
+            //const month = currentTime.getMonth();
+            const diffHour = (this.hoursDiff < 10 ? "0" : "") + this.hoursDiff;
+            const diffMinute = (this.minuteDiff < 10 ? "0" : "") + this.minuteDiff;
+            
+            this.diffTime = (diffHour +":" + diffMinute)
+           console.log('time:'+ dataVal.payload.doc.data().time +" "+ this.diffTime +" "+ dataVal.payload.doc.data().date + " "+  dataVal.payload.doc.data().time);
            // data = [element.payload.doc.data().localisation]
-          if( this.diffTime > element.data().timeMin){
-            this.itemDiff.push([{diff: this.hoursDiff}]) ;
-              this.itemCmp.push(element) ;
+
+           /************ case WARNING ********/
+
+          if( (this.diffTime > element.data().timeMin)&& ( this.diffTime < element.data().timeMax)){
+           this.itemDiff.push(this.diffTime)   ;
+           
+              this.itemCmp.push(element) ;      
               //this.itemCmpVal.push(dataVal)
              
             console.log('bonjour:' + this.diffTime + ">"+ element.data().timeMin +element.data().libelle)
             this.composantService.getComposantPotager(element.id).subscribe(dataCmpPtg =>{
               dataCmpPtg.forEach(elementCmpPtg =>{
                 this.firebaseService.getPotagerwithID(elementCmpPtg.data().potager).subscribe(dataPtg=>{
-                  this.itemPtg= [dataPtg]
-                  console.log("po: "+dataPtg.data().name)
+                  
+                  this.itemPtg.push(dataPtg) ;
+                 console.log("po: "+dataPtg.data().name)
                 })
                
               })
               
-            })
+            });
+            
 
           }
+
+          /************ case SUCCESS ********/
+          if(this.diffTime <= element.data().timeMin) {
+            this.itemDiffSuccess.push(this.diffTime)   ;
+               this.successCmp.push(element) ;      
+               //this.itemCmpVal.push(dataVal)             
+             this.composantService.getComposantPotager(element.id).subscribe(dataCmpPtg =>{
+               dataCmpPtg.forEach(elementCmpPtg =>{
+                 this.firebaseService.getPotagerwithID(elementCmpPtg.data().potager).subscribe(dataPtg=>{
+                   this.itemPtgSuccess.push(dataPtg) ;
+                   console.log("succes: "+element.data().libelle)
+                 })
+                
+               })
+               
+             })
+ 
+           }
+
+          /************ case URGENT ********/
+          if( this.diffTime > element.data().timeMax){
+            this.itemDiffAlert.push(this.diffTime)   ;
+               this.alertCmp.push(element) ;      
+               //this.itemCmpVal.push(dataVal)             
+             this.composantService.getComposantPotager(element.id).subscribe(dataCmpPtg =>{
+               dataCmpPtg.forEach(elementCmpPtg =>{
+                 this.firebaseService.getPotagerwithID(elementCmpPtg.data().potager).subscribe(dataPtg=>{
+                   this.itemPtgAlert=[dataPtg]
+                   
+                   console.log("urgent: "+element.data().libelle)
+                 })
+                
+               })
+               
+             })
+ 
+           }
             
             })
           })

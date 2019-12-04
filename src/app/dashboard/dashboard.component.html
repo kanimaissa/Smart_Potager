@@ -1,210 +1,185 @@
-
-
-
-
 <div class="main-panel">
  
-<div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-  <!--
-    Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-    Tip 2: you can also add an image using data-image tag
--->
-  <div class="logo">
-    <a routerLink = "/dashboard"class="simple-text logo-normal">
-     Smart Potager
-    </a>
-  </div>
-  <div class="sidebar-wrapper">
-    <ul class="nav">
-      <li class="nav-item active  ">
-        <a class="nav-link" routerLink = "/dashboard">
-          <i class="material-icons">dashboard</i>
-          <p>Dashboard</p>
+    <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+    
+        Tip 2: you can also add an image using data-image tag
+    -->
+      <div class="logo">
+        <a routerLink = "/dashboard"class="simple-text logo-normal">
+         Smart Potager
         </a>
-      </li>
-      <li class="nav-item  " >
-        <a class="nav-link"   routerLink = "/home">
-          <i class="material-icons">content_paste</i>
-          <p>Liste Utilisateurs</p>
-        </a>
-      </li>
-    
-      <li class="nav-item  " >
-        <a class="nav-link"   routerLink = "/">
-          <i class="material-icons">post_add</i>
-          <p>Intervention</p>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-</div>
-
-<!-- scrall card -->
-<!-- *ngFor="let item of composant" -->
-<div class="main-panel" >
-    <div class="content">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item active " aria-current="page" >
-                  
-                  <a class="nav-link" routerLink = "/dashboard" >
-                    <p>/ Dashboard</p>
-                  </a>
-              </li>
-            </ol>
-          </nav>
-        <div class="container-fluid" >
-           
-            <div id="myCarousel" class="carousel slide" data-ride="carousel" >
-              <div class="carousel-inner row w-100 mx-auto" >
-               
-                <div class="carousel-item col-md-4 active" *ngFor="let iCmp of itemCmp" >
-                    <div class="row" >
-                        <div class="col-sm-12" >
-                          <div class="card text-white bg-danger">
-
-                            
-                            <div class="card-body" >
-                                <h5 class="card-title" ></h5>
-                                <p class="card-text">Le {{iCmp.data().libelle}} de Potager <span *ngFor="let iPtg of itemPtg ">"{{iPtg.data().name}}"</span> est en panne depuis <span *ngFor="let iDiff of itemDiff ; let i = index"> {{iDiff.diff }}</span>  Heur(s)</p>
-                                <a routerLink="/composant/{{iCmp.id}}" style="float:right; color:#fff">Plus d'information</a>
-                                
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-                <div class="carousel-item col-md-4">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card text-white bg-success">
-                           
-                            <div class="card-body">
-                                <h5 class="card-title">Danger card title</h5>
-                                <p class="card-text">Some quick 's content.</p>
-                            </div>
-                          </div>
-                        </div>
-                  </div>
-                </div>
-               
-                <div class="carousel-item col-md-4">
-                    <div class="row">
-                        <div class="col-sm-12">
-                          <div class="card text-white bg-info">
-                           
-                            <div class="card-body">
-                                <h5 class="card-title">info card title</h5>
-                                <p class="card-text">Some quick 's content.</p>
-                              
-                             
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                </div>
-                
-               
-              </div>
-              <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
-          </div>
-    
-    
-    
-    
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card card-chart">
-            <div class="card-header card-header-success">
-              <div class="ct-chart" id="dailySalesChart"></div>
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">Daily Sales</h4>
-              <p class="card-category">
-                <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
-            </div>
-            <div class="card-footer">
-              <div class="stats">
-                <i class="material-icons">access_time</i> updated 4 minutes ago
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card card-chart">
-            <div class="card-header card-header-warning">
-              <div class="ct-chart" id="websiteViewsChart"></div>
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">Email Subscriptions</h4>
-              <p class="card-category">Last Campaign Performance</p>
-            </div>
-            <div class="card-footer">
-              <div class="stats">
-                <i class="material-icons">access_time</i> campaign sent 2 days ago
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card card-chart">
-            <div class="card-header card-header-danger">
-              <div class="ct-chart" id="completedTasksChart"></div>
-            </div>
-            <div class="card-body">
-              <h4 class="card-title">Completed Tasks</h4>
-              <p class="card-category">Last Campaign Performance</p>
-            </div>
-            <div class="card-footer">
-              <div class="stats">
-                <i class="material-icons">access_time</i> campaign sent 2 days ago
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-      
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item active  ">
+            <a class="nav-link" routerLink = "/dashboard">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item  " >
+            <a class="nav-link"   routerLink = "/home">
+              <i class="material-icons">content_paste</i>
+              <p>Liste Utilisateurs</p>
+            </a>
+          </li>
+        
+          <li class="nav-item  " >
+            <a class="nav-link"   routerLink = "/">
+              <i class="material-icons">post_add</i>
+              <p>Intervention</p>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-
-    <div *ngFor="let item of composant" class="list-group-item list-group-item-action flex-column align-items-start">
-      <div class="row">
-       
-        <div class="col col-md-2 text-col">
-          <h5 class="mb-1">{{item.lib}}</h5>
-        </div>
-        <div class="col col-md-1 text-col">
-            <h5 class="mb-1"> {{item.namePotager}}</h5>
+    </div>
+    
+    <!-- scrall card -->
+    <!-- *ngFor="let item of composant" -->
+    <div class="main-panel" >
+        <div class="content">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item active " aria-current="page" >
+                      
+                      <a class="nav-link" routerLink = "/dashboard" >
+                        <p>/ Dashboard</p>
+                      </a>
+                  </li>
+                </ol>
+              </nav>
+            <div class="container-fluid" >
+               
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" >
+                  <div class="carousel-inner row w-100 mx-auto" >
+                   
+                    <div class="carousel-item col-md-4 active" *ngFor="let iCmp of alertCmp ; index as i">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card card-chart" >
+                                  <div class="card-header card-header-danger">
+                                    <div class="ct-chart" id="dailySalesChart"></div>
+                                  </div>
+                                  <div class="card-body" >
+                                    <h4 class="card-title">{{iCmp.data().libelle}}</h4>
+                                    <p class="card-category">
+                                        Potager <span *ngFor="let iPtg of itemPtgAlert ">"{{iPtg.data().name}}"</span>
+                                         est en panne
+                                  </div>
+                                  <div class="card-footer">
+                                    <div class="stats">
+                                      <i class="material-icons">access_time</i> <span style="float:left;">depuis {{itemDiffAlert[i]}} Heur(s) </span>
+                                      <a routerLink="/composant/{{iCmp.id}}" style="position: relative ; left: 50%;float:right; color:silver; font-size: 10px;"><i class="material-icons">read_more</i></a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                      </div>
+                    </div>
+                    <div class="carousel-item col-md-4 " *ngFor="let iCmp of itemCmp ; index as i" >
+                        <!-- <span *ngFor="let iDiff of itemDiff"></span> -->
+                        <div class="row">
+                            <div class="col-sm-12" >
+                                <div class="card card-chart" >
+                                  <div class="card-header card-header-warning">
+                                    <div class="ct-chart" id="dailySalesChart"></div>
+                                  </div>
+                                  <div class="card-body" >
+                                    <h4 class="card-title">{{iCmp.data().libelle}}</h4>
+                                    <p class="card-category">
+                                        Potager <span *ngFor="let iPtg of itemPtg ">"{{iPtg.data().name}}"</span> 
+                                         peut se dysfonctionner 
+                                  </div>
+                                  <div class="card-footer">
+                                    <div class="stats">
+                                      <i class="material-icons">access_time</i> <span style="float:left;">depuis {{itemDiff[i]}} Heur(s) </span>
+                                      <a routerLink="/composant/{{iCmp.id}}" style="position: relative ; left: 50%;float:right; color:silver; font-size: 10px;"><i class="material-icons">read_more</i></a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                    </div>
+                    <div class="carousel-item col-md-4 " *ngFor="let iCmp of successCmp ; index as i" >
+                        <!-- <span *ngFor="let iDiff of itemDiff"></span> -->
+                        <div class="row">
+                            <div class="col-sm-12" >
+                                <div class="card card-chart" >
+                                  <div class="card-header card-header-success">
+                                    <div class="ct-chart" id="dailySalesChart"></div>
+                                  </div>
+                                  <div class="card-body" >
+                                    <h4 class="card-title">{{iCmp.data().libelle}}</h4>
+                                    <p class="card-category">
+                                        Potager <span *ngFor="let iPtg of itemPtgSuccess ">"{{iPtg.data().name}}"</span> a été bien réparé
+                                  </div>
+                                  <div class="card-footer">
+                                    <div class="stats">
+                                      <i class="material-icons">access_time</i> <span style="float:left;">depuis {{itemDiffSuccess[i]}} Heur(s) </span>
+                                      <a routerLink="/composant/{{iCmp.id}}" style="position: relative ; left: 50%;float:right; color:silver; font-size: 10px;"><i class="material-icons">read_more</i></a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                    </div>
+                    
+                   
+                  </div>
+                  <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+        
+        
+        
+        
+          <div class="row">
+           
+            
           </div>
-          <div class="col col-md-2 text-col">
-              <h5 class="mb-1"> {{item.nameUser}}</h5>
+          
+        </div>
+    
+        <div *ngFor="let item of composant" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="row">
+           
+            <div class="col col-md-2 text-col">
+              <h5 class="mb-1">{{item.lib}}</h5>
             </div>
             <div class="col col-md-1 text-col">
-                <h5 class="mb-1">{{item.etat}}</h5>
+                <h5 class="mb-1"> {{item.namePotager}}</h5>
               </div>
-              <div class="col col-md-1 text-col">
-                <h5 class="mb-1">{{item.diff}}</h5>
-              </div>
+              <div class="col col-md-2 text-col">
+                  <h5 class="mb-1"> {{item.nameUser}}</h5>
+                </div>
+                <div class="col col-md-1 text-col">
+                    <h5 class="mb-1">{{item.etat}}</h5>
+                  </div>
+                  <div class="col col-md-1 text-col">
+                    <h5 class="mb-1">{{item.diff}}</h5>
+                  </div>
+            
         
-    
+            
+            
+             
+           
+          </div>
         
+        </div>
         
-         
+      
        
+    
       </div>
-    
-    </div>
-    
-  
-   
-
-  </div>
+      

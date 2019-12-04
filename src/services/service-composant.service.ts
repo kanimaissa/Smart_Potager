@@ -40,10 +40,10 @@ export class ServiceComposantService {
     return this.db.collection('actionneur').doc(idAct).collection('etatActionneur').snapshotChanges();
   }
   getComposantPotager(idComposant){
-      return this.db.collection('potager_composant', ref => ref.where("capteur", "==", idComposant)).get();
+      return this.db.collection('potager_composant', ref => ref.where("capteur", "==", idComposant) || ref.where("actionneur", "==", idComposant)).get();
   }
-  getComposantSerrePotager(id){
-
+  getComposantSerrePotager(idPotager, idComposant){
+    return this.db.collection('potager_composant').doc(idPotager).collection('serre_composant', ref => ref.where("capteur", "==", idComposant) || ref.where("actionneur", "==", idComposant)).get();
   }
 
 
