@@ -13,6 +13,7 @@ export class PotagerComponent implements OnInit {
   userId: any ;
   itemIdPtg : Array<any> = [] ;
   itemIdUser: Array <any> = [] ;
+  nameUser : any ;
   constructor(public firebaseService: FirebaseService,
               public route: ActivatedRoute,  
               private router: Router,
@@ -35,6 +36,8 @@ export class PotagerComponent implements OnInit {
       return this.firebaseService.getPotagerUser(this.userId)
       .subscribe(result => {
         return result.forEach(doc =>{
+            this.nameUser = doc.payload.doc.data().name ;
+            console.log("nameee"+ this.nameUser)
          // console.log("potager" + doc.payload.doc.data().potager);
          this.firebaseService.getPotagerwithID(doc.payload.doc.data().potager)
           .subscribe(
@@ -71,12 +74,12 @@ export class PotagerComponent implements OnInit {
                     //console.log('res: '+ result);
                     result.forEach(itempotager =>{
                       console.log('item: '+ itempotager.payload.doc.id);
-                      this.itemIdPtg.push(itempotager.payload.doc.id);
-                      this.itemIdUser.push(element.payload.doc.id)
-                    // return this.firebaseService.delete(element.payload.doc.id,  itempotager.payload.doc.id)  
+                      // this.itemIdPtg.push(itempotager.payload.doc.id);
+                      // this.itemIdUser.push(element.payload.doc.id)
+                    return this.firebaseService.delete(element.payload.doc.id,  itempotager.payload.doc.id)  
                       
                     })
-                    return this.firebaseService.delete(this.itemIdUser, this.itemIdPtg);
+                    // return this.firebaseService.delete(this.itemIdUser, this.itemIdPtg);
                     
                     
                   });

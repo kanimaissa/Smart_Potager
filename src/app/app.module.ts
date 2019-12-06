@@ -29,6 +29,7 @@ import {ToastrModule}from 'ngx-toastr';
 import {FirebaseService} from '../services/firebase.service';
 
 import {ServiceComposantService} from '../services/service-composant.service';
+import {InterventionService} from '../services/intervention.service';
 import {SharedDataComposantService} from '../services/shared-data-composant.service';
 
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
@@ -42,6 +43,7 @@ import { SerreComponent } from './serre/serre.component';
 import { NewPotagerComponent } from './new-potager/new-potager.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ComposantComponent } from './composant/composant.component';
+import { InterventionComponent } from './intervention/intervention.component';
 
 
 
@@ -65,7 +67,8 @@ import { ComposantComponent } from './composant/composant.component';
     SerreComponent,
     NewPotagerComponent,
     BreadcrumbComponent,
-    ComposantComponent
+    ComposantComponent,
+    InterventionComponent
 
    
    
@@ -91,7 +94,7 @@ import { ComposantComponent } from './composant/composant.component';
   
   ],
  
-  providers: [FirebaseService,EditUserResolver,DialogService,EditPotagerResolver,EditSerreResolver, ServiceComposantService, SharedDataComposantService,ComposantComponent],
+  providers: [FirebaseService,EditUserResolver,DialogService,EditPotagerResolver,EditSerreResolver, ServiceComposantService, SharedDataComposantService,ComposantComponent, InterventionService],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
