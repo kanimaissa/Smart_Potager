@@ -113,13 +113,17 @@ export class ComposantComponent implements OnInit {
         this.composantService.getComposantPotager(this.cmpId).subscribe(dataCmpPtg =>{
           dataCmpPtg.forEach(elementCmpPtg=>{
             this.intervService.getIntrevention().subscribe(datainterv=>{
-              datainterv.forEach(eleminterv=>{
-                if((elementCmpPtg.data().capteur == eleminterv.payload.doc.get('composant'))|| (elementCmpPtg.data().actionneur == eleminterv.payload.doc.get('composant'))){
-                  this.show = false ;
-                }else{
-                  this.show = true ;
-                }
-              })
+              for(let eleminterv of datainterv) {
+               // if(something_wrong) break;
+               if((eleminterv.payload.doc.get('composant')  == elementCmpPtg.data().capteur)|| (elementCmpPtg.data().actionneur == eleminterv.payload.doc.get('composant'))){
+                this.show = false ;
+                console.log(elementCmpPtg.data().capteur +" =="+eleminterv.payload.doc.get('composant'));
+                 break ;
+              }else{
+                this.show = true ;
+                console.log(elementCmpPtg.data().capteur +" !="+eleminterv.payload.doc.get('composant'));
+              }
+             }
               
             })
             
