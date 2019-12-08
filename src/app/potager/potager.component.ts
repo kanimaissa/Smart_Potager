@@ -22,6 +22,9 @@ export class PotagerComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id');
+    this.firebaseService.getUser(this.userId).subscribe(dataUser=>{
+      this.nameUser = dataUser.payload.get('surname');
+    })
    this.viewPotagers();
   // getdeletePotager(idpotager)
   }
@@ -36,8 +39,8 @@ export class PotagerComponent implements OnInit {
       return this.firebaseService.getPotagerUser(this.userId)
       .subscribe(result => {
         return result.forEach(doc =>{
-            this.nameUser = doc.payload.doc.data().name ;
-            console.log("nameee"+ this.nameUser)
+            //this.nameUser = doc.payload.doc.data().name ;
+            //console.log("nameee  "+ doc.payload.doc.data().name)
          // console.log("potager" + doc.payload.doc.data().potager);
          this.firebaseService.getPotagerwithID(doc.payload.doc.data().potager)
           .subscribe(

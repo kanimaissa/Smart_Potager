@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { element } from 'protractor';
 
 
 @Component({
@@ -13,11 +14,19 @@ export class SerreComponent implements OnInit {
   items :Array<any> ;
   cultures: Array<any> =[];
   potagerId ;
+  namePotager;
 
   constructor(public firebaseService: FirebaseService, public route: ActivatedRoute,  private router: Router) { }
 
   ngOnInit() {
     this.potagerId = this.route.snapshot.paramMap.get('id');
+    this.firebaseService.getPotagerwithID(this.potagerId).subscribe(dataPtgSer=>{
+    
+      this.namePotager = dataPtgSer.data().name ;
+      console.log('rrr; '+this.namePotager)
+     
+      
+    })
     this.viewSerres();
     this.viewCultures();
     this.getData();

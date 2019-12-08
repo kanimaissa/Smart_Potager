@@ -44,6 +44,8 @@ import { NewPotagerComponent } from './new-potager/new-potager.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ComposantComponent } from './composant/composant.component';
 import { InterventionComponent } from './intervention/intervention.component';
+import { ListInterventionComponent } from './list-intervention/list-intervention.component';
+
 
 
 
@@ -68,7 +70,9 @@ import { InterventionComponent } from './intervention/intervention.component';
     NewPotagerComponent,
     BreadcrumbComponent,
     ComposantComponent,
-    InterventionComponent
+
+    InterventionComponent,
+    ListInterventionComponent
 
    
    
@@ -100,6 +104,6 @@ import { InterventionComponent } from './intervention/intervention.component';
     CUSTOM_ELEMENTS_SCHEMA
   ],
   
-  entryComponents:[NewUserComponent,MatConfirmDialogComponent,EditUserComponent]
+  entryComponents:[NewUserComponent,MatConfirmDialogComponent,EditUserComponent,InterventionComponent]
 })
 export class AppModule { }

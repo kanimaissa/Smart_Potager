@@ -52,3 +52,21 @@ border-radius: 0px;
     text-align: center;
     font-size: 20px;
 }
+
+
+
+
+.intervention-dialog-container #close-icon{
+    margin-left: auto;
+    order: 2;
+    font-weight: bolder;
+}
+.intervention-dialog-container #close-icon:hover{
+cursor: pointer;
+}
+
+.intervention-dialog-container .content-container{
+    margin: 5px 5px 15px 5px;
+    color: #8f9cb5;
+    display: flex;
+}

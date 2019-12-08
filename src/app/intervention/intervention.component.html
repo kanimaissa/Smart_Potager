@@ -1,3 +1,209 @@
-<p>
-  intervention works!
-</p>
+
+
+<mat-toolbar>
+    <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
+    <span class="content-span full-width">Ajouter Intervention </span>
+   
+  </mat-toolbar>
+    
+      
+          <div class="page-content">
+            <div class="row ">
+              
+              
+                        <form class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="saveIntervention(exampleForm.value)">
+                          <table >
+                            <tr >
+                              <td> <span class="text-success"  style="margin-top: -5.5%;">Réference composant :</span></td>
+                              <td> <div class="form-group "  style="margin-top: -5.5%;">
+                                  <mat-form-field class="input-style">
+                                    <input matInput  class="form-control" formControlName="refComposant">
+                                  </mat-form-field>
+                                  <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                                    <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                  </ng-container> -->
+                                </div>
+                              </td>
+                          </tr>
+
+                          <tr >
+                              <td> <span class="text-success" style="margin-top: -15%;">Libellé Composant  :</span></td>
+                              <td> <div class="form-group " style="margin-top: -15%;">
+                                  <mat-form-field class="input-style">
+                                    <input matInput  class="form-control" formControlName="libComposant">
+                                  </mat-form-field>
+                                  <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                                    <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                  </ng-container> -->
+                                </div>
+                              </td>
+                          </tr>
+                          <tr >
+                              <td> <span class="text-success" style="margin-top: -15%;">Description d'intervention  :</span></td>
+                              <td> <div class="form-group " style="margin-top: -15%;">
+                                  <mat-form-field class="example-full-width">
+                                      <textarea matInput class="form-control" formControlName="description"></textarea>
+                                  </mat-form-field>
+                                  <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                                    <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                  </ng-container> -->
+                                </div>
+                              </td>
+                          </tr>
+                          <tr >
+                              <td> <span class="text-success" style="margin-top: -15%;">Date début de l'intervention  :</span></td>
+                              <td> <div class="form-group " style="margin-top: -15%;">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput class="form-control" type="date" formControlName="dateDebutInterv">
+                                  </mat-form-field>
+                                  <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                                    <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                  </ng-container> -->
+                                </div>
+                              </td>
+                          </tr>
+                          <tr >
+                              <td> <span class="text-success" style="margin-top: -15%;">Heure de l'intervention  :</span></td>
+                              <td> <div class="form-group " style="margin-top: -15%;">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput class="form-control" type="time" formControlName="timeInterv">
+                                  </mat-form-field>
+                                  <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                                    <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                  </ng-container> -->
+                                </div>
+                              </td>
+                          </tr>
+                          <tr >
+                              <td> <span class="text-success" style="margin-top: -15%;">Adresse Utilisateur :</span></td>
+                              <td> <div class="form-group " style="margin-top: -15%;">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput  class="form-control" formControlName="adrUser">
+                                  </mat-form-field>
+                                  <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                                    <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                  </ng-container> -->
+                                </div>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td> <span class="text-success" style="margin-top: -15%;">Ville :</span></td>
+                              <td> <div class="form-group " style="margin-top: -15%;">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput  class="form-control" formControlName="vilUser">
+                                  </mat-form-field>
+                                  <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                                    <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                  </ng-container> -->
+                                </div>
+                              </td>
+                          </tr>
+                               
+                          <tr >
+                              <td> <span class="text-success" style="margin-top: -15%;">Telephone :</span></td>
+                              <td> <div class="form-group " style="margin-top: -15%;">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput  class="form-control" formControlName="telUser">
+                                  </mat-form-field>
+                                  <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                                    <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                  </ng-container> -->
+                                </div>
+                              </td>
+                          </tr>
+                           
+                          <tr >
+                            <td >
+                                <div class="row submit-button-container">
+                                    <div class="col-md-4">
+                                      <button mat-raised-button class="submit-button" color="primary" type="submit" >Intervenir</button>
+                                    </div>
+                                  </div>
+                              </td>
+                          </tr>
+                        </table>
+                            </form>
+           
+             
+        
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     <!-- <form class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
+                        <table>    
+                            <tr>    
+                                <td > 
+                                    <span class="text-success">Réference composant :</span>
+                                  </td>
+                                  <td>
+                                  <div class="form-group ">
+                                    <mat-form-field class="input-style">
+                                       <input matInput  placeholder="ref" class="form-control" formControlName="name">
+                                    </mat-form-field>
+                                    <ng-container *ngFor="let validation of validation_messages.name">
+                                      <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                    </ng-container>
+                                    </div>
+                                 </td>
+                                 </tr>
+                                 <tr>
+                                   <td>
+                                      <span class="text-success">Libellé composant :</span>
+                                   </td>
+                                   <td>
+                                      <div class="form-group ">
+                                        <mat-form-field class="input-style">
+                                           <input matInput  class="form-control" formControlName="name">
+                                        </mat-form-field>
+                                        <ng-container *ngFor="let validation of validation_messages.name">
+                                          <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                        </ng-container>
+                                        </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                      <td>
+                                         <span class="text-success">Description d'intervention :</span>
+                                      </td>
+                                      <td>
+                                         <div class="form-group ">
+                                            <mat-form-field>
+                                                <textarea matInput placeholder="Textarea"></textarea>
+                                              </mat-form-field>
+                                          <ng-container *ngFor="let validation of validation_messages.name">
+                                      <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                    </ng-container>
+                                           </div>
+                                       </td>
+                                     </tr>
+                                     <tr>
+                                       <td>
+                          <div class="row submit-button-container">
+                            <div class="col-md-4">
+                              <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="!exampleForm.valid">Intervenir</button>
+                            </div>
+                         
+                          </div>
+                        </td>
+                         
+                          </tr>
+                          </table>
+                        </form> -->
+                        
+                      

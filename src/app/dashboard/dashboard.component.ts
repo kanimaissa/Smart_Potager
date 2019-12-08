@@ -8,6 +8,7 @@ import {ServiceComposantService} from '../../services/service-composant.service'
 import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { NewPotagerComponent } from '../new-potager/new-potager.component';
+import {InterventionService} from '../../services/intervention.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,6 +36,13 @@ export class DashboardComponent implements OnInit {
   itemPtg : Array<any> = [];
   itemPtgAlert : Array<any>  ;
   itemPtgSuccess : Array<any> = [] ;
+  itemCmpInterv: Array<any> = [] ;
+  itemCmpAchieved: Array<any> = [] ;
+  itemInterv : Array<any> = [];
+  itemAchieved: Array<any> = [] ;
+  itemPtgInterv: Array<any> = [] ;
+  itemPtgAchieved :Array<any> = [] ;
+  itemUserIntev : Array<any> = [];
 
   itemSerre : Array<any> = [];
   itemSerreAlert : Array<any>  ;
@@ -63,7 +71,8 @@ export class DashboardComponent implements OnInit {
     public composantService: ServiceComposantService,
     public route: ActivatedRoute,  
     private router: Router,
-    public dialog: MatDialog ) { }
+    public dialog: MatDialog,
+    public intervService :InterventionService, ) { }
 
     ngOnInit() {
 
@@ -89,6 +98,47 @@ export class DashboardComponent implements OnInit {
          data.forEach(element =>{
        //console.log('element:' + element.payload.doc.data().libelle);
        
+            /********case Repair *****/
+            this.intervService.getIntervWithCmp(element.id).subscribe(dataInterv=>{
+              dataInterv.forEach(elemInterv=>{
+                if(elemInterv.payload.doc.get('achieved') == false){
+                  this.itemInterv= dataInterv
+                  console.log('not achieved');
+                  this.itemCmpInterv.push(element);
+                this.composantService.getComposantPotager(element.id).subscribe(dataCmpPtg =>{
+                  dataCmpPtg.forEach(elementCmpPtg =>{
+                    this.firebaseService.getPotagerwithID(elementCmpPtg.data().potager).subscribe(dataPtg=>{
+                      this.itemPtgInterv.push(dataPtg) ;
+                      
+                      console.log("succes: "+this.itemPtgInterv)
+                    })
+                   
+                  })
+                  
+                })
+                }else{
+                  this.itemAchieved= dataInterv
+                  console.log(' achieved');
+                  this.itemCmpAchieved.push(element);
+                this.composantService.getComposantPotager(element.id).subscribe(dataCmpPtg =>{
+                  dataCmpPtg.forEach(elementCmpPtg =>{
+                    this.firebaseService.getPotagerwithID(elementCmpPtg.data().potager).subscribe(dataPtg=>{
+                      this.itemPtgAchieved.push(dataPtg) ;
+                      
+                      console.log("succes: "+this.itemPtgInterv)
+                    })
+                   
+                  })
+                  
+                })
+                }
+                
+                
+              })
+                
+            })
+
+
           this.composantService.getValCapteur(element.id).subscribe(val =>{
             val.forEach(dataVal =>{
               //console.log('time: ' ) ;
@@ -142,7 +192,8 @@ export class DashboardComponent implements OnInit {
                dataCmpPtg.forEach(elementCmpPtg =>{
                  this.firebaseService.getPotagerwithID(elementCmpPtg.data().potager).subscribe(dataPtg=>{
                    this.itemPtgSuccess.push(dataPtg) ;
-                   console.log("succes: "+element.data().libelle)
+                   
+                   console.log("succes: "+this.itemDiffSuccess)
                  })
                 
                })
@@ -169,6 +220,9 @@ export class DashboardComponent implements OnInit {
              })
  
            }
+
+         
+
             
             })
           })

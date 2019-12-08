@@ -14,8 +14,10 @@ import * as Material from '@angular/material';
     Material.MatInputModule,
     Material.MatPaginatorModule,
     Material.MatDialogModule,
-    Material.MatTableModule
-  
+    Material.MatTableModule,
+    Material.MatToolbarModule,
+    Material.MatSlideToggleModule
+   
   ],
   exports: [
     Material.MatStepperModule,
@@ -27,7 +29,10 @@ import * as Material from '@angular/material';
     Material.MatInputModule,
     Material.MatPaginatorModule,
     Material.MatDialogModule,
-    Material.MatTableModule
+    Material.MatTableModule,
+    Material.MatToolbarModule,
+    Material.MatSlideToggleModule
+  
     
   ]
  

@@ -4,6 +4,7 @@
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
     
+<<<<<<< HEAD
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo">
@@ -39,7 +40,7 @@
     
     <!-- scrall card -->
     <!-- *ngFor="let item of composant" -->
-    <div class="main-panel" >
+    <!-- <div class="main-panel" >
         <div class="content">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -52,6 +53,27 @@
                 </ol>
               </nav>
             <div class="container-fluid" >
+
+      <li class="nav-item  " >
+        <a class="nav-link"   routerLink = "/intervention">
+          <i class="material-icons">post_add</i>
+          <p>Intervention</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> -->
+
+<!-- scrall card -->
+<!-- *ngFor="let item of composant" -->
+<div class="main-panel" >
+    <div class="content">
+        
+      
+        <div class="container-fluid" >
+           
+           
                
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" >
                   <div class="carousel-inner row w-100 mx-auto" >
@@ -79,7 +101,7 @@
                               </div>
                       </div>
                     </div>
-                    <div class="carousel-item col-md-4 " *ngFor="let iCmp of itemCmp ; index as i" >
+                    <div class="carousel-item col-md-4 active" *ngFor="let iCmp of itemCmp ; index as i" >
                         <!-- <span *ngFor="let iDiff of itemDiff"></span> -->
                         <div class="row">
                             <div class="col-sm-12" >
@@ -103,7 +125,7 @@
                               </div>
                           </div>
                     </div>
-                    <div class="carousel-item col-md-4 " *ngFor="let iCmp of successCmp ; index as i" >
+                    <div class="carousel-item col-md-4 active" *ngFor="let iCmp of itemCmpAchieved ; index as i" >
                         <!-- <span *ngFor="let iDiff of itemDiff"></span> -->
                         <div class="row">
                             <div class="col-sm-12" >
@@ -114,12 +136,37 @@
                                   <div class="card-body" >
                                     <h4 class="card-title">{{iCmp.data().libelle}}</h4>
                                     <p class="card-category">
-                                        Potager <span *ngFor="let iPtg of itemPtgSuccess ">"{{iPtg.data().name}}"</span> a été bien réparé
+                                        Potager <span *ngFor="let iPtg of itemPtgAchieved ">"{{iPtg.data().name}}"</span> a été bien réparé
+                                        <!-- <span *ngFor="let iInterv of itemAchieved">{{iInterv.payload.doc.data().description }}</span> -->
                                   </div>
                                   <div class="card-footer">
                                     <div class="stats">
-                                      <i class="material-icons">access_time</i> <span style="float:left;">depuis {{itemDiffSuccess[i]}} Heur(s) </span>
-                                      <a routerLink="/composant/{{iCmp.id}}" style="position: relative ; left: 50%;float:right; color:silver; font-size: 10px;"><i class="material-icons">read_more</i></a>
+                                      <i class="material-icons">access_time</i> <span *ngFor="let iInterv of itemAchieved" style="float:left;">{{iInterv.payload.doc.data().dateFin }} </span>
+                                      <a routerLink="/composant/{{iCmp.id}}" style="position: absolute ; left: 65%;float:right; color:silver; font-size: 10px;"><i class="material-icons">read_more</i></a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                    </div>
+                    <div class="carousel-item col-md-4 active" *ngFor="let iCmp of itemCmpInterv ; index as i" >
+                        <!-- <span *ngFor="let iDiff of itemDiff"></span> -->
+                        <div class="row">
+                            <div class="col-sm-12" >
+                                <div class="card card-chart" >
+                                  <div class="card-header card-header-info">
+                                    <div class="ct-chart" id="dailySalesChart"></div>
+                                  </div>
+                                  <div class="card-body" >
+                                    <h4 class="card-title">{{iCmp.data().libelle}}</h4>
+                                    <p class="card-category">
+                                        Potager <span *ngFor="let iPtg of itemPtgInterv ">"{{iPtg.data().name}}"</span> est en cours de réparation
+                                        <!-- <span *ngFor="let iInterv of itemAchieved">{{iInterv.payload.doc.data().description }}</span> -->
+                                  </div>
+                                  <div class="card-footer">
+                                    <div class="stats">
+                                      <i class="material-icons">access_time</i> <span *ngFor="let iInterv of itemInterv" style="float:left;">{{iInterv.payload.doc.data().dateFin }} </span>
+                                      <a routerLink="/composant/{{iCmp.id}}" style="position: fixed ; left: 70%;float:right; color:silver; font-size: 10px;"><i class="material-icons">read_more</i></a>
                                     </div>
                                   </div>
                                 </div>
@@ -150,33 +197,6 @@
           
         </div>
     
-        <div *ngFor="let item of composant" class="list-group-item list-group-item-action flex-column align-items-start">
-          <div class="row">
-           
-            <div class="col col-md-2 text-col">
-              <h5 class="mb-1">{{item.lib}}</h5>
-            </div>
-            <div class="col col-md-1 text-col">
-                <h5 class="mb-1"> {{item.namePotager}}</h5>
-              </div>
-              <div class="col col-md-2 text-col">
-                  <h5 class="mb-1"> {{item.nameUser}}</h5>
-                </div>
-                <div class="col col-md-1 text-col">
-                    <h5 class="mb-1">{{item.etat}}</h5>
-                  </div>
-                  <div class="col col-md-1 text-col">
-                    <h5 class="mb-1">{{item.diff}}</h5>
-                  </div>
-            
-        
-            
-            
-             
-           
-          </div>
-        
-        </div>
         
       
        

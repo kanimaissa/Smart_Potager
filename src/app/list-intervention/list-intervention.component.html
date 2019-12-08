@@ -1,0 +1,134 @@
+<div class="main-panel">
+    <div class="sidebar" data-color="green" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+    
+        Tip 2: you can also add an image using data-image tag
+    -->
+      <div class="logo">
+        <a routerLink = "/dashboard"class="simple-text logo-normal">
+          Smart Potager
+         </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item  ">
+            <a class="nav-link"  routerLink = "/dashboard">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+        
+          <li class="nav-item  " >
+            <a class="nav-link"   routerLink = "/home">
+              <i class="material-icons">content_paste</i>
+              <p>Liste Utilisateurs</p>
+            </a>
+          </li>
+      
+          <li class="nav-item active " >
+            <a class="nav-link"   routerLink = "/intervention">
+              <i class="material-icons">post_add</i>
+              <p>Intervention</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+    <div class="content">
+        <div class="container-fluid">
+           
+<div class="row">
+	    
+      
+    <div class="col-md-12" style="margin-top: -3.5%;">
+        <div class="card">
+         
+          <div class="card-header card-header-success">
+            <h4 class="card-title ">Liste des Interventions</h4>
+          </div>
+      
+          
+
+<div class="list-group users-list">
+    <div  class="list-group-item list-group-item-action flex-column align-items-start" >
+        <div class="row">
+            <div class="col col-md-1 text-col">
+                <h6> Composant</h6>
+            </div>
+            <div class="col col-md-1 text-col">
+                <h6> Potager</h6>
+            </div>
+            <div class="col col-md-1 text-col">
+                <h6> Utilisateur</h6>
+            </div>
+    <div class="col col-md-2 text-col">
+     <h6>Description Intervention</h6>
+    </div>
+    <div class="col col-md-2 text-col">
+        <h6>Date Début de l'intervention</h6>
+      </div>
+    <div class="col col-md-1 text-col">
+        <h6> Heure</h6>
+    </div>
+    <div class="col col-md-2 text-col">
+        <h6>Date Fin de l'intervention</h6>
+      </div>
+    <div class="col col-md-1 text-col">
+      <h6> Achevé</h6>
+    </div>
+    </div>
+    </div>
+  <div  class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="row" *ngFor="let itemIterv of dataInterv ; index as i">
+        <div class="col col-md-1 text-col">
+            <h5 class="mb-1">{{dataCmp[i]}}</h5>
+          </div>
+          <div class="col col-md-1 text-col">
+              <h5 class="mb-1">{{dataPtg[i]}}</h5>
+            </div>
+            <div class="col col-md-1 text-col">
+                <h5 class="mb-1">{{dataUser[i]}}</h5>
+              </div>
+      <div class="col col-md-2 text-col">
+        <h5 class="mb-1">{{itemIterv.payload.doc.data().description}}</h5>
+      </div>
+      <div class="col col-md-2 text-col">
+          <h5 class="mb-1">{{itemIterv.payload.doc.data().dateDebut}} </h5>
+        </div>
+        <div class="col col-md-1 text-col">
+            <h5 class="mb-1">{{itemIterv.payload.doc.data().time}}</h5>
+          </div>
+          <div class="col col-md-2 text-col">
+              <h5 class="mb-1">{{itemIterv.payload.doc.data().dateFin}}</h5>
+            </div>
+           
+      <div class="col col-md-1 text-col" >
+         
+          <mat-slide-toggle (click)="achivementInterv(itemIterv.payload.doc.id)" checked="{{itemIterv.payload.doc.data().achived}}"></mat-slide-toggle>
+      </div>
+       
+     
+    </div>
+  
+  </div>
+ 
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+</div>
+
+
+
+
