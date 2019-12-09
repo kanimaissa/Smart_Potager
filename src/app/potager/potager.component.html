@@ -40,16 +40,7 @@
 
   <div class="content">
       <div class="container-fluid">
-          <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item " aria-current="page" >
-                    
-                    <a class="nav-link" routerLink = "/Potagers" >
-                      <p>/ List Utilisateurs / Potagers</p>
-                    </a>
-                </li>
-              </ol>
-            </nav>
+       
 <div class="row">
   <div class="col-md-12"style="margin-top: -3.5%;">
       <div class="card">
@@ -57,7 +48,7 @@
           <h4 class="card-title ">Liste de Potagers</h4>
         </div>
         <div class="card-body">
-            <div class="row">
+            <div class="row" style="margin-top: -0.5%;">
                 <div class="col col-md-3 text-col">
                     <button  class="btn btn-success " (click)="addPotager()" type="button" >
                         <i class="material-icons"></i>  Ajouter Potager
@@ -74,7 +65,7 @@
             </div>
             </div>
 
-<div class="list-group users-list">
+<div class="list-group users-list" style="margin-top: -2%;">
   <div  class="list-group-item list-group-item-action flex-column align-items-start" >
       <div class="row">
   <div class="col col-md-2 text-col">
@@ -94,7 +85,7 @@
   </div>
   </div>
   </div>
-<div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start">
+<div *ngFor="let item of items" class="list-group-item list-group-item-action flex-column align-items-start" style="margin-top: -2%;">
   <div class="row">
    
     <div class="col col-md-2 text-col">
@@ -127,7 +118,7 @@
       
     </div>
     <div class="col-md-1">
-    <button color="primary" class="btn btn-outline-info" (click)="editPotager(item)" type="button" >
+    <button color="primary" class="btn btn-outline-warning" (click)="editPotager(item)" type="button" >
       <i class="material-icons">edit</i>  
     </button>
     </div>

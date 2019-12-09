@@ -17,7 +17,7 @@ export class EditUserComponent implements OnInit {
 
   exampleForm: FormGroup;
   item: any;
-
+  hide = true;
   validation_messages = {
    'name': [
      { type: 'required', message: 'Name is required.' }
@@ -95,11 +95,11 @@ export class EditUserComponent implements OnInit {
   }
 
   showWarn(){
-    this.toastr.warning('la modification a effectué avec succées','utilisateur modifié');
+    this.toastr.warning('la modification a effectué avec succées');
   }
 
   showError(){
-    this.toastr.error('la suppression a effectué avec succées','utilisateur supprimé');
+    this.toastr.error('la suppression a effectué avec succées');
   }
   delete(){
     /*this.firebaseService.deleteUser(this.item.id)

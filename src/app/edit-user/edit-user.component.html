@@ -18,16 +18,18 @@
             <p>Dashboard</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link"  routerLink = "/new-user" >
-            <i class="material-icons">person</i>
-            <p>User Profile</p>
-          </a>
-        </li>
+      
         <li class="nav-item active " >
           <a class="nav-link"   routerLink = "/home">
             <i class="material-icons">content_paste</i>
-            <p>Table List</p>
+            <p>Liste Utilisateurs</p>
+          </a>
+        </li>
+    
+        <li class="nav-item  " >
+          <a class="nav-link"   routerLink = "/intervention">
+            <i class="material-icons">post_add</i>
+            <p>Intervention</p>
           </a>
         </li>
    
@@ -39,23 +41,23 @@
         <div class="container-fluid">
         
          
-<div class="edit-page">
+<div class="edit-page" style="margin-top: -6.5%;">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page" >
-        Modifer Utilisateur 
-          
+        Détails Utilisateur 
         </li>
       </ol>
     </nav>
-    <div class="page-content">
+    
+    <div class="page-content"  style="margin-top: -3%;">
       <div class="row">
         
         <div class="col col-md-8">
   
           <form class="edit-form" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
   
-            <div class="form-group">
+            <div class="form-group" style="margin-top: -3.5%;">
               <mat-form-field class="input-style">
                 <input matInput placeholder="Name" class="form-control" formControlName="name">
               </mat-form-field>
@@ -64,7 +66,7 @@
               </ng-container>
             </div>
   
-            <div class="form-group">
+            <div class="form-group"  style="margin-top: -3.5%;">
               <mat-form-field class="input-style">
                 <input matInput placeholder="Surname" class="form-control" formControlName="surname">
               </mat-form-field>
@@ -73,7 +75,7 @@
               </ng-container>
             </div>
 
-            <div class="form-group">
+            <div class="form-group"  style="margin-top: -3.5%;">
               <mat-form-field class="input-style">
                 <input matInput placeholder="Email" class="form-control" formControlName="email">
               </mat-form-field>
@@ -82,7 +84,7 @@
               </ng-container>
             </div>
 
-            <div class="form-group">
+            <div class="form-group"  style="margin-top: -3.5%;">
                 <mat-form-field class="input-style">
                   <input matInput placeholder="Ville" class="form-control" formControlName="ville">
                 </mat-form-field>
@@ -91,7 +93,7 @@
                 </ng-container>
               </div>
 
-              <div class="form-group">
+              <div class="form-group"  style="margin-top: -3.5%;">
                 <mat-form-field class="input-style">
                   <input matInput placeholder="Adresse" class="form-control" formControlName="adresse">
                 </mat-form-field>
@@ -100,7 +102,7 @@
                 </ng-container>
               </div>
             
-            <div class="form-group">
+            <div class="form-group"  style="margin-top: -3.5%;">
                 <mat-form-field class="input-style">
                   <input matInput placeholder="Telephone" class="form-control" formControlName="telephone">
                 </mat-form-field>
@@ -109,19 +111,17 @@
                 </ng-container>
               </div>
   
-              <div class="form-group">
+              <div class="form-group"  style="margin-top: -3.5%;">
                   <mat-form-field class="input-style">
-                    <input matInput placeholder="Mot de passe" class="form-control" formControlName="mdp">
+                    <input matInput placeholder="Mot de passe" class="form-control" formControlName="mdp" [type]="hide ? 'password' : 'text'">
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </mat-form-field>
                   <ng-container *ngFor="let validation of validation_messages.mdp">
                     <mat-error *ngIf="exampleForm.get('mdp').hasError(validation.type) && (exampleForm.get('mdp').dirty || exampleForm.get('mdp').touched)">{{validation.message}}</mat-error>
                   </ng-container>
                 </div>
 
-                
-             
-
-            <div class="row submit-button-container">
+            <div class="row submit-button-container"  style="margin-top: -3.5%;">
               <div class="col-md-4">
                 <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="!exampleForm.valid">Save</button>
               </div>

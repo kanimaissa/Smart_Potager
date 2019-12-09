@@ -39,7 +39,8 @@ export class HomeComponent implements OnInit {
 
   openDialogAddUser(): void {
     const dialogRef = this.dialog.open(NewUserComponent, {
-      width: '800px',
+      width: '650px',
+      panelClass:'intervention-dialog-container',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -48,16 +49,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  openDialogShowUser(): void {
-    const dialogRef = this.dialog.open(EditUserComponent, {
-      width: '800px',
-      data: {}
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      
-    });
-  }
+ 
   
   getData(){
     this.firebaseService.getUsers()

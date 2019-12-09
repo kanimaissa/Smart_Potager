@@ -50,7 +50,7 @@ export class FirebaseService {
       ville:value.ville,
       adresse:value.adresse,
       mdp: value.mdp,
-      nbr_potager:parseInt(value.nbr_potager)
+ 
 
 
       

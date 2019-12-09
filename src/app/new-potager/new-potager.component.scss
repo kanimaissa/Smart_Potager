@@ -1,0 +1,48 @@
+.example-form {
+    min-width: 100px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 70%;
+  }
+
+  .create-page {
+
+    padding: 20px 60px;
+  
+    .page-content {
+      background-color: #FFF;
+  
+      
+  
+     
+  
+      .create-form {
+        padding: 20px;
+  
+  
+        .submit-button-container {
+          justify-content: flex-end;
+  
+          .submit-button{
+            width: 50%;
+          }
+  
+          .delete-button{
+            width: 100%;
+          }
+        }
+  
+        .input-style{
+          width: 100%;
+        }
+  
+        .mat-error {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  

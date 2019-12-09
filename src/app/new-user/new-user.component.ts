@@ -7,7 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 import * as $ from 'jquery' ;
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-
+import {ErrorStateMatcher} from '@angular/material/core';
 
 @Component({
   selector: 'app-new-user',
@@ -69,17 +69,16 @@ export class NewUserComponent implements OnInit {
  
 
 
-  onNoClick(): void {
-  
+  closeDialog(): void {
     this.dialogRef.close();
-   
   }
 
   createForm() {
     this.exampleForm = this.fb.group({
+   
       name: ['', Validators.required ],
       surname: ['', Validators.required ],
-      email: ['', Validators.required  ],
+      email: ['', Validators.required],
       ville: ['', Validators.required ],
       adresse: ['', Validators.required ],
       telephone: ['', Validators.required ],
@@ -132,7 +131,7 @@ export class NewUserComponent implements OnInit {
     .then(
       res => {
         this.resetFields();
-        this.onNoClick()
+        this.closeDialog();
         this.showSuccess();
       }
     )

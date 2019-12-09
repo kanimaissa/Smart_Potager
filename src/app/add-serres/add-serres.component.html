@@ -42,21 +42,21 @@
  <div class="content">
    
     <div class="container-fluid"> 
-    <div class="create-page">
+    <div class="create-page" style="margin-top: -4.5%;">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb ">
           <li class="breadcrumb-item active " aria-current="page">Ajouter Serres</li>
         </ol>
       </nav>
-  <div class="page-content">
+  <div class="page-content" >
     <div class="row">
        
         <div class="col col-md-12">
         
                 <form class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="addSerres(exampleForm.value)">
 
-                    <div class="form-group">
-                      <mat-form-field class="input-style">
+                    <div class="form-group" >
+                      <mat-form-field class="example-full-width">
                         <input matInput placeholder="Libelle" class="form-control" formControlName="lib">
                       </mat-form-field>
                       <!-- <ng-container *ngFor="let validation of validation_messages.name">
@@ -65,7 +65,7 @@
                     </div>
           
                     <div class="form-group">
-                      <mat-form-field class="input-style">
+                      <mat-form-field class="example-full-width" style="margin-top: -3.5%;">
                         <input matInput placeholder="Position" class="form-control" formControlName="position">
                       </mat-form-field>
                       <!-- <ng-container *ngFor="let validation of validation_messages.surname">
@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="form-group">
-                        <mat-form-field class="input-style">
+                        <mat-form-field class="example-full-width" style="margin-top: -3.5%;">
                             <input matInput placeholder="Largeur" class="form-control" formControlName="largeur">
                           </mat-form-field>
                           <!-- <ng-container *ngFor="let validation of validation_messages.ville">
@@ -82,7 +82,7 @@
                           </ng-container> -->
                         </div>
                         <div class="form-group">
-                            <mat-form-field class="input-style">
+                            <mat-form-field class="example-full-width" style="margin-top: -3.5%;">
                                 <input matInput placeholder="Longueur" class="form-control" formControlName="longueur">
                               </mat-form-field>
                               <!-- <ng-container *ngFor="let validation of validation_messages.ville">
@@ -91,9 +91,9 @@
                             </div>
 
                       
-                    <div class="row submit-button-container">
+                    <div class="row submit-button-container" style="margin-top: -2%;">
                         <div class="col-md-4">
-                          <button mat-raised-button class="submit-button" color="primary" type="submit" >Create</button>
+                          <button mat-raised-button class="submit-button" color="primary" type="submit" >Ajouter Serre</button>
                         </div>
                       </div>
             
