@@ -14,8 +14,11 @@ import {NewPotagerComponent} from './new-potager/new-potager.component';
 import {EditPotagerComponent} from './edit-potager/edit-potager.component'
 import {EditPotagerResolver} from './edit-potager/edit-potager.resolver'
 import {EditSerreResolver} from'./edit-serre/edit-serre.resolver' ;
+import {EditInterventionResolver} from './edit-intervention/edit-intervention.resolver';
 import {EditSerreComponent} from'./edit-serre/edit-serre.component' ;
 import {ListInterventionComponent} from './list-intervention/list-intervention.component';
+import {EditInterventionComponent} from './edit-intervention/edit-intervention.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {path:"dashboard", component:DashboardComponent}, 
@@ -23,12 +26,13 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'composant/:id', component: ComposantComponent },
   { path: 'details/:id', component: EditUserComponent, resolve:{data : EditUserResolver}},
-  { path: 'potagers/:id', component: PotagerComponent  },
-  { path: 'serres/:id', component: SerreComponent  },
+  { path: 'potagers/:iduser', component: PotagerComponent  },
+  { path: 'serres/:iduser/:idpotager', component: SerreComponent  },
   { path: 'add-serres/:id', component: AddSerresComponent  },
   { path: 'new-potager/:id', component: NewPotagerComponent  },
   { path: 'edit-potager/:id', component: EditPotagerComponent, resolve:{data: EditPotagerResolver}  },
   { path: 'edit-serre/:id', component: EditSerreComponent, resolve:{data: EditSerreResolver}  },
+  { path: 'edit-intervention/:id', component: EditInterventionComponent, resolve:{data: EditInterventionResolver}  },
   { path: 'intervention', component: ListInterventionComponent }
 ];
 

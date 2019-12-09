@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material';
 import { NewPotagerComponent } from '../new-potager/new-potager.component';
 import { element } from 'protractor';
 import { InterventionComponent } from '../intervention/intervention.component';
+import {InterventionService} from '../../services/intervention.service';
 
 @Component({
   selector: 'app-composant',
@@ -22,7 +23,7 @@ export class ComposantComponent implements OnInit {
 
   itemCmp :Array<any> = [];
   itemCmpVal: Array<any> ;
-  itemSerre: Array<any> ;
+  itemSerre: Array<any> = [] ;
   itemPotager: Array <any> = [];
   itemUser: Array <any> =[];
 
@@ -38,20 +39,25 @@ export class ComposantComponent implements OnInit {
   hoursDiff: number;
   minuteDiff: number ;
   cmpId: any;
-
-
-
+  userId: any ;
+  cmp: any ;
+ ptgName : any ;
+ dataInterv :any;
+ show : boolean = false;
+ 
 
   constructor(public firebaseService: FirebaseService,
     public composantService: ServiceComposantService,
     public route: ActivatedRoute,  
     private router: Router,
-    public dialog: MatDialog 
+    public dialog: MatDialog,
+    public intervService :InterventionService,
     ) 
     { }
 
   ngOnInit() {
 
+   
     //this.dateNumber = Date.parse(this.dateNowISO);
     this.cmpId = this.route.snapshot.paramMap.get('id');
    
@@ -62,45 +68,104 @@ export class ComposantComponent implements OnInit {
     this.seconds = Math.floor((this.dateNumber / 1000) % 60);
 
   // console.log('date:' + this.dateNow + '/'+ this.dateNow + '/' );
-    
-    this.detailsComposant()
-  //console.log(this.dateNow.getMonth()+1 +" "+'/'+ (this.dateNow.getDate()) + '/' + this.dateNow.getFullYear())
-    
+  this.infoIntervention() ;
+    this.detailsComposant();
+   
 
+  //console.log(this.dateNow.getMonth()+1 +" "+'/'+ (this.dateNow.getDate()) + '/' + this.dateNow.getFullYear())
+  
+ 
   }
 
-  
+  infoIntervention(){
+    this.intervService.getIntervWithCmp(this.cmpId).subscribe(dataInterv=>{
+     //dataInterv.forEach(elemInterv=>{
+       this.dataInterv = dataInterv ;
+       console.log('looooog: '+ dataInterv)
+  //  })
+      
+    })
+  }
 
   detailsComposant(){
       this.composantService.getCapteurwithID(this.cmpId).subscribe(dataCmp =>{
         this.itemCmp.push(dataCmp) ;
-       // console.log(dataCmp.payload.data().libelle)
+        this.cmp = dataCmp.data()
+       
       this.composantService.getValCapteur(this.cmpId).subscribe(dataValCmp =>{
           this.itemCmpVal = dataValCmp;
          // console.log(dataValCmp)
       })
+      // if(dataCmp.data().localisation == "serre"){
+      //   this.composantService.getComposantPotager(this.cmpId).subscribe(dataCmpPtg =>{
+      //     dataCmpPtg.forEach(elementCmpPtg=>{
+      //       console.log("ComposantPotager: "+ elementCmpPtg.data().potager)
+      //       this.firebaseService.getPotagerwithID(elementCmpPtg.data().potager).subscribe(dataPtg =>{
+
+      //       })
+      //     })
+      //   })
+        
+      // }
       
       })
       
         this.composantService.getComposantPotager(this.cmpId).subscribe(dataCmpPtg =>{
           dataCmpPtg.forEach(elementCmpPtg=>{
+            this.intervService.getIntrevention().subscribe(datainterv=>{
+              for(let eleminterv of datainterv) {
+               // if(something_wrong) break;
+               if((eleminterv.payload.doc.get('composant')  == elementCmpPtg.data().capteur)|| (elementCmpPtg.data().actionneur == eleminterv.payload.doc.get('composant'))){
+                this.show = false ;
+                console.log(elementCmpPtg.data().capteur +" =="+eleminterv.payload.doc.get('composant'));
+                 break ;
+              }else{
+                this.show = true ;
+                console.log(elementCmpPtg.data().capteur +" !="+eleminterv.payload.doc.get('composant'));
+              }
+             }
+              
+            })
+            
             console.log("ComposantPotager: "+ elementCmpPtg.data().potager)
             this.firebaseService.getPotagerwithID(elementCmpPtg.data().potager).subscribe(dataPtg =>{
               console.log(dataPtg.data().libelle);
+              this.ptgName = dataPtg.data().libelle
               this.itemPotager.push(dataPtg);
-              this.firebaseService.getSerrePotager(dataPtg.id).subscribe(dataCmpSerre =>{
-                this.itemSerre = dataCmpSerre
-                this.firebaseService.getUser(dataPtg.data().user).subscribe(dataUser=>{
-                  this.itemUser.push(dataUser) ;
-                })
+              this.composantService.getCapteurwithID(this.cmpId).subscribe(dataCmp =>{
+                if(dataCmp.data().localisation == "serre"){
+                  this.composantService.getComposantSerrePotager(elementCmpPtg.id, this.cmpId).subscribe(dataCmpPtgSer=>{
+                   
+                    dataCmpPtgSer.forEach(elementCmpPtgSer =>{
+                     
+                      this.firebaseService.getSerrerwithID(dataPtg.id, elementCmpPtgSer.data().serre).subscribe(dataCmpSerre =>{
+                        this.itemSerre.push(dataCmpSerre)
+                       
+                        })
+                      })
+                    })
+                }
+              
               })
+                this.firebaseService.getUser(dataPtg.data().user).subscribe(dataUser=>{
+                   
+                  this.userId = dataUser.payload.data();
+                  
+                  this.itemUser.push(dataUser) ;
+              })
+              
             })
+           
           })
          
         })
         
-      
+        
   }
+
+ 
+    
+  
 
 
   openDialogAddIntervention(): void{
@@ -108,12 +173,17 @@ export class ComposantComponent implements OnInit {
       width: '700px',
      
       panelClass:'intervention-dialog-container',
-      data: {}
+      //data: {cmp: {1: this.cmpId, 2:"nnnnnn"}}
+      //
+      data : {idcmp: this.cmpId, refcmp: this.cmp.reference, nameuser: this.userId.name ,adruser: this.userId.adresse, teluser: this.userId.telephone, viluser: this.userId.ville , namecmp: this.cmp.libelle, nameptg: this.ptgName}
      
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+     
+      //dialogRef.close({data: this.cmpId})
+     // console.log(result);
     });
+    
   }
 
 }

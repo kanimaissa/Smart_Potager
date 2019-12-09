@@ -40,24 +40,34 @@
 
   <div class="content">
       <div class="container-fluid">
+          <nav aria-label="breadcrumb" style="margin-top:-1.5%;margin-bottom:-1%; margin-left:0.5%;">
+              <ol class="breadcrumb" style=" background-color:transparent ;">
+                <li>                  
+                    <a style="color: grey" routerLink = "/home" >Utilisateurs</a>  >  <a style="color: grey" routerLink = "/potagers/{{userId}}" >Potagers</a>  >  <a style="color: grey" routerLink = "/serres/{{userId}}/{{potagerId}}" >Serres</a>
+                </li>
+              </ol>
+            </nav>
 <div class="row">
     
-  <div class="col-md-12"style="margin-top: -3.5%;">
+  <div class="col-md-12">
       
       <div class="card">
           
         <div class="card-header card-header-success">
-          <h4 class="card-title ">Liste de Serres</h4>
+          <h4 class="card-title ">Liste des Serres de Potager: {{namePotager}}</h4>
         </div>
         <div class="card-body">
             
-        <div class="col col-md-3 text-col" style="margin-top: -0.5%;">
+
+
+    <div class="col col-md-3 text-col" style="float:right">
+
         <button  class="btn btn-success " (click)="addSerre()" type="button" >
-            <i class="material-icons"></i>  Ajouter Serre
+            <i class="material-icons">add</i>  Ajouter Serre
         </button>     
   
   
-</div>
+
 
 </div>
 

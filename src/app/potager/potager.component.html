@@ -40,29 +40,32 @@
 
   <div class="content">
       <div class="container-fluid">
-       
+          <nav aria-label="breadcrumb" style="margin-top:-1.5%;margin-bottom:-1%; margin-left:0.5%;">
+              <ol class="breadcrumb" style=" background-color:transparent ;">
+                <li>                  
+                    <a style="color: grey" routerLink = "/home" >Utilisateurs</a>  >  <a style="color: grey" routerLink = "/potager/" >Potagers</a>
+                </li>
+              </ol>
+            </nav>
+
 <div class="row">
-  <div class="col-md-12"style="margin-top: -3.5%;">
+  <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-success">
-          <h4 class="card-title ">Liste de Potagers</h4>
+          <h4 class="card-title ">Liste de Potagers: {{nameUser}}</h4>
         </div>
         <div class="card-body">
-            <div class="row" style="margin-top: -0.5%;">
-                <div class="col col-md-3 text-col">
+
+                <div class="col col-md-3 text-col" style="float:right">
+
                     <button  class="btn btn-success " (click)="addPotager()" type="button" >
-                        <i class="material-icons"></i>  Ajouter Potager
+                        <i class="material-icons">add</i>  Ajouter Potager
                     </button>     
                 </div>
               
                  
            
-            <div  class="col col-md-3 text-col">
-              
-                
-               
-              </div>
-            </div>
+           
             </div>
 
 <div class="list-group users-list" style="margin-top: -2%;">
@@ -100,17 +103,18 @@
         <div class="col col-md-1 text-col">
             <h5 class="mb-1"> {{item.data().surface}}</h5>
           </div>
+          <div class="col-md-2">
+              <button color="primary" class="btn btn-outline-success action" (click)="addSerres(item)" type="button" >
+               Ajouter Serre
+              </button>
+            </div>
     <div class="col-md-2">
       
       <button  color="primary" class="btn btn-outline-success action" (click)="viewSerres(item)" type="button" >
         Serres
       </button>
     </div>
-   <div class="col-md-2">
-      <button color="primary" class="btn btn-outline-success action" (click)="addSerres(item)" type="button" >
-       Ajouter Serre
-      </button>
-    </div>
+   
     <div class="col-md-1">
       <button color="primary" class="btn btn-outline-danger" (click)="deletePotager(item)" type="button" >
         <i class="material-icons">delete</i>  
@@ -124,9 +128,6 @@
     </div>
 
     
-    
-     
-   
   </div>
 
 </div>

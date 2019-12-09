@@ -79,12 +79,10 @@ export class FirebaseService {
    }
    potager : any;
 
-   deletePotager(keyuser, potagerKey){
-   
-    this.db.collection('potager').doc(potagerKey).delete();
+   retreivePotagerUser(keyuser, potagerKey){
    
    //this.docIdPotager = this.db.collection('potagerUser').where('potager','==',potagerKey);
-   return this.db.collection('users').doc(keyuser).collection('potagerUser', ref => ref.where('potager', '==', potagerKey)).snapshotChanges();
+   return this.db.collection('users').doc(keyuser).collection('potagerUser', ref => ref.where('potager', '==', potagerKey)).get();
    
   //  this.docIdPotager.get().subscribe(function(querySnapshot) {
   //   //console.log('doc: '+ querySnapshot);
@@ -108,13 +106,13 @@ export class FirebaseService {
 
   }
 
-  delete(keyuser, potagerUserKey){
+  deletePotager(keyuser, potagerUserKey, potagerKey){
+    this.db.collection('potager').doc(potagerKey).delete();
     this.db.collection('users').doc(keyuser).collection('potagerUser').doc(potagerUserKey).delete();
   }
 
   deleteSerrePotager(potagerkey, serreKey){
    this.db.collection('potager').doc(potagerkey).collection('serres').doc(serreKey).delete();
- 
   }
 
    getPotagerUser(user){

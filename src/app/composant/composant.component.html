@@ -30,7 +30,7 @@
         </li>
       
         <li class="nav-item  " >
-          <a class="nav-link"   routerLink = "/">
+          <a class="nav-link"   routerLink = "/intervention">
             <i class="material-icons">post_add</i>
             <p>Intervention</p>
           </a>
@@ -47,37 +47,52 @@
   <div class="main-panel" >
     
       <div class="content">
-         
-          <div class="col col-md-3 " style="margin-top: -6.5%;margin-left: 1%">
-              <button type="button" class="btn btn-danger" (click)=" openDialogAddIntervention()"  >
-                  <i class="material-icons">add</i>  Ajouter Intervention
-              </button>     
-          </div>
        
-          <div class="col-md-12 " style="margin-top: -0.5%;">
+          <div class="col-md-12 " style="margin-top: -4%;">
             <div class="card card-chart">
               <div class="card-header card-header-success">
                 <div class="ct-chart" id="dailySalesChart"></div>
               </div>
+              <div class="col-md-12">
               <div class="card-body">
+                  <div class="col col-md-6 " style="float:right;" *ngIf=show>
+                      <button type="button" class="btn btn-danger" (click)=" openDialogAddIntervention()"  >
+                          <i class="material-icons">add</i>  Ajouter Intervention
+                      </button>     
+                  </div>
+                  <div class="col col-md-6 " style="float:right;" *ngFor="let iInterv of dataInterv">
+                      <h4 class="card-title" >Intervention</h4>
+                      <p class="card-category">
+                        <span class="text-success"> Description: </span> {{iInterv.payload.doc.data().description}}</p>
+                        <p class="card-category">
+                          <span class="text-success"> Date Début: </span> {{iInterv.payload.doc.data().dateDebut}}</p>
+                          <p class="card-category">
+                            <span class="text-success"> Date Fin: </span> {{iInterv.payload.doc.data().dateFin}}</p>
+                            <p class="card-category">
+                              <span class="text-success"> Achevé : </span> {{iInterv.payload.doc.data().achieved}}</p>
+                             
+                  </div>
                 <h4 class="card-title">Informations sur le composant</h4>
                 <p class="card-category" *ngFor="let iCmp of itemCmp">
-                  <span class="text-success"> Libellé de Capteur: </span> {{iCmp.payload.data().libelle}}</p>
+                  <span class="text-success"> Libellé de Capteur: </span> {{iCmp.data().libelle}}</p>
                   <p class="card-category" *ngFor="let iCmp of itemCmp">
-                    <span class="text-success"> Localisation: </span> {{iCmp.payload.data().localisation}}</p>
+                    <span class="text-success"> Localisation: </span> {{iCmp.data().localisation}}</p>
                     <p class="card-category" *ngFor="let iCmp of itemCmp">
-                      <span class="text-success"> Heure Maximale de récupérer son valeur: </span> {{iCmp.payload.data().timeMax}} Heure(s)</p>
+                      <span class="text-success"> Heure Maximale de récupérer son valeur: </span> {{iCmp.data().timeMax}} Heure(s)</p>
                       <p class="card-category" *ngFor="let iCmpv of itemCmpVal">
                         <span class="text-success"> Date : </span> {{iCmpv.payload.doc.data().date}}</p>
                         <p class="card-category" *ngFor="let iCmpv of itemCmpVal">
                           <span class="text-success"> Heure la derniére valeur : </span> {{iCmpv.payload.doc.data().time}}</p>
               </div>
+             
               <div class="card-footer">
                 <!-- <div class="stats">
                   <i class="material-icons">access_time</i> updated 4 minutes ago
                 </div> -->
               </div>
-              <div class="card-body">
+            </div>
+              <div class="col-md-12">
+              <div class="card-body col-md-6"  style="float:left">
                 <h4 class="card-title">Informations sur le Potager</h4>
                 <p class="card-category" *ngFor="let iPtg of itemPotager">
                   <span class="text-success"> Libellé de Potager: </span> {{iPtg.data().name}}</p>
@@ -90,21 +105,29 @@
                         <p class="card-category" *ngFor="let iPtg of itemPotager">
                           <span class="text-success"> Surface: </span> {{iPtg.data().surface}}</p>
               </div>
-              <div class="card-footer">
-                <!-- <div class="stats">
-                  <i class="material-icons">access_time</i> updated 4 minutes ago
-                </div> -->
+              <div class="card-body col-md-6" style="float:left" *ngFor="let iSerre of itemSerre">
+                  <h4 class="card-title" >Informations sur le Serre</h4>
+                  <p class="card-category" >
+                    <span class="text-success"> Libellé de Serre: </span> {{iSerre.data().libSerre}}</p>
+                    <p class="card-category" *ngFor="let iSerre of itemSerre">
+                      <span class="text-success"> Largeur: </span> {{iSerre.data().largeur}}</p>
+                      <p class="card-category" *ngFor="let iSerre of itemSerre">
+                        <span class="text-success"> Longueur: </span> {{iSerre.data().longueur}}</p>
+                        <p class="card-category" *ngFor="let iSerre of itemSerre">
+                          <span class="text-success"> Position: </span> {{iSerre.data().position}}</p>
+                          
+              </div>  
+             
+              <div class="card-footer col-md-12">
+                  <!-- <div class="stats">
+                    <i class="material-icons">access_time</i> updated 4 minutes ago
+                  </div> -->
+                </div>
+               
+             
               </div>
-              <div class="card-body">
-                <h4 class="card-title">Informations sur le Serre</h4>
-                <p class="card-category">
-                 </p>
-              </div>
-              <div class="card-footer">
-                <!-- <div class="stats">
-                  <i class="material-icons">access_time</i> updated 4 minutes ago
-                </div> -->
-              </div>
+
+                <div class="col-md-12">
               <div class="card-body">
                 <h4 class="card-title">Informations sur l'utilisateur</h4>
                 <p class="card-category" *ngFor="let iUser of itemUser">
@@ -114,10 +137,13 @@
                     <p class="card-category" *ngFor="let iUser of itemUser">
                       <span class="text-success"> Ville: </span> {{iUser.payload.data().ville}}</p>
               </div>
+            
               <div class="card-footer">
+                
                 <!-- <div class="stats">
                   <i class="material-icons">access_time</i> updated 4 minutes ago
                 </div> -->
+              </div>
               </div>
             </div>
           </div>
