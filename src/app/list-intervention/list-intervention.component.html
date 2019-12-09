@@ -40,11 +40,18 @@
 
     <div class="content">
         <div class="container-fluid">
+            <nav aria-label="breadcrumb" style="margin-top:-4.5%;margin-bottom:-0.5%; margin-left:0.5%;">
+                <ol class="breadcrumb" style=" background-color:transparent ;">
+                  <li>                  
+                      <a style="color: grey" routerLink = "/intervention" >Intervention</a>  
+                  </li>
+                </ol>
+              </nav>
            
 <div class="row">
 	    
       
-    <div class="col-md-12" style="margin-top: -3.5%;">
+    <div class="col-md-12" style="margin-top: -1.5%;">
         <div class="card">
          
           <div class="card-header card-header-success">
@@ -80,10 +87,13 @@
     <div class="col col-md-1 text-col">
       <h6> Achevé</h6>
     </div>
+    <div class="col col-md-1 text-col">
+      <h6> Editer</h6>
     </div>
     </div>
-  <div  class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="row" *ngFor="let itemIterv of dataInterv ; index as i">
+    </div>
+  <div  class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let itemIterv of dataInterv ; index as i">
+    <div class="row" >
         <div class="col col-md-1 text-col">
             <h5 class="mb-1">{{dataCmp[i]}}</h5>
           </div>
@@ -108,9 +118,13 @@
            
       <div class="col col-md-1 text-col" >
          
-          <mat-slide-toggle (click)="achivementInterv(itemIterv.payload.doc.id)" checked="{{itemIterv.payload.doc.data().achived}}"></mat-slide-toggle>
+          <mat-slide-toggle (click)="achivementInterv(itemIterv.payload.doc.id)" checked="{{itemIterv.payload.doc.data().achieved}}"></mat-slide-toggle>
       </div>
-       
+      <div class="col col-md-1 text-col" >
+        <button color="primary" class="btn btn-outline-info" (click)="openDialogEditerInterv()" type="button" style="width:10%; padding-left:15%">
+          <i class="material-icons">edit</i>  
+        </button>
+    </div>
      
     </div>
   

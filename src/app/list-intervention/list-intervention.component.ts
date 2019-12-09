@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {InterventionService} from '../../services/intervention.service';
 import { FirebaseService } from '../../services/firebase.service';
 import {ServiceComposantService} from '../../services/service-composant.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import {EditInterventionComponent} from '../edit-intervention/edit-intervention.component' ;
 
 @Component({
   selector: 'app-list-intervention',
@@ -17,7 +20,10 @@ export class ListInterventionComponent implements OnInit {
 
   constructor( public intervService :InterventionService,
     public firebaseService: FirebaseService,
-    public composantService: ServiceComposantService,) { }
+    public composantService: ServiceComposantService,
+    public route: ActivatedRoute,  
+              private router: Router,
+              public dialog: MatDialog ) { }
 
   ngOnInit() {
     this.listIntervention() ;
@@ -27,10 +33,10 @@ export class ListInterventionComponent implements OnInit {
     this.intervService.getIntrevention().subscribe(dataInterv=>{
         this.dataInterv = dataInterv;
         dataInterv.forEach(elemInterv =>{
-          console.log(elemInterv.payload.doc.get('composant'))
+          console.log(elemInterv.payload.doc.get('achieved'))
           this.composantService.getCapteurwithID(elemInterv.payload.doc.get('composant')).subscribe(dataCmp=>{
             this.dataCmp.push(dataCmp.data().libelle) ;
-            console.log("tttt"+ dataCmp.data().libelle)
+            console.log("tttt"+ dataCmp.data().achieved)
             this.composantService.getComposantPotager(elemInterv.payload.doc.get('composant')).subscribe(dataCmpPtg =>{
               dataCmpPtg.forEach(elemCmpPtg =>{
                 this.firebaseService.getPotagerwithID(elemCmpPtg.data().potager).subscribe(dataPtg=>{
@@ -53,6 +59,16 @@ export class ListInterventionComponent implements OnInit {
   achivementInterv(idInterv){
     console.log(idInterv)
       this.intervService.achivedInterv(idInterv);
+  }
+  openDialogEditerInterv(): void {
+    const dialogRef = this.dialog.open(EditInterventionComponent, {
+      width: '700px',
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      
+    });
   }
 
 }

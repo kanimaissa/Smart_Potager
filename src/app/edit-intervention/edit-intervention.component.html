@@ -1,0 +1,99 @@
+
+
+<mat-toolbar>
+  <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
+  <span class="content-span full-width">Ajouter Intervention </span>
+ 
+</mat-toolbar>
+  
+    
+        <div class="page-content">
+          <div class="row ">
+            
+            
+                      <form class="create-form" [formGroup]="exampleForm"  (ngSubmit)="editerIntervention(exampleForm.value)">
+                        <table >
+                         
+                        <tr >
+                            <td> <span class="text-success" style="margin-top: -15%;">Description d'intervention  :</span></td>
+                            <td> <div class="form-group " style="margin-top: -15%;">
+                                <mat-form-field class="example-full-width">
+                                    <textarea matInput class="form-control" formControlName="description"></textarea>
+                                </mat-form-field>
+                                <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                                  <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                </ng-container> -->
+                              </div>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td> <span class="text-success" style="margin-top: -15%;">Date début de l'intervention  :</span></td>
+                            <td> <div class="form-group " style="margin-top: -15%;">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput class="form-control" type="date" formControlName="dateDebutInterv">
+                                </mat-form-field>
+                                <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                                  <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                </ng-container> -->
+                              </div>
+                            </td>
+                        </tr>
+                        <tr >
+                            <td> <span class="text-success" style="margin-top: -15%;">Heure de l'intervention  :</span></td>
+                            <td> <div class="form-group " style="margin-top: -15%;">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput class="form-control" type="time" formControlName="timeInterv">
+                                </mat-form-field>
+                                <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                                  <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                                </ng-container> -->
+                              </div>
+                            </td>
+                        </tr>
+                        <tr >
+                          <td> <span class="text-success" style="margin-top: -15%;">Date Fin  de l'intervention  :</span></td>
+                          <td> <div class="form-group " style="margin-top: -15%;">
+                              <mat-form-field class="example-full-width">
+                                  <input matInput class="form-control" type="date" formControlName="dateFinInterv">
+                              </mat-form-field>
+                              <!-- <ng-container *ngFor="let validation of validation_messages.name">
+                                <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
+                              </ng-container> -->
+                            </div>
+                          </td>
+                      </tr>
+                         
+                        <tr >
+                          <td >
+                              <div class="row submit-button-container">
+                                  <div class="col-md-4">
+                                    <button mat-raised-button class="submit-button" color="primary" type="submit" >Editer Intervention</button>
+                                  </div>
+                                </div>
+                            </td>
+                        </tr>
+                      </table>
+                          </form>
+         
+           
+      
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  

@@ -41,4 +41,19 @@ export class InterventionService {
   getIntrevention(){
     return this.db.collection('intervention').snapshotChanges();
   }
+  getInterventionWithID(idIntrev){
+    return this.db.collection('intervention').doc(idIntrev).snapshotChanges();
+  }
+
+  editIntervention(value,keyInterv){
+    value.description= value.description,
+    value.dateDebut= value.dateDebutInterv,
+    value.dateFin =value.dateFinInterv,
+    value.time= value.time
+    //value.achieved = value.achieved
+     return this.db.collection('intervention').doc(keyInterv).update(value);
+
+  }
+  
+
 }

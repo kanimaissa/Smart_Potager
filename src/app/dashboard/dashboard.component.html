@@ -28,7 +28,7 @@
           </li>
         
           <li class="nav-item  " >
-            <a class="nav-link"   routerLink = "/">
+            <a class="nav-link"   routerLink = "/intervention">
               <i class="material-icons">post_add</i>
               <p>Intervention</p>
             </a>
@@ -72,7 +72,13 @@
         
       
         <div class="container-fluid" >
-           
+            <nav aria-label="breadcrumb" style="margin-top:-1.5%;margin-bottom:-1%; margin-left:0.5%;">
+                <ol class="breadcrumb" style=" background-color:transparent ;">
+                  <li>                  
+                      <a style="color: grey" routerLink = "/dashboard" >Dashboard</a>  
+                  </li>
+                </ol>
+              </nav>
            
                
                 <div id="myCarousel" class="carousel slide" data-ride="carousel" >
@@ -88,7 +94,7 @@
                                   <div class="card-body" >
                                     <h4 class="card-title">{{iCmp.data().libelle}}</h4>
                                     <p class="card-category">
-                                        Potager <span *ngFor="let iPtg of itemPtgAlert ">"{{iPtg.data().name}}"</span>
+                                        Potager <span *ngFor="let itemPtg of itemPtgAlert">"{{itemPtg.data().name}}"</span>
                                          est en panne
                                   </div>
                                   <div class="card-footer">
@@ -101,7 +107,7 @@
                               </div>
                       </div>
                     </div>
-                    <div class="carousel-item col-md-4 active" *ngFor="let iCmp of itemCmp ; index as i" >
+                    <div class="carousel-item col-md-4 " *ngFor="let iCmp of itemCmp ; index as i" >
                         <!-- <span *ngFor="let iDiff of itemDiff"></span> -->
                         <div class="row">
                             <div class="col-sm-12" >
@@ -112,7 +118,7 @@
                                   <div class="card-body" >
                                     <h4 class="card-title">{{iCmp.data().libelle}}</h4>
                                     <p class="card-category">
-                                        Potager <span *ngFor="let iPtg of itemPtg ">"{{iPtg.data().name}}"</span> 
+                                        Potager <span>"{{itemPtg[i].data().name}}"</span> 
                                          peut se dysfonctionner 
                                   </div>
                                   <div class="card-footer">
@@ -125,8 +131,33 @@
                               </div>
                           </div>
                     </div>
+
+                    <div class="carousel-item col-md-4 " *ngFor="let iCmp of itemCmpAchieved ; index as i" >
+                      <!-- <span *ngFor="let iDiff of itemDiff"></span> -->
+                      <div class="row">
+                          <div class="col-sm-12" >
+                              <div class="card card-chart" >
+                                <div class="card-header card-header-success">
+                                  <div class="ct-chart" id="dailySalesChart"></div>
+                                </div>
+                                <div class="card-body" >
+                                  <h4 class="card-title">{{iCmp.data().libelle}}</h4>
+                                  <p class="card-category">
+                                      Potager <span>"{{itemPtgAchieved[i].data().name}}"</span> a été bien réparé
+                                      <!-- <span *ngFor="let iInterv of itemAchieved">{{iInterv.payload.doc.data().description }}</span> -->
+                                </div>
+                                <div class="card-footer">
+                                  <div class="stats">
+                                    <i class="material-icons">access_time</i> <span *ngFor="let iInterv of itemAchieved" style="float:left;">{{iInterv.payload.doc.data().dateFin }} </span>
+                                    <a routerLink="/composant/{{iCmp.id}}" style="position: absolute ; left: 65%;float:right; color:silver; font-size: 10px;"><i class="material-icons">read_more</i></a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                  </div>
                     
-                    <div class="carousel-item col-md-4 active" *ngFor="let iCmp of itemCmpInterv ; index as i" >
+                    <div class="carousel-item col-md-4 " *ngFor="let iCmp of itemCmpInterv ; index as i" >
                         <!-- <span *ngFor="let iDiff of itemDiff"></span> -->
                         <div class="row">
                             <div class="col-sm-12" >
@@ -137,7 +168,7 @@
                                   <div class="card-body" >
                                     <h4 class="card-title">{{iCmp.data().libelle}}</h4>
                                     <p class="card-category">
-                                        Potager <span *ngFor="let iPtg of itemPtgInterv ">"{{iPtg.data().name}}"</span> est en cours de réparation
+                                        Potager <span>"{{itemPtgInterv[i].data().name}}"</span> est en cours de réparation
                                         <!-- <span *ngFor="let iInterv of itemAchieved">{{iInterv.payload.doc.data().description }}</span> -->
                                   </div>
                                   <div class="card-footer">
@@ -151,30 +182,7 @@
                           </div>
                     </div>
                     
-                    <div class="carousel-item col-md-4 active" *ngFor="let iCmp of itemCmpAchieved ; index as i" >
-                      <!-- <span *ngFor="let iDiff of itemDiff"></span> -->
-                      <div class="row">
-                          <div class="col-sm-12" >
-                              <div class="card card-chart" >
-                                <div class="card-header card-header-success">
-                                  <div class="ct-chart" id="dailySalesChart"></div>
-                                </div>
-                                <div class="card-body" >
-                                  <h4 class="card-title">{{iCmp.data().libelle}}</h4>
-                                  <p class="card-category">
-                                      Potager <span *ngFor="let iPtg of itemPtgAchieved ">"{{iPtg.data().name}}"</span> a été bien réparé
-                                      <!-- <span *ngFor="let iInterv of itemAchieved">{{iInterv.payload.doc.data().description }}</span> -->
-                                </div>
-                                <div class="card-footer">
-                                  <div class="stats">
-                                    <i class="material-icons">access_time</i> <span *ngFor="let iInterv of itemAchieved" style="float:left;">{{iInterv.payload.doc.data().dateFin }} </span>
-                                    <a routerLink="/composant/{{iCmp.id}}" style="position: absolute ; left: 65%;float:right; color:silver; font-size: 10px;"><i class="material-icons">read_more</i></a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                  </div>
+                    
                    
                   </div>
                   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">

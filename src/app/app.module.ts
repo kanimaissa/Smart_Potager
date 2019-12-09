@@ -39,12 +39,14 @@ import { EditSerreComponent } from './edit-serre/edit-serre.component';
 import { EditPotagerComponent } from './edit-potager/edit-potager.component';
 import { EditPotagerResolver } from './edit-potager/edit-potager.resolver';
 import { EditSerreResolver } from './edit-serre/edit-serre.resolver';
+import {EditInterventionResolver} from './edit-intervention/edit-intervention.resolver'
 import { SerreComponent } from './serre/serre.component';
 import { NewPotagerComponent } from './new-potager/new-potager.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { ComposantComponent } from './composant/composant.component';
 import { InterventionComponent } from './intervention/intervention.component';
 import { ListInterventionComponent } from './list-intervention/list-intervention.component';
+import { EditInterventionComponent } from './edit-intervention/edit-intervention.component';
 
 
 
@@ -72,7 +74,8 @@ import { ListInterventionComponent } from './list-intervention/list-intervention
     ComposantComponent,
 
     InterventionComponent,
-    ListInterventionComponent
+    ListInterventionComponent,
+    EditInterventionComponent
 
    
    
@@ -98,7 +101,7 @@ import { ListInterventionComponent } from './list-intervention/list-intervention
   
   ],
  
-  providers: [FirebaseService,EditUserResolver,DialogService,EditPotagerResolver,EditSerreResolver, ServiceComposantService, SharedDataComposantService,ComposantComponent, InterventionService],
+  providers: [FirebaseService,EditUserResolver,DialogService,EditPotagerResolver,EditSerreResolver, EditInterventionResolver, ServiceComposantService, SharedDataComposantService,ComposantComponent, InterventionService],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

@@ -46,5 +46,9 @@ export class ServiceComposantService {
     return this.db.collection('potager_composant').doc(idCmpPotager).collection('serre_composant', ref => ref.where("capteur", "==", idComposant) || ref.where("actionneur", "==", idComposant)).get();
   }
 
+  deletePotagerComposant(idPtg){
+    return this.db.collection('potager_composant', ref => ref.where("potager", "==", idPtg)).snapshotChanges();
+   }
+
 
 }

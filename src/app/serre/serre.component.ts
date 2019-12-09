@@ -14,12 +14,14 @@ export class SerreComponent implements OnInit {
   items :Array<any> ;
   cultures: Array<any> =[];
   potagerId ;
+  userId ;
   namePotager;
 
   constructor(public firebaseService: FirebaseService, public route: ActivatedRoute,  private router: Router) { }
 
   ngOnInit() {
-    this.potagerId = this.route.snapshot.paramMap.get('id');
+    this.potagerId = this.route.snapshot.paramMap.get('idpotager');
+    this.userId = this.route.snapshot.paramMap.get('iduser');
     this.firebaseService.getPotagerwithID(this.potagerId).subscribe(dataPtgSer=>{
     
       this.namePotager = dataPtgSer.data().name ;

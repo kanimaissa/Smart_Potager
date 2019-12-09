@@ -107,7 +107,6 @@ export class EditPotagerComponent implements OnInit {
            res =>{
           
             this.item= res.data() ;
-        
         }
         );
       }
