@@ -32,7 +32,7 @@ export class EditUserComponent implements OnInit {
      { type: 'required', message: 'Surname is required.' }
    ],
    'email': [
-    { type: 'required', message: 'Email is required.' }
+    { type: 'required', message: 'Email is not valid.' }
   ],
    'ville': [
      { type: 'required', message: 'Ville is required.' },
@@ -101,11 +101,11 @@ export class EditUserComponent implements OnInit {
   }
 
   showWarn(){
-    this.toastr.warning('la modification a effectué avec succées');
+    this.toastr.warning('utilisateur modifié avec succées');
   }
 
   showError(){
-    this.toastr.error('la suppression a effectué avec succées');
+    this.toastr.error('utilisateur supprimé avec succées');
   }
   delete(){
     /*this.firebaseService.deleteUser(this.item.id)

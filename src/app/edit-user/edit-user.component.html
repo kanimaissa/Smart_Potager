@@ -90,7 +90,7 @@
 
             <div class="form-group"  style="margin-top: -3.5%;">
               <mat-form-field class="input-style">
-                <input matInput placeholder="Email" class="form-control" formControlName="email">
+                <input matInput placeholder="Email" class="form-control" formControlName="email" [type]="'email'">
               </mat-form-field>
               <ng-container *ngFor="let validation of validation_messages.email">
                 <mat-error *ngIf="exampleForm.get('email').hasError(validation.type) && (exampleForm.get('email').dirty || exampleForm.get('email').touched)">{{validation.message}}</mat-error>
