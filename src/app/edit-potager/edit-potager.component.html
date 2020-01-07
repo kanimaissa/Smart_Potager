@@ -52,59 +52,60 @@
       
       <div  class="col col-md-8">
 
-          <form id="form-potager"  class="create-form" [formGroup]="exampleForm2" novalidate (ngSubmit)="editPotager(exampleForm2.value)">
+          <form id="form-potager"  class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="editPotager(exampleForm.value)">
                     
               
              
               <div class="form-group">
                   <mat-form-field class="input-style">
-                    <input matInput placeholder="" class="form-control" formControlName="namePotager" id="namePotager">
+                    <input matInput placeholder="Nom Potager" class="form-control" formControlName="namePotager" id="namePotager">
                   </mat-form-field>
-                  <!-- <ng-container *ngFor="let validation of validation_messages.namePotager">
-                    <mat-error *ngIf="exampleForm2.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
-                  </ng-container> -->
+                  <ng-container *ngFor="let validation of validation_messages.namePotager">
+                    <mat-error *ngIf="exampleForm2.get('namePotager').hasError(validation.type) && (exampleForm.get('namePotager').dirty || exampleForm.get('namePotager').touched)">{{validation.message}}</mat-error>
+                  </ng-container> 
                   </div>
                 
                   <div class="form-group">
                   <mat-form-field class="input-style">
-                    <input matInput placeholder="" class="form-control" formControlName="description">
+                    <input matInput placeholder="Description" class="form-control" formControlName="description" id="description">
                   </mat-form-field>
-                  <!-- <ng-container *ngFor="let validation of validation_messages.surname">
-                    <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
-                  </ng-container> -->
+                   <ng-container *ngFor="let validation of validation_messages.description">
+                    <mat-error *ngIf="exampleForm.get('description').hasError(validation.type) && (exampleForm.get('description').dirty || exampleForm.get('description').touched)">{{validation.message}}</mat-error>
+                  </ng-container> 
                   </div>
                
                   <div class="form-group">
                   <mat-form-field class="input-style">
-                    <input matInput type="text" min="0" max="100" placeholder="" class="form-control" formControlName="orientation">
+                    <input matInput type="text" placeholder="Orientation" class="form-control" formControlName="orientation" id="orientation">
                   </mat-form-field>
-                  <!-- <ng-container *ngFor="let validation of validation_messages.age">
-                    <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
-                  </ng-container> -->
+                  <ng-container *ngFor="let validation of validation_messages.orientation">
+                    <mat-error *ngIf="exampleForm.get('orientation').hasError(validation.type) && (exampleForm.get('orientation').dirty || exampleForm.get('orientation').touched)">{{validation.message}}</mat-error>
+                  </ng-container> 
                   </div>
 
                   <div class="form-group">
                   <mat-form-field class="input-style">
-                    <input matInput type="text" min="0" max="100" placeholder="" class="form-control" formControlName="surface">
+                    <input matInput type="text"  placeholder="Surface" class="form-control" formControlName="surface" id="surface" >
                   </mat-form-field>
-                  <!-- <ng-container *ngFor="let validation of validation_messages.age">
-                    <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
-                  </ng-container> -->
+                 <ng-container *ngFor="let validation of validation_messages.surface">
+                    <mat-error *ngIf="exampleForm.get('surface').hasError(validation.type) && (exampleForm.get('surface').dirty || exampleForm.get('surface').touched)">{{validation.message}}</mat-error>
+                  </ng-container> 
                   </div>
 
                   <div class="form-group">
                   <mat-form-field class="input-style">
-                    <input matInput type="text" min="0" max="100" placeholder="" class="form-control" formControlName="localisation">
+                    <input matInput type="text"  placeholder="Localisation" class="form-control" formControlName="localisation" id="localisation">
                   </mat-form-field>
-                  <!-- <ng-container *ngFor="let validation of validation_messages.age">
-                    <mat-error *ngIf="exampleForm.get('age').hasError(validation.type) && (exampleForm.get('age').dirty || exampleForm.get('age').touched)">{{validation.message}}</mat-error>
-                  </ng-container> -->
+                   <ng-container *ngFor="let validation of validation_messages.localisation">
+                    <mat-error *ngIf="exampleForm.get('localisation').hasError(validation.type) && (exampleForm.get('localisation').dirty || exampleForm.get('localisation').touched)">{{validation.message}}</mat-error>
+                  </ng-container> 
                   </div>
                 
                 
               
               
-              <div id="createPotager" class="row submit-button-container" >
+              <div class="row submit-button-container" style="margin-top: -3.5%;">
+               
                   <div class="col-md-4">
                     <button mat-raised-button class="submit-button" color="primary" type="submit" >Editer Potager</button>
                   </div>

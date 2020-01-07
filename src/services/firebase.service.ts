@@ -201,7 +201,8 @@ getCulturerwithID(serre){
       libelle_serre: value.lib,
       position: value.position,
       largeur:value.largeur,
-      longueur:value.longueur
+      longueur:value.longueur,
+      culture:value.culture
     });
     
   }
@@ -210,9 +211,19 @@ getCulturerwithID(serre){
     value.libelle_serre= value.libSerre,
     value.position= value.position,
     value.largeur =value.largeur,
-    value.longueur= value.longueur
+    value.longueur= value.longueur,
+    value.culture= value.culture
      return this.db.collection('potager').doc(keyPotager).collection('serres').doc(keySerre).set(value);
 
+  }
+
+
+  addCulture(potager,serre, value){
+    return this.db.collection('potager').doc(potager).collection('serres').doc(serre).collection('cultures').add({
+      libelle_culture: value.libelle,
+      periode: value.periode
+    });
+    
   }
 
 }

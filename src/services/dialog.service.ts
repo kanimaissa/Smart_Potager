@@ -6,7 +6,7 @@ import { MatConfirmDialogComponent } from '../app/mat-confirm-dialog/mat-confirm
   providedIn: 'root'
 })
 export class DialogService {
-
+  cmpId: any;
   constructor(private dialog :MatDialog) { 
    
   }
@@ -23,5 +23,8 @@ export class DialogService {
      });
  
   }
+
+
+
     
 }

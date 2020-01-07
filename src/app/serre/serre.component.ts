@@ -15,13 +15,16 @@ export class SerreComponent implements OnInit {
   cultures: Array<any> =[];
   potagerId ;
   userId ;
+  serreId ;
   namePotager;
+  idSerre: any ;
 
   constructor(public firebaseService: FirebaseService, public route: ActivatedRoute,  private router: Router) { }
 
   ngOnInit() {
     this.potagerId = this.route.snapshot.paramMap.get('idpotager');
     this.userId = this.route.snapshot.paramMap.get('iduser');
+    this.serreId = this.route.snapshot.paramMap.get('idserre');
     this.firebaseService.getPotagerwithID(this.potagerId).subscribe(dataPtgSer=>{
     
       this.namePotager = dataPtgSer.data().name ;
@@ -103,5 +106,10 @@ addSerre(){
 editSerre(item){
  
   this.router.navigate(['/edit-serre/'+ item.payload.doc.id]);
+}
+
+addCulture(item){
+  this.router.navigate(['/add-culture/'+  this.potagerId +'/' +item.payload.doc.id]);
+  console.log("id serrrre: "+item.payload.doc.id)
 }
 }

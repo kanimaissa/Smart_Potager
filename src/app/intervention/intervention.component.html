@@ -15,6 +15,7 @@
                         <form class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="saveIntervention(exampleForm.value)">
                           <table >
                             <tr >
+                            <td>{{data.cmpId}}</td>
                               <td> <span class="text-success"  style="margin-top: -5.5%;">Réference composant :</span></td>
                               <td> <div class="form-group "  style="margin-top: -5.5%;">
                                   <mat-form-field class="input-style">

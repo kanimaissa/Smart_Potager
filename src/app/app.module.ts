@@ -47,6 +47,7 @@ import { ComposantComponent } from './composant/composant.component';
 import { InterventionComponent } from './intervention/intervention.component';
 import { ListInterventionComponent } from './list-intervention/list-intervention.component';
 import { EditInterventionComponent } from './edit-intervention/edit-intervention.component';
+import { CultureComponent } from './culture/culture.component';
 
 
 
@@ -75,7 +76,8 @@ import { EditInterventionComponent } from './edit-intervention/edit-intervention
 
     InterventionComponent,
     ListInterventionComponent,
-    EditInterventionComponent
+    EditInterventionComponent,
+    CultureComponent
 
    
    

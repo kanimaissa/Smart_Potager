@@ -18,7 +18,7 @@ import {EditInterventionResolver} from './edit-intervention/edit-intervention.re
 import {EditSerreComponent} from'./edit-serre/edit-serre.component' ;
 import {ListInterventionComponent} from './list-intervention/list-intervention.component';
 import {EditInterventionComponent} from './edit-intervention/edit-intervention.component';
-
+import {CultureComponent} from './culture/culture.component';
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {path:"dashboard", component:DashboardComponent}, 
@@ -33,7 +33,8 @@ const routes: Routes = [
   { path: 'edit-potager/:id', component: EditPotagerComponent, resolve:{data: EditPotagerResolver}  },
   { path: 'edit-serre/:id', component: EditSerreComponent, resolve:{data: EditSerreResolver}  },
   { path: 'edit-intervention/:id', component: EditInterventionComponent, resolve:{data: EditInterventionResolver}  },
-  { path: 'intervention', component: ListInterventionComponent }
+  { path: 'intervention', component: ListInterventionComponent },
+  { path: 'add-culture/:idpotager/:idserre', component: CultureComponent  },
 ];
 
 @NgModule({
@@ -44,5 +45,5 @@ export class AppRoutingModule {
 
 }
 export const 
-RoutingComponent = [DashboardComponent,HomeComponent,NewUserComponent, EditUserComponent,PotagerComponent,SerreComponent,AddSerresComponent,NewPotagerComponent,EditPotagerComponent,EditSerreComponent,ListInterventionComponent];
+RoutingComponent = [DashboardComponent,HomeComponent,NewUserComponent, EditUserComponent,PotagerComponent,SerreComponent,AddSerresComponent,NewPotagerComponent,EditPotagerComponent,EditSerreComponent,ListInterventionComponent,CultureComponent];
 

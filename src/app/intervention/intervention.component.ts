@@ -27,6 +27,7 @@ export class InterventionComponent implements OnInit {
   telUser: any ;
  adrUser: any ;
  refCmp: any;
+ 
 
   constructor(  @Inject(MAT_DIALOG_DATA) public data: DialogData,
   public dialogRef: MatDialogRef<InterventionComponent>,
@@ -124,7 +125,7 @@ export class InterventionComponent implements OnInit {
 }
 
 export interface DialogData {
+  cmpId: any;
  
-  name: string;
 
 }

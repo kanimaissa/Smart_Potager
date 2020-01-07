@@ -13,18 +13,18 @@ import { element } from 'protractor';
 })
 export class EditPotagerComponent implements OnInit {
 
-  exampleForm2: FormGroup ;
+  exampleForm: FormGroup ;
  
   idUser: any ;
   potagerId ;
   item :any  ;
   dataPotager: Array<any>= [] ;
 
-  validation_messages2 = {
+  validation_messages = {
     'namePotager': [
-      { type: 'required', message: 'Name is required.' }
+      { type: 'required', message: 'Name Potager is required.' }
     ],
-    'libPotager': [
+    'description': [
       { type: 'required', message: 'Surname is required.' }
     ],
     'surface': [
@@ -60,20 +60,20 @@ export class EditPotagerComponent implements OnInit {
         this.item = data.data();
         
         //this.item.id = data.payload.id;
-        this.createForm2();
+        this.createForm();
       }
     })
     
   }
 
-  createForm2() {
+  createForm() {
    
     console.log('data:: '+this.item.surface);
-    this.exampleForm2 = 
+    this.exampleForm = 
     this.fb2.group({
       
       namePotager: [this.item.name, Validators.required ],
-      lib: [this.item.libelle, Validators.required ],
+      description: [this.item.libelle, Validators.required ],
       surface: [this.item.surface, Validators.required ],
       orientation: [this.item.orientation, Validators.required ],
       localisation: [this.item.localisation, Validators.required ]
@@ -87,9 +87,9 @@ export class EditPotagerComponent implements OnInit {
   resetFields(){
    
     
-    this.exampleForm2 = this.fb2.group({
+    this.exampleForm = this.fb2.group({
       namePotager: new FormControl('', Validators.required),
-      lib: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
       orientation: new FormControl('', Validators.required),
       surface: new FormControl('', Validators.required),
       localisation: new FormControl('', Validators.required),

@@ -59,36 +59,45 @@
                       <mat-form-field class="example-full-width">
                         <input matInput placeholder="Libelle" class="form-control" formControlName="lib">
                       </mat-form-field>
-                      <!-- <ng-container *ngFor="let validation of validation_messages.name">
-                        <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
-                      </ng-container> -->
+                      <ng-container *ngFor="let validation of validation_messages.lib">
+                        <mat-error *ngIf="exampleForm.get('lib').hasError(validation.type) && (exampleForm.get('lib').dirty || exampleForm.get('lib').touched)">{{validation.message}}</mat-error>
+                      </ng-container> 
                     </div>
           
                     <div class="form-group">
                       <mat-form-field class="example-full-width" style="margin-top: -3.5%;">
                         <input matInput placeholder="Position" class="form-control" formControlName="position">
                       </mat-form-field>
-                      <!-- <ng-container *ngFor="let validation of validation_messages.surname">
-                        <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
-                      </ng-container> -->
+                      <ng-container *ngFor="let validation of validation_messages.position">
+                        <mat-error *ngIf="exampleForm.get('position').hasError(validation.type) && (exampleForm.get('position').dirty || exampleForm.get('position').touched)">{{validation.message}}</mat-error>
+                      </ng-container> 
                     </div>
 
                     <div class="form-group">
                         <mat-form-field class="example-full-width" style="margin-top: -3.5%;">
                             <input matInput placeholder="Largeur" class="form-control" formControlName="largeur">
                           </mat-form-field>
-                          <!-- <ng-container *ngFor="let validation of validation_messages.ville">
-                            <mat-error *ngIf="exampleForm.get('ville').hasError(validation.type) && (exampleForm.get('ville').dirty || exampleForm.get('ville').touched)">{{validation.message}}</mat-error>
-                          </ng-container> -->
+                           <ng-container *ngFor="let validation of validation_messages.largeur">
+                            <mat-error *ngIf="exampleForm.get('largeur').hasError(validation.type) && (exampleForm.get('largeur').dirty || exampleForm.get('largeur').touched)">{{validation.message}}</mat-error>
+                          </ng-container> 
                         </div>
                         <div class="form-group">
                             <mat-form-field class="example-full-width" style="margin-top: -3.5%;">
                                 <input matInput placeholder="Longueur" class="form-control" formControlName="longueur">
                               </mat-form-field>
-                              <!-- <ng-container *ngFor="let validation of validation_messages.ville">
-                                <mat-error *ngIf="exampleForm.get('ville').hasError(validation.type) && (exampleForm.get('ville').dirty || exampleForm.get('ville').touched)">{{validation.message}}</mat-error>
-                              </ng-container> -->
+                             <ng-container *ngFor="let validation of validation_messages.longueur">
+                                <mat-error *ngIf="exampleForm.get('longueur').hasError(validation.type) && (exampleForm.get('longueur').dirty || exampleForm.get('longueur').touched)">{{validation.message}}</mat-error>
+                              </ng-container> 
                             </div>
+
+                            <div class="form-group">
+                              <mat-form-field class="example-full-width" style="margin-top: -3.5%;">
+                                  <input matInput placeholder="Culture" class="form-control" formControlName="culture">
+                                </mat-form-field>
+                                <ng-container *ngFor="let validation of validation_messages.culture">
+                                  <mat-error *ngIf="exampleForm.get('culture').hasError(validation.type) && (exampleForm.get('culture').dirty || exampleForm.get('culture').touched)">{{validation.message}}</mat-error>
+                                </ng-container> 
+                              </div>
 
                       
                     <div class="row submit-button-container" style="margin-top: -2%;">

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FirebaseService } from '../../services/firebase.service';
 import {ServiceComposantService} from '../../services/service-composant.service';
 import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { NewPotagerComponent } from '../new-potager/new-potager.component';
+
 @Component({
   selector: 'app-potager',
   templateUrl: './potager.component.html',
@@ -16,6 +17,7 @@ export class PotagerComponent implements OnInit {
   itemIdUser: Array <any> = [] ;
   nameUser : any ;
   idPtgUser: any ;
+  idPotger: any ;
   constructor(public firebaseService: FirebaseService,
               public route: ActivatedRoute,  
               private router: Router,
@@ -26,7 +28,7 @@ export class PotagerComponent implements OnInit {
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('iduser');
     this.firebaseService.getUser(this.userId).subscribe(dataUser=>{
-      this.nameUser = dataUser.payload.get('surname') + " " +dataUser.payload.get('name');
+      this.nameUser = dataUser.payload.get('name') ;
     })
    this.viewPotagers();
   // getdeletePotager(idpotager)
@@ -50,6 +52,7 @@ export class PotagerComponent implements OnInit {
              res =>{
             
               this.items.push(res) ;
+              this.idPotger = res.id 
           console.log("data: "+this.items);
           }
           );
@@ -67,6 +70,7 @@ export class PotagerComponent implements OnInit {
             addSerres(item){
               this.router.navigate(['/add-serres/'+ item.id]);
             }
+          
             // deletePotager(idpotager){
             //   console.log(idpotager.id);
             //  // this.firebaseService.deletePotager(item.id);
@@ -119,11 +123,17 @@ addPotager(){
 openDialogAddPotager(): void {
   const dialogRef = this.dialog.open(NewPotagerComponent, {
     width: '800px',
-    data: {}
+    data: {idpotager: this.idPotger}
   });
   dialogRef.afterClosed().subscribe(result => {
     console.log('The dialog was closed');
     
   });
 }
+
+
+}
+export interface DialogData {
+  animal: string;
+  name: string;
 }

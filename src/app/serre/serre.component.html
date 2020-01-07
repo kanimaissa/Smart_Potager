@@ -86,9 +86,9 @@
     <div class="col col-md-2 text-col">
       <h6>Longueur</h6>
     </div>
-  <!-- <div class="col col-md-2 text-col">
-      <h6> Cultures</h6>
-  </div> -->
+ <div class="col col-md-2 text-col">
+      <h6> Culture</h6>
+  </div> 
  
   </div>
   </div>
@@ -107,13 +107,12 @@
       <div class="col col-md-2 text-col">
         <h5 class="mb-1"> {{item.payload.doc.data().longueur}}</h5>
       </div>
+      <div class="col col-md-2 text-col">
+        <h5 class="mb-1"> {{item.payload.doc.data().culture}}</h5>
+      </div>
       
-    <!-- <div class="col col-md-2 text-col">
-      <button color="primary" class="btn btn-outline-success action" (click)="viewCultures(item)" type="button" >
-        Cultures
-      </button>
       
-    </div> -->
+    </div> 
     <div class="col-md-1">
         <button color="primary" class="btn btn-outline-danger" (click)="deleteSerre(item)" type="button" >
           <i class="material-icons">delete</i>  

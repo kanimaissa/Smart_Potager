@@ -7,7 +7,7 @@ import { NewPotagerComponent } from '../new-potager/new-potager.component';
 import { element } from 'protractor';
 import { InterventionComponent } from '../intervention/intervention.component';
 import {InterventionService} from '../../services/intervention.service';
-
+import {DialogService} from '../../services/dialog.service';
 @Component({
   selector: 'app-composant',
   templateUrl: './composant.component.html',
@@ -52,6 +52,7 @@ export class ComposantComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     public intervService :InterventionService,
+    private dialogservice:DialogService,
     ) 
     { }
 
@@ -174,9 +175,11 @@ export class ComposantComponent implements OnInit {
      
       panelClass:'intervention-dialog-container',
       //data: {cmp: {1: this.cmpId, 2:"nnnnnn"}}
-      //
-      data : {idcmp: this.cmpId, refcmp: this.cmp.reference, nameuser: this.userId.name ,adruser: this.userId.adresse, teluser: this.userId.telephone, viluser: this.userId.ville , namecmp: this.cmp.libelle, nameptg: this.ptgName}
      
+      data : {idcmp: this.cmpId, refcmp: this.cmp.reference, nameuser: this.userId.name ,
+        adruser: this.userId.adresse, teluser: this.userId.telephone, viluser: this.userId.ville , 
+        namecmp: this.cmp.libelle, nameptg: this.ptgName}
+    
     });
     dialogRef.afterClosed().subscribe(result => {
      
@@ -196,6 +199,6 @@ export class ComposantComponent implements OnInit {
 
 
 export interface DialogData {
- 
+  cmpId: any;
   name: string;
 }

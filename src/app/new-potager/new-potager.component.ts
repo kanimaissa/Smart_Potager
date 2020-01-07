@@ -11,12 +11,26 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class NewPotagerComponent implements OnInit {
 
-  exampleForm2: FormGroup ;
+  exampleForm: FormGroup ;
+
+
+  
   idPotager: any ;
   idUser: any ;
   userId: any ;
 
-  validation_messages2 = {
+  orientations = [
+    { value: 'NORD' },
+    { value: 'NORD_EST' },
+    { value: 'EST' },
+    { value: 'SUD_EST' },
+    { value: 'SUD' },
+    { value: 'SUD_OUEST' },
+    { value: 'OUEST' },
+    { value: 'NORD_OUEST' },
+  ];
+
+  validation_messages = {
     'namePotager': [
       { type: 'required', message: 'Name is required.' }
     ],
@@ -48,26 +62,29 @@ export class NewPotagerComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.route.snapshot.paramMap.get('id');
-    this.createForm2();
+    this.createForm();
   }
 
  
  
-  createForm2() {
-    this.exampleForm2 = this.fb2.group({
+  createForm() {
+    this.exampleForm = this.fb2.group({
       namePotager: ['', Validators.required ],
       description: ['', Validators.required ],
       surface: ['', Validators.required ],
-      orientation: ['', Validators.required ],
+      orientation: ['0', Validators.required ],
       localisation: ['', Validators.required ]
     });
   }
 
+  showSuccess(){
+    this.toastr.success('potager a ete ajouté avec succées');
+  }
   resetFields(){
-    this.exampleForm2 = this.fb2.group({
+    this.exampleForm= this.fb2.group({
       namePotager: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      orientation: new FormControl('', Validators.required),
+      orientation: new FormControl('0', Validators.required),
       surface: new FormControl('', Validators.required),
       localisation: new FormControl('', Validators.required),
     });
@@ -76,20 +93,20 @@ export class NewPotagerComponent implements OnInit {
   addPotager(valuePotager){
     this.firebaseService.createPotager(valuePotager, this.userId).then(
       res => {
-        this.resetFields();
+       
         res.onSnapshot(doc => {
           this.idPotager = doc.id ;
          // console.log(doc.id, '=>', doc.data());
         // console.log(`${doc.id} => ${doc.data()}`);
          console.log(this.userId);
          this.firebaseService.potagerUser(this.idPotager, this.userId);
+         this.resetFields();
          this.router.navigate(['/potagers/'+ this.userId]);
-      
+         this.showSuccess();
       }
     );
       });
   }
-
 
 
 

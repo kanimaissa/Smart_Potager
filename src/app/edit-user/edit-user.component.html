@@ -6,27 +6,27 @@
       Tip 2: you can also add an image using data-image tag
   -->
     <div class="logo">
-      <a routerLink = "/dashboard"class="simple-text logo-normal">
+      <a routerLink = "/dashboard"class="simple-text logo-normal">
         Smart Potager
        </a>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
-            <a class="nav-link" routerLink = "/dashboard">
+            <a class="nav-link" routerLink = "/dashboard">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
           <li class="nav-item  " >
-            <a class="nav-link"   routerLink = "/home">
+            <a class="nav-link"   routerLink = "/home">
               <i class="material-icons">content_paste</i>
               <p>Liste Utilisateurs</p>
             </a>
           </li>
         
           <li class="nav-item  " >
-            <a class="nav-link"   routerLink = "/intervention">
+            <a class="nav-link"   routerLink = "/intervention">
               <i class="material-icons">post_add</i>
               <p>Intervention</p>
             </a>
@@ -51,7 +51,7 @@
     <nav aria-label="breadcrumb" style="margin-top:-1.5%;margin-bottom:-1%; margin-left:0%;">
         <ol class="breadcrumb" style=" background-color:transparent ;">
           <li>                  
-              <a style="color: grey" routerLink = "/home" >Utilisateur</a> > <a style="color: grey" routerLink = "/home" >Modifier les cordonées de l'utilisateur</a>  
+              <a style="color: grey" routerLink = "/home" >Utilisateur</a> > <a style="color: grey" routerLink = "/home" >Modifier les cordonées de l'utilisateur</a>  
           </li>
         </ol>
       </nav>
@@ -97,14 +97,18 @@
               </ng-container>
             </div>
 
-            <div class="form-group"  style="margin-top: -3.5%;">
-                <mat-form-field class="input-style">
-                  <input matInput placeholder="Ville" class="form-control" formControlName="ville">
-                </mat-form-field>
+            <div class="form-group" style="margin-top: -3.5%;">
+              <mat-form-field class="input-style">
+                  <mat-label>Ville</mat-label>
+                  <mat-select class="form-control" formControlName="ville">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let ville of villes" [value]="ville.value">{{ville.value}}</mat-option>
+                  </mat-select>
+                </mat-form-field> 
                 <ng-container *ngFor="let validation of validation_messages.ville">
                   <mat-error *ngIf="exampleForm.get('ville').hasError(validation.type) && (exampleForm.get('ville').dirty || exampleForm.get('ville').touched)">{{validation.message}}</mat-error>
-                </ng-container>
-              </div>
+                </ng-container>    
+          </div>
 
               <div class="form-group"  style="margin-top: -3.5%;">
                 <mat-form-field class="input-style">
@@ -151,5 +155,3 @@
   </div>
  
 
-
- 

@@ -22,6 +22,13 @@ export class NewUserComponent implements OnInit {
   idUser: string ; 
   
   hide = true;
+  villes = [
+    { value: 'TUNIS' },{ value: 'ARIANA' },{ value: 'MANOUBA' },{ value: 'BEN AROUS' },{ value: 'BISERTE' },{ value: 'NABEUL' },{ value: 'ZAGHOUAN' },{ value: 'SILIANA' },
+    { value: 'KEF' },{ value: 'JENDOUBA' },{ value: 'BEJA' },{ value: 'KIROUAN' },{ value: 'SOUSSE' },{ value: 'MOUNASTIR' },{ value: 'MAHDIA' },{ value: 'SFAX' },
+    { value: 'MEDNINE' },{ value: 'GABES' },{ value: 'GAFSA' },{ value: 'GBELI' },{ value: 'GASSERINE' },{ value: 'TOUSEUR' },{ value: 'TATAOUINE' },{ value: 'TMEDNINE' },
+  ];
+  
+
   validation_messages = {
     'name': [
       { type: 'required', message: 'Name is required.' }
@@ -43,12 +50,10 @@ export class NewUserComponent implements OnInit {
    ],
    'mdp': [
      { type: 'required', message: 'mdp is required.' }
-   ],
-   'nbr_potager': [
-    { type: 'required', message: 'mdp is required.' }
+   
   ]
   };
-
+ 
 
 
   constructor(
@@ -79,11 +84,11 @@ export class NewUserComponent implements OnInit {
       name: ['', Validators.required ],
       surname: ['', Validators.required ],
       email: ['', Validators.required],
-      ville: ['', Validators.required ],
+      ville: ['0', Validators.required ],
       adresse: ['', Validators.required ],
       telephone: ['', Validators.required ],
       mdp: ['', Validators.required ],
-      nbr_potager: ['', Validators.required ]
+     
     });
 
   }
@@ -93,7 +98,7 @@ export class NewUserComponent implements OnInit {
       namePotager: ['', Validators.required ],
       description: ['', Validators.required ],
       surface: ['', Validators.required ],
-      orientation: ['', Validators.required ],
+      orientation: ['0', Validators.required ],
       localisation: ['', Validators.required ]
     });
   }
@@ -106,17 +111,17 @@ export class NewUserComponent implements OnInit {
       name: new FormControl('', Validators.required),
       surname: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
-      ville: new FormControl('', Validators.required),
+      ville: new FormControl('0', Validators.required),
       adresse: new FormControl('', Validators.required),
       telephone: new FormControl('', Validators.required),
-      mdp: new FormControl('', Validators.required),
-      nbr_potager: new FormControl('', Validators.required)
+      mdp: new FormControl('', Validators.required)
+     
     });
 
     this.exampleForm2 = this.fb2.group({
       namePotager: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      orientation: new FormControl('', Validators.required),
+      orientation: new FormControl('0', Validators.required),
       surface: new FormControl('', Validators.required),
       localisation: new FormControl('', Validators.required),
     });
@@ -124,7 +129,7 @@ export class NewUserComponent implements OnInit {
   }
 
   showSuccess(){
-    this.toastr.success('lajout a effectué avec succées','utilisateur ajouté');
+    this.toastr.success('Utilisateur ajouté avec succées');
   }
   onSubmit(value){
     this.firebaseService.createUser(value)
@@ -171,3 +176,4 @@ export interface DialogData {
  
   name: string;
 }
+

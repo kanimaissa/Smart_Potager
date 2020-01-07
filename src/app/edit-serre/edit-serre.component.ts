@@ -24,16 +24,19 @@ export class EditSerreComponent implements OnInit {
 
   validation_messages2 = {
     'libSerre': [
-      { type: 'required', message: 'Name is required.' }
+      { type: 'required', message: 'libelle  is required.' }
     ],
     'position': [
-      { type: 'required', message: 'Surname is required.' }
+      { type: 'required', message: 'position is required.' }
     ],
     'largeur': [
-      { type: 'required', message: 'Surface is required.' },
+      { type: 'required', message: 'langeur is required.' },
     ],
     'longueur': [
-      { type: 'required', message: 'Orientation is required.' },
+      { type: 'required', message: 'langeur is required.' },
+    ],
+    'culture': [
+      { type: 'required', message: 'Culture is required.' },
     ]
     
   };
@@ -80,6 +83,7 @@ export class EditSerreComponent implements OnInit {
       position: [this.item.position, Validators.required ],
       largeur: [this.item.largeur, Validators.required ],
       longueur: [this.item.longueur, Validators.required ],
+      culture: [this.item.longueur, Validators.required ]
      
    
   
@@ -96,6 +100,7 @@ export class EditSerreComponent implements OnInit {
       position: new FormControl('', Validators.required),
       largeur: new FormControl('', Validators.required),
       longueur: new FormControl('', Validators.required),
+      culture: new FormControl('', Validators.required)
      
     });
   }

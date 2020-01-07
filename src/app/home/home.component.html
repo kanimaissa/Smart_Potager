@@ -59,12 +59,6 @@
           </div>
           <div class="card-body">
             <div class="row" style="margin-top: -0.5%;">
-                <div class="col col-md-3 text-col">
-                    <button type="button" class="btn btn-success" (click)="openDialogAddUser()"  >
-                        <i class="material-icons">person</i>  ajouter
-                    </button>     
-                </div>
-
                   <div class="col col-md-3 text-col">
                   <div class="input-group">
                     <input type="text" class="form-control" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}" placeholder="Search by name..." (keyup)="searchByName()">
@@ -73,7 +67,11 @@
                     </div>
                   </div>
                 </div>
-           
+                <div class="col col-md-9 text-col">
+                  <button type="button" class="btn btn-success" (click)="openDialogAddUser()"  >
+                      <i class="material-icons">person</i>  ajouter
+                  </button>     
+              </div>
     
             </div>
             </div>

@@ -16,7 +16,8 @@ import * as Material from '@angular/material';
     Material.MatDialogModule,
     Material.MatTableModule,
     Material.MatToolbarModule,
-    Material.MatSlideToggleModule
+    Material.MatSlideToggleModule,
+    Material.MatSelectModule,
    
   ],
   exports: [
@@ -31,7 +32,8 @@ import * as Material from '@angular/material';
     Material.MatDialogModule,
     Material.MatTableModule,
     Material.MatToolbarModule,
-    Material.MatSlideToggleModule
+    Material.MatSlideToggleModule,
+    Material.MatSelectModule,
   
     
   ]

@@ -10,7 +10,7 @@
         
     
                   <form class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)" >
-  
+                      <!-- Name -->
                       <div class="form-group " >
                         <mat-form-field class="example-full-width" >
                           <input matInput placeholder="Name" class="form-control" formControlName="name">
@@ -19,7 +19,7 @@
                           <mat-error *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">{{validation.message}}</mat-error>
                         </ng-container>
                       </div>
-            
+                       <!-- SurName -->
                       <div class="form-group" style="margin-top: -3.5%;">
                         <mat-form-field class="example-full-width">
                           <input matInput placeholder="Surname" class="form-control" formControlName="surname">
@@ -28,7 +28,7 @@
                           <mat-error *ngIf="exampleForm.get('surname').hasError(validation.type) && (exampleForm.get('surname').dirty || exampleForm.get('surname').touched)">{{validation.message}}</mat-error>
                         </ng-container>
                       </div>
-
+                      <!-- Email -->
                       <div class="form-group" style="margin-top: -3.5%;">
                         <mat-form-field class="example-full-width">
                           <input matInput placeholder="Email" class="form-control" formControlName="email">
@@ -37,7 +37,7 @@
                           <mat-error *ngIf="exampleForm.get('email').hasError(validation.type) && (exampleForm.get('email').dirty || exampleForm.get('email').touched)">{{validation.message}}</mat-error>
                         </ng-container>
                       </div>
-
+                      <!-- Adresse -->
                       <div class="form-group" style="margin-top: -3.5%;">
                           <mat-form-field class="example-full-width">
                               <input matInput placeholder="Adresse" class="form-control" formControlName="adresse">
@@ -46,16 +46,21 @@
                               <mat-error *ngIf="exampleForm.get('adresse').hasError(validation.type) && (exampleForm.get('adresse').dirty || exampleForm.get('adresse').touched)">{{validation.message}}</mat-error>
                             </ng-container>
                           </div>
+                          <!-- Ville -->
+                            <div class="form-group" style="margin-top: -3.5%;">
+                              <mat-form-field class="example-full-width">
+                                  <mat-label>Ville</mat-label>
+                                  <mat-select class="form-control" formControlName="ville">
+                                    <mat-option>None</mat-option>
+                                    <mat-option *ngFor="let ville of villes" [value]="ville.value">{{ville.value}}</mat-option>
+                                  </mat-select>
+                                </mat-form-field> 
+                                <ng-container *ngFor="let validation of validation_messages.ville">
+                                  <mat-error *ngIf="exampleForm.get('ville').hasError(validation.type) && (exampleForm.get('ville').dirty || exampleForm.get('ville').touched)">{{validation.message}}</mat-error>
+                                </ng-container>    
+                          </div>
 
-                          <div class="form-group" style="margin-top: -3.5%;">
-                            <mat-form-field class="example-full-width">
-                                <input matInput placeholder="Ville" class="form-control" formControlName="ville">
-                              </mat-form-field>
-                              <ng-container *ngFor="let validation of validation_messages.ville">
-                                <mat-error *ngIf="exampleForm.get('ville').hasError(validation.type) && (exampleForm.get('ville').dirty || exampleForm.get('ville').touched)">{{validation.message}}</mat-error>
-                              </ng-container>
-                            </div> 
-
+                          <!-- Telephone -->
                           <div class="form-group" style="margin-top: -3.5%;">
                               <mat-form-field class="example-full-width">
                                 <input matInput placeholder="Telephone" class="form-control" formControlName="telephone">
@@ -64,7 +69,7 @@
                                 <mat-error *ngIf="exampleForm.get('telephone').hasError(validation.type) && (exampleForm.get('telephone').dirty || exampleForm.get('telephone').touched)">{{validation.message}}</mat-error>
                               </ng-container>
                             </div>
-            
+                            <!-- Mdp -->
                             <div class="form-group" style="margin-top: -3.5%;">
                                 <mat-form-field class="example-full-width">
                                   <input matInput placeholder="Mot de passe" class="form-control" formControlName="mdp" [type]="hide ? 'password' : 'text'">
@@ -75,8 +80,8 @@
                                 </ng-container>
                               </div>
 
-                           
-                      <div class="row submit-button-container" style="margin-top: -3.5%;">
+                        <!-- Submit -->
+                        <div class="row submit-button-container" style="margin-top: -3.5%;">
                           <div class="col-md-4">
                             <button mat-raised-button class="submit-button" color="primary" type="submit" [disabled]="!exampleForm.valid">Create</button>
                           </div>

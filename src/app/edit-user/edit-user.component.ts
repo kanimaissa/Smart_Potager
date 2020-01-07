@@ -18,6 +18,12 @@ export class EditUserComponent implements OnInit {
   exampleForm: FormGroup;
   item: any;
   hide = true;
+  villes = [
+    { value: 'TUNIS' },{ value: 'ARIANA' },{ value: 'MANOUBA' },{ value: 'BEN AROUS' },{ value: 'BISERTE' },{ value: 'NABEUL' },{ value: 'ZAGHOUAN' },{ value: 'SILIANA' },
+    { value: 'KEF' },{ value: 'JENDOUBA' },{ value: 'BEJA' },{ value: 'KIROUAN' },{ value: 'SOUSSE' },{ value: 'MOUNASTIR' },{ value: 'MAHDIA' },{ value: 'SFAX' },
+    { value: 'MEDNINE' },{ value: 'GABES' },{ value: 'GAFSA' },{ value: 'GBELI' },{ value: 'GASSERINE' },{ value: 'TOUSEUR' },{ value: 'TATAOUINE' },{ value: 'TMEDNINE' },
+  ];
+  
   validation_messages = {
    'name': [
      { type: 'required', message: 'Name is required.' }
